@@ -422,7 +422,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -562,8 +562,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7876f27b4b5af4faaaa8d5076a8749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputVec: {x: 0, y: 0}
-  speed: 3
+  moveVec: {x: 0, y: 0}
+  moveSpeed: 3
+  jumpSpeed: 8
   isGround: 0
 --- !u!114 &1764577293
 MonoBehaviour:
@@ -578,7 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: c337fa5075c36e1408a916ad50da0476, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -592,10 +593,6 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 85681637-6445-43ae-8d86-5da909f46fc8
-    m_ActionName: 'Player/MoveLeft[/Keyboard/leftArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 1d1aaf99-3c97-4038-b342-e7897c27a0e5
     m_ActionName: 'Player/Shoot[/Keyboard/z]'
   - m_PersistentCalls:
@@ -607,7 +604,19 @@ MonoBehaviour:
     m_ActionId: d21ebff8-5ee8-4ec9-a19f-aff0c7c378f7
     m_ActionName: 'Player/Crouch[/Keyboard/downArrow]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1764577292}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 45bd7ca4-0014-4be0-9719-41814a4dd98e
     m_ActionName: 'Player/Jump[/Keyboard/leftShift]'
   - m_PersistentCalls:
@@ -650,6 +659,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 357893d1-3a3f-431f-800f-9fa502ed1074
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1764577292}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 629d4d61-111c-4ed6-84c7-1c5da41d0d1e
+    m_ActionName: 'Player/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -7,15 +7,6 @@
             "id": "a66ae245-0553-41a6-981e-da07aeb6eb61",
             "actions": [
                 {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "85681637-6445-43ae-8d86-5da909f46fc8",
-                    "expectedControlType": "Vector2",
-                    "processors": "NormalizeVector2",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "1d1aaf99-3c97-4038-b342-e7897c27a0e5",
@@ -50,6 +41,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "629d4d61-111c-4ed6-84c7-1c5da41d0d1e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -99,7 +99,7 @@
                 },
                 {
                     "name": "2D Vector",
-                    "id": "a92d1a52-9040-4d9e-b335-20653970ac23",
+                    "id": "78f706b0-984c-468a-8da5-2f641605ae30",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -110,7 +110,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "8d593765-7012-4cf4-a251-f4d23b2b6081",
+                    "id": "20f7ea35-59f4-4585-8ceb-683d7d1ad850",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -121,7 +121,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "830d4754-3074-4678-92a8-0155f54fb743",
+                    "id": "a83db1cc-72a5-4e84-8769-094aa7afb020",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",

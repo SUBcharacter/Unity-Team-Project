@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     Rigidbody2D rigid;
-    
-    public Vector2 inputVec;
-    public float speed;
-    
+
+    public Vector2 moveVec;
+    public float moveSpeed;
+    public float jumpSpeed;
     public bool isGround = false;
     
     
@@ -31,11 +31,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigid.linearVelocityX = inputVec.x * speed;
-        if (Mathf.Abs(inputVec.x) < 1)
-        {
-            rigid.linearVelocityX -= rigid.linearVelocityX;
-        }
+        Move();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -55,11 +51,36 @@ public class Player : MonoBehaviour
         
     }
 
-    public void OnMove(InputValue value)
+    void Move()
     {
-        inputVec = value.Get<Vector2>();
+        rigid.linearVelocityX = moveVec.x * moveSpeed;
     }
+
     
+
+    #region UNITY_EVENTS
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveVec = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            rigid.linearVelocityY = jumpSpeed;
+        }
+        else if(context.canceled)
+        {
+            if(rigid.linearVelocityY > 0)
+            {
+                rigid.linearVelocityY *= 0.5f;
+            }
+        }
+    }
+    #endregion
+
 
     void Retry()
     {
