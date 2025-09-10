@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     Rigidbody2D rigid;
+    SpriteRenderer sprite;
 
     public Vector2 moveVec;
     public float moveSpeed;
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -35,18 +37,19 @@ public class Player : MonoBehaviour
         Move();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("충돌감지");
         if(collision.gameObject.CompareTag("Terrain"))
         {
-            isGround = true;
-            canAirJump = true;
+            foreach(ContactPoint2D c in collision.contacts)
+            {
+                if(c.normal.y > 0.9f)
+                {
+                    isGround = true;
+                    canAirJump = true;
+                }
+            }
         }
         else if(collision.gameObject.CompareTag("Obstacle"))
         {
@@ -78,7 +81,16 @@ public class Player : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if(context.ReadValue<Vector2>().x < 0)
+        {
+            sprite.flipX = true;
+        }
+        else if(context.ReadValue<Vector2>().x > 0)
+        {
+            sprite.flipX = false;
+        }
         moveVec = context.ReadValue<Vector2>();
+
     }
 
     public void OnJump(InputAction.CallbackContext context)
