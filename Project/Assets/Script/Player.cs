@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
     public Vector2 moveVec;
     public float moveSpeed;
     public float jumpSpeed;
-    public bool isGround = false;
+    bool isGround = false;
+    bool canAirJump = false;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,16 +35,31 @@ public class Player : MonoBehaviour
         Move();
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("충돌감지");
         if(collision.gameObject.CompareTag("Terrain"))
         {
             isGround = true;
+            canAirJump = true;
         }
         else if(collision.gameObject.CompareTag("Obstacle"))
         {
 
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Terrain"))
+            return;
+
+        isGround = false;
     }
 
     void Control()
@@ -67,9 +83,23 @@ public class Player : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (!(isGround || canAirJump))
+            return;
+
         if(context.performed)
         {
-            rigid.linearVelocityY = jumpSpeed;
+            if(isGround)
+            {
+                Debug.Log("jumped");
+                rigid.linearVelocityY = jumpSpeed;
+                isGround = false;
+            }
+            else if(canAirJump)
+            {
+                rigid.linearVelocityY = jumpSpeed;
+                canAirJump = false;
+            }
+                
         }
         else if(context.canceled)
         {

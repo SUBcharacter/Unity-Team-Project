@@ -422,7 +422,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -565,7 +565,6 @@ MonoBehaviour:
   moveVec: {x: 0, y: 0}
   moveSpeed: 3
   jumpSpeed: 8
-  isGround: 0
 --- !u!114 &1764577293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,7 +715,7 @@ GameObject:
   - component: {fileID: 1853999906}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
