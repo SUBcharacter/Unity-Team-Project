@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rigid;
     SpriteRenderer sprite;
+    Animator animator;
 
     public Vector2 moveVec;
     public float moveSpeed;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -90,6 +93,16 @@ public class Player : MonoBehaviour
             sprite.flipX = false;
         }
         moveVec = context.ReadValue<Vector2>();
+
+        if(moveVec.x != 0)
+        {
+            animator.SetBool("Walk", true);
+        }
+        else
+        {
+            animator.SetBool("Walk", false);
+        }
+        
 
     }
 
