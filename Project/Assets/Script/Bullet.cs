@@ -3,15 +3,20 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     Rigidbody2D rigid;
-    Player player;
 
     public int damage;
     public float speed;
+    public Vector2 direction;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        player = GetComponent<Player>();
+    }
+
+    void Init(Vector2 dir)
+    {
+        dir = dir.normalized;
+        rigid.linearVelocityX = dir.x * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,7 +24,10 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Border"))
         {
             gameObject.SetActive(false);
-            rigid.MovePosition(player.transform.position);
+        }
+        else if(collision.gameObject.CompareTag("Terrain"))
+        {
+            gameObject.SetActive(false);
         }
     }
         

@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer sprite;
     Animator animator;
+    Gun gun;
 
     public Vector2 moveVec;
     public float moveSpeed;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        gun = GetComponentInChildren<Gun>();
     }
 
     void Start()
@@ -133,6 +135,11 @@ public class Player : MonoBehaviour
                 rigid.linearVelocityY *= 0.5f;
             }
         }
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+
     }
     #endregion
 
