@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Vector2 moveVec;
     public float moveSpeed;
     public float jumpSpeed;
+    bool shotDir = true; // true : ¿À¸¥ÂÊ, false : ¿ÞÂÊ
     bool isGround = false;
     bool canAirJump = false;
     
@@ -86,15 +87,21 @@ public class Player : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if(context.ReadValue<Vector2>().x < 0)
+        Vector2 input = context.ReadValue<Vector2>();
+        Vector3 gunPostion = gun.transform.position;
+        if ( input.x < 0)
         {
             sprite.flipX = true;
+            gun.transform.position = new Vector3(-gunPostion.x, gunPostion.y, gunPostion.z);
+            gun.facingRight = false;
         }
-        else if(context.ReadValue<Vector2>().x > 0)
+        else if(input.x > 0)
         {
             sprite.flipX = false;
+            gun.transform.position = new Vector3(gunPostion.x, gunPostion.y, gunPostion.z);
+            gun.facingRight = true;
         }
-        moveVec = context.ReadValue<Vector2>();
+        moveVec = input;
 
         if(moveVec.x != 0)
         {
@@ -139,7 +146,10 @@ public class Player : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
+        if (!context.performed)
+            return;
 
+        gun.Fire();
     }
     #endregion
 

@@ -5,30 +5,30 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rigid;
 
     public int damage;
-    public float speed;
-    public Vector2 direction;
+    public float speed = 10.0f;
+    
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
     }
 
-    void Init(Vector2 dir)
+    public void Init(Vector2 dir)
     {
         dir = dir.normalized;
-        rigid.linearVelocityX = dir.x * speed;
+        rigid.linearVelocity = dir * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Border"))
-        {
-            gameObject.SetActive(false);
-        }
-        else if(collision.gameObject.CompareTag("Terrain"))
-        {
-            gameObject.SetActive(false);
-        }
+        bool border = collision.gameObject.CompareTag("Border");
+        bool terrain = collision.gameObject.CompareTag("Terrain");
+
+        if (!(border || terrain))
+            return;
+
+        gameObject.SetActive(false);
+        GameManager.instance.bm.activeBullet--;
     }
         
 }
