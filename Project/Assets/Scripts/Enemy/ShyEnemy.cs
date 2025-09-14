@@ -11,31 +11,24 @@ public class ShyEnemy : MonoBehaviour
 
     private Vector2 lastPlayerPos;        //  플레이어가 안움직일 때
 
-    private float playerLookDir ;      // 플레이어가 바라보는 방향
+    private float playerLookDir;      // 플레이어가 바라보는 방향
     private float toEnemyDir;      // 플레이어와 적의 방향
     private bool isSameDir;       // 같은 방향을 보고 있는지
+
+   private bool isActived = true;      // 플레이어가 가까이 왔는지 (적 활성화 여부 체크)
     private void Awake()
     {
         playerRb = player.GetComponent<Rigidbody2D>();
-       
+
     }
 
     private void Update()
     {
+        if (!isActived) { return; }
+
         playerLookDir = Mathf.Sign(player.localScale.x);
         toEnemyDir = Mathf.Sign(transform.position.x - player.position.x);
         isSameDir = playerLookDir != toEnemyDir;
-        //float PlayerMoveDis = Vector3.Distance(transform.position, player.position);
-        //Vector3 targetPos = player.position;
-        //if(PlayerMoveDis > stopDistance)
-        //{
-        //    transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-
-        //}
-
-        //lastPlayerPos = player.position;
-
-
 
         // 플레이어가 움직이면 따라오기
 
@@ -49,6 +42,14 @@ public class ShyEnemy : MonoBehaviour
         }
         // 멈추면 가만히
 
+    }
+    public void Activate()
+    {
+        isActived = true;
+    }
 
+    public void Deactivate()
+    {
+        isActived = false;
     }
 }
