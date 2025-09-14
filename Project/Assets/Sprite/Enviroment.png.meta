@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_0
+      name: Grass
       rect:
         serializedVersion: 2
         x: 1
@@ -147,7 +147,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,7 +161,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_1
+      name: Block
       rect:
         serializedVersion: 2
         x: 34
@@ -169,7 +169,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,7 +183,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_2
+      name: Platform
       rect:
         serializedVersion: 2
         x: 67
@@ -191,7 +191,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,7 +205,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_3
+      name: Platform_Castle
       rect:
         serializedVersion: 2
         x: 100
@@ -213,7 +213,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,7 +227,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_4
+      name: Block_Castle
       rect:
         serializedVersion: 2
         x: 133
@@ -235,7 +235,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,15 +249,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_5
+      name: Water_Surface
       rect:
         serializedVersion: 2
         x: 166
         y: 183
         width: 32
-        height: 30
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -271,7 +271,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_6
+      name: Water
       rect:
         serializedVersion: 2
         x: 199
@@ -279,7 +279,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -293,7 +293,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_7
+      name: Background
       rect:
         serializedVersion: 2
         x: 1
@@ -301,7 +301,7 @@ TextureImporter:
         width: 96
         height: 104
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -315,7 +315,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_8
+      name: Tree
       rect:
         serializedVersion: 2
         x: 98
@@ -323,7 +323,7 @@ TextureImporter:
         width: 111
         height: 175
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -337,7 +337,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_9
+      name: Spike0
       rect:
         serializedVersion: 2
         x: 230
@@ -345,7 +345,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -359,7 +359,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_10
+      name: Spike1
       rect:
         serializedVersion: 2
         x: 230
@@ -367,7 +367,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -381,7 +381,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_11
+      name: Spike2
       rect:
         serializedVersion: 2
         x: 230
@@ -389,7 +389,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -403,7 +403,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_12
+      name: Cloud
       rect:
         serializedVersion: 2
         x: 2
@@ -411,7 +411,7 @@ TextureImporter:
         width: 65
         height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -425,7 +425,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_13
+      name: Spike3
       rect:
         serializedVersion: 2
         x: 230
@@ -433,7 +433,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -460,20 +460,21 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_0: 5421994718945063583
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_1: -2034167090197253652
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_10: -7263273659138518866
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_11: 6748175200193756222
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_12: 137001136221160189
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_13: -5477907989516303964
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_2: -8312600929740326180
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_3: 7506228560175245313
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_4: 4064682666341440730
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_5: 8966389083479241451
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_6: 1208686778644926009
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_7: -4885917629575316167
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_8: -1347774133449207805
-      PC _ Computer - I Wanna Be The Guy - Tilesets - First Grasslands_9: -1761226545520248286
+      0: -1761226545520248286
+      Background: -4885917629575316167
+      Block: -2034167090197253652
+      Block_Castle: 4064682666341440730
+      Cloud: 137001136221160189
+      Grass: 5421994718945063583
+      Platform: -8312600929740326180
+      Platform_Castle: 7506228560175245313
+      Spike0: -1761226545520248286
+      Spike1: -7263273659138518866
+      Spike2: 6748175200193756222
+      Spike3: -5477907989516303964
+      Tree: -1347774133449207805
+      Water: 1208686778644926009
+      Water_Surface: 8966389083479241451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

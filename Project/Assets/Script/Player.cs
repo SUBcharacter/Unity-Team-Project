@@ -1,3 +1,4 @@
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
+        Init(new Vector2(-1.0f, 1.0f));
     }
 
     // Update is called once per frame
@@ -42,6 +43,13 @@ public class Player : MonoBehaviour
         Move();
 
     }
+    public void Init(Vector2 initPos)
+    {
+        transform.position = new Vector3(initPos.x,initPos.y,0);
+        gameObject.SetActive(true);
+
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -59,7 +67,7 @@ public class Player : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("Obstacle"))
         {
-
+            gameObject.SetActive(false);
         }
     }
 

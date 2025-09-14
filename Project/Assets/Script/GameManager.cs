@@ -11,4 +11,12 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            player.Init(new Vector2(-1.0f, 1.0f));
+        }
+    }
 }
