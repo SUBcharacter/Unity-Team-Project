@@ -12,9 +12,12 @@ public class Player : MonoBehaviour
     public Vector2 moveVec;
     public float moveSpeed;
     public float jumpSpeed;
+    float fallVelo = 3f;
+    float lowJumpVelo = 2f;
     bool shotDir = true; // true : ¿À¸¥ÂÊ, false : ¿ÞÂÊ
     bool isGround = false;
     bool canAirJump = false;
+    bool jumpHeld = false;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,7 +44,10 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-
+        if(!jumpHeld)
+        {
+            rigid.linearVelocityY *= 0.8f;
+        }
     }
     public void Init(Vector2 initPos)
     {
@@ -138,17 +144,15 @@ public class Player : MonoBehaviour
             }
             else if(canAirJump)
             {
-                rigid.linearVelocityY = jumpSpeed;
+                rigid.linearVelocityY += jumpSpeed * 2;
                 canAirJump = false;
             }
-                
+            jumpHeld = true;
+            
         }
         else if(context.canceled)
         {
-            if(rigid.linearVelocityY > 0)
-            {
-                rigid.linearVelocityY *= 0.5f;
-            }
+            jumpHeld = false;
         }
     }
 
