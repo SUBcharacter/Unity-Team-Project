@@ -11,16 +11,12 @@ public class Player : MonoBehaviour
 
     public Vector2 moveVec;
     public float moveSpeed;
-    public float jumpSpeed;
-    float fallVelo = 3f;
-    float lowJumpVelo = 2f;
+    [SerializeField] private float[] jumpSpeeds;
+    
+
     bool shotDir = true; // true : ¿À¸¥ÂÊ, false : ¿ÞÂÊ
-    bool isGround = false;
-    bool canAirJump = false;
-    bool jumpHeld = false;
-    
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] bool isGround = false;
+    [SerializeField] bool canAirJump = false;
 
     void Awake()
     {
@@ -28,6 +24,8 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         gun = GetComponentInChildren<Gun>();
+
+        jumpSpeeds = new float[] { 10.0f, 7.0f };
     }
 
     void Start()
@@ -35,7 +33,6 @@ public class Player : MonoBehaviour
         Init(new Vector2(-1.0f, 1.0f));
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -44,10 +41,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        if(!jumpHeld)
-        {
-            rigid.linearVelocityY *= 0.8f;
-        }
+        
     }
     public void Init(Vector2 initPos)
     {
@@ -95,8 +89,6 @@ public class Player : MonoBehaviour
         rigid.linearVelocityX = moveVec.x * moveSpeed;
     }
 
-    
-
     #region UNITY_EVENTS
 
     public void OnMove(InputAction.CallbackContext context)
@@ -138,22 +130,24 @@ public class Player : MonoBehaviour
         {
             if(isGround)
             {
-                Debug.Log("jumped");
-                rigid.linearVelocityY = jumpSpeed;
                 isGround = false;
+                rigid.linearVelocityY = jumpSpeeds[0];
             }
             else if(canAirJump)
             {
-                rigid.linearVelocityY += jumpSpeed * 2;
                 canAirJump = false;
+                rigid.linearVelocityY = jumpSpeeds[1];
             }
-            jumpHeld = true;
+        }
+        if(context.canceled)
+        {
+            if(rigid.linearVelocityY > 0)
+            {
+                rigid.linearVelocityY *= 0.5f;
+            }
             
         }
-        else if(context.canceled)
-        {
-            jumpHeld = false;
-        }
+
     }
 
     public void OnShoot(InputAction.CallbackContext context)
