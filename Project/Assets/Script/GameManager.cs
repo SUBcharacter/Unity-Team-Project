@@ -4,19 +4,31 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Player player;
-    public BulletManager bm;
+    public BulletManager bulletManager;
+    public Camera camera;
     public static GameManager instance;
+    public SaveManager saveManager;
 
     private void Awake()
     {
+        if(camera == null)
+        {
+            camera = Camera.main;
+        }
         instance = this;
+    }
+
+    private void Start()
+    {
+        camera.transform.position = saveManager.currentData.cameraPos;
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.R))
         {
-            player.Init(new Vector2(-1.0f, 1.0f));
+            player.Init(saveManager.currentData.playerPos);
+            camera.transform.position = saveManager.currentData.cameraPos;
         }
     }
 }

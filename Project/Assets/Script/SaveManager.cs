@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+
+[Serializable]
+public class SaveData
+{
+    public Vector3 playerPos;
+    public Vector3 cameraPos;
+}
+
+[Serializable]
+public class SaveFile
+{
+    public SaveData slot;
+}
+
+public class SaveManager : MonoBehaviour
+{
+    public SaveData currentData;
+
+    Vector3 initCameraPos = new Vector3(0, -0.109999999f, -10f);
+    Vector3 initPlayerPos = new Vector3(-1.19000006f, 0.0199999996f, 0);
+    public string path;
+
+    private void Awake()
+    {
+        path = Path.Combine(Application.persistentDataPath, "Save.json");
+
+        if (currentData == null)
+            currentData = new SaveData();
+        LoadData();
+    }
+
+    public void UpdateData(Vector3 playerPos, Vector3 cameraPos)
+    {
+        SaveData save = new SaveData();
+        save.playerPos = playerPos;
+        save.cameraPos = cameraPos;
+    }
+
+    public void LoadData()
+    {
+        if(!File.Exists(path))
+        {
+            // 플레이어 및 카메라 초기 위치
+            currentData.playerPos = initPlayerPos;
+            currentData.cameraPos = initCameraPos;
+            return;
+        }
+        string json = File.ReadAllText(path);
+        SaveFile saveFile = JsonUtility.FromJson<SaveFile>(json);
+
+        if(saveFile == null || saveFile.slot == null)
+        {
+            // 세이브 파일 파싱 실패시 플레이어 및 카메라 초기 위치
+            currentData.playerPos = initPlayerPos;
+            currentData.cameraPos = initCameraPos;
+            return;
+        }
+        currentData = saveFile.slot;
+    }
+
+    public void SaveData()
+    {
+        if(currentData == null)
+        {
+            return;
+        }
+
+        SaveFile saveFile = new SaveFile { slot = currentData };
+        string json = JsonUtility.ToJson(saveFile, true);
+        File.WriteAllText(path, json);
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveData();
+        Debug.Log(path);
+    }
+}

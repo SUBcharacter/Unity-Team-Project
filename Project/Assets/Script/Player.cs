@@ -6,11 +6,15 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rigid;
     SpriteRenderer sprite;
+    Collider2D collider;
     Animator animator;
     Gun gun;
 
     public Vector2 moveVec;
     public float moveSpeed;
+    float coyoteTimeCounter = 0;
+    float coyoteTime = 0.15f;
+    float distance = 0.05f;
     [SerializeField] private float[] jumpSpeeds;
     
 
@@ -22,6 +26,7 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        collider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         gun = GetComponentInChildren<Gun>();
 
@@ -30,42 +35,65 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Init(new Vector2(-1.0f, 1.0f));
+        Init(GameManager.instance.saveManager.currentData.playerPos);
     }
 
     void Update()
     {
+        
         
     }
 
     private void FixedUpdate()
     {
         Move();
-        
+        TerrainCollision();
+        if (isGround)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
     }
-    public void Init(Vector2 initPos)
+    public void Init(Vector3 initPos)
     {
-        transform.position = new Vector3(initPos.x,initPos.y,0);
+        transform.position = initPos;
+        rigid.linearVelocityY = 0f;
         gameObject.SetActive(true);
+    }
+
+    void Control()
+    {
 
     }
 
+    void Move()
+    {
+        rigid.linearVelocityX = moveVec.x * moveSpeed;
+    }
 
+    void TerrainCollision()
+    {
+        LayerMask terrainLayer = LayerMask.GetMask("Terrain");
+
+        RaycastHit2D hit1 = Physics2D.Raycast(new Vector2(collider.bounds.center.x,collider.bounds.min.y), Vector2.down, distance, terrainLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast(collider.bounds.min, Vector2.down, distance, terrainLayer);
+        RaycastHit2D hit3 = Physics2D.Raycast(new Vector2(collider.bounds.max.x,collider.bounds.min.y), Vector2.down, distance, terrainLayer);
+
+        if((hit1.collider != null) || (hit2.collider != null) || (hit3.collider != null))
+        {
+            isGround = true;
+            canAirJump = true;
+        }
+    }
+
+    #region EventFunc
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("충돌감지");
-        if(collision.gameObject.CompareTag("Terrain"))
-        {
-            foreach(ContactPoint2D c in collision.contacts)
-            {
-                if(c.normal.y > 0.9f)
-                {
-                    isGround = true;
-                    canAirJump = true;
-                }
-            }
-        }
-        else if(collision.gameObject.CompareTag("Obstacle"))
+        if(collision.gameObject.CompareTag("Obstacle"))
         {
             gameObject.SetActive(false);
         }
@@ -77,16 +105,6 @@ public class Player : MonoBehaviour
             return;
 
         isGround = false;
-    }
-
-    void Control()
-    {
-        
-    }
-
-    void Move()
-    {
-        rigid.linearVelocityX = moveVec.x * moveSpeed;
     }
 
     #region UNITY_EVENTS
@@ -128,12 +146,12 @@ public class Player : MonoBehaviour
 
         if(context.performed)
         {
-            if(isGround)
+            if(isGround && coyoteTimeCounter>0)
             {
                 isGround = false;
                 rigid.linearVelocityY = jumpSpeeds[0];
             }
-            else if(canAirJump)
+            else if(canAirJump) 
             {
                 canAirJump = false;
                 rigid.linearVelocityY = jumpSpeeds[1];
@@ -158,10 +176,5 @@ public class Player : MonoBehaviour
         gun.Fire();
     }
     #endregion
-
-
-    void Retry()
-    {
-        transform.gameObject.SetActive(true);
-    }
+    #endregion
 }

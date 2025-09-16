@@ -18,7 +18,7 @@ public class BulletManager : MonoBehaviour
         pools = new List<GameObject>();
         for(int i = 0; i< bulletCount; i++)
         {
-            GameObject bullet = Instantiate(prefap);
+            GameObject bullet = Instantiate(prefap,gameObject.transform);
             bullet.SetActive(false);
             pools.Add(bullet);
         }

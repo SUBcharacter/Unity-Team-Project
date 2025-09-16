@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
 
     public void Fire()
     {
-        BulletManager bm = GameManager.instance.bm;
+        BulletManager bm = GameManager.instance.bulletManager;
         if(facingRight)
         {
             bm.GetBullet(transform.position, Vector2.right);

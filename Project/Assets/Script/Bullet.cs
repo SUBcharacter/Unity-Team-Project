@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
             return;
 
         gameObject.SetActive(false);
-        GameManager.instance.bm.activeBullet--;
+        GameManager.instance.bulletManager.activeBullet--;
     }
         
 }
