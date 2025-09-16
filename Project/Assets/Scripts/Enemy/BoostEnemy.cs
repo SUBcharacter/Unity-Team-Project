@@ -65,7 +65,26 @@ public class BoostEnemy : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            float distanceToPlayer = Vector2.Distance(player.position, transform.position);
 
+            // 조건: 일정 거리 안으로 오면 boost
+            if (!isBoosting && distanceToPlayer < boostTriggerDistance)
+                isBoosting = true;
+            else if (isBoosting && distanceToPlayer > boostReleaseDistance)
+                isBoosting = false;
+
+            if (isBoosting)
+            {
+                float moveDir = (player.position.x > transform.position.x) ? 1f : -1f;
+                goombaRb.linearVelocity = new Vector2(moveDir * boostSpeed, goombaRb.linearVelocity.y);
+
+                Debug.Log("돌진 중!");
+            }
+            else
+            {
+                // 멈춰있기 (혹은 Patrol 등 추후 확장 가능)
+                goombaRb.linearVelocity = new Vector2(0f, goombaRb.linearVelocity.y);
+            }
         }
     }
 
