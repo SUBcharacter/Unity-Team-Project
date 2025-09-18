@@ -214,7 +214,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IWBTBG_33
+      name: LookUp_Run1
       rect:
         serializedVersion: 2
         x: 36
@@ -236,7 +236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_0
+      name: ShootDown0
       rect:
         serializedVersion: 2
         x: 9
@@ -258,7 +258,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_1
+      name: ShootDown1
       rect:
         serializedVersion: 2
         x: 39
@@ -280,7 +280,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_2
+      name: ShootDown2
       rect:
         serializedVersion: 2
         x: 70
@@ -302,7 +302,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_3
+      name: ShootDown3
       rect:
         serializedVersion: 2
         x: 103
@@ -324,7 +324,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_4
+      name: Idle0
       rect:
         serializedVersion: 2
         x: 2
@@ -346,7 +346,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_5
+      name: Idle1
       rect:
         serializedVersion: 2
         x: 36
@@ -368,7 +368,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_6
+      name: Idle2
       rect:
         serializedVersion: 2
         x: 68
@@ -390,7 +390,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_7
+      name: Idle3
       rect:
         serializedVersion: 2
         x: 100
@@ -412,7 +412,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_8
+      name: Idle4
       rect:
         serializedVersion: 2
         x: 133
@@ -434,7 +434,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_9
+      name: Jump0
       rect:
         serializedVersion: 2
         x: 2
@@ -456,7 +456,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_10
+      name: Jump1
       rect:
         serializedVersion: 2
         x: 38
@@ -478,7 +478,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_11
+      name: Jump2
       rect:
         serializedVersion: 2
         x: 68
@@ -500,7 +500,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_12
+      name: Jump3
       rect:
         serializedVersion: 2
         x: 101
@@ -522,7 +522,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_13
+      name: Jump4
       rect:
         serializedVersion: 2
         x: 136
@@ -544,7 +544,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_14
+      name: Run0
       rect:
         serializedVersion: 2
         x: 3
@@ -566,7 +566,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_15
+      name: Run1
       rect:
         serializedVersion: 2
         x: 37
@@ -588,7 +588,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_16
+      name: Run2
       rect:
         serializedVersion: 2
         x: 69
@@ -610,10 +610,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_17
+      name: Run3
       rect:
         serializedVersion: 2
-        x: 102
+        x: 103
         y: 151
         width: 29
         height: 27
@@ -632,7 +632,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_18
+      name: Run4
       rect:
         serializedVersion: 2
         x: 135
@@ -654,7 +654,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_19
+      name: Crouch0
       rect:
         serializedVersion: 2
         x: 5
@@ -676,7 +676,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_20
+      name: Crouch1
       rect:
         serializedVersion: 2
         x: 38
@@ -698,7 +698,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_21
+      name: Crouch2
       rect:
         serializedVersion: 2
         x: 71
@@ -720,11 +720,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_22
+      name: Crouch3
       rect:
         serializedVersion: 2
         x: 104
-        y: 118
+        y: 119
         width: 24
         height: 19
       alignment: 7
@@ -742,7 +742,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_23
+      name: Crouch4
       rect:
         serializedVersion: 2
         x: 137
@@ -764,7 +764,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_24
+      name: Crouch5
       rect:
         serializedVersion: 2
         x: 170
@@ -786,7 +786,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_25
+      name: LookUp0
       rect:
         serializedVersion: 2
         x: 2
@@ -808,7 +808,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_26
+      name: LookUp1
       rect:
         serializedVersion: 2
         x: 36
@@ -830,7 +830,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_27
+      name: LookUp2
       rect:
         serializedVersion: 2
         x: 69
@@ -852,7 +852,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_28
+      name: LookUp3
       rect:
         serializedVersion: 2
         x: 101
@@ -874,7 +874,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_29
+      name: LookUp4
       rect:
         serializedVersion: 2
         x: 134
@@ -896,7 +896,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_30
+      name: LookUp5
       rect:
         serializedVersion: 2
         x: 167
@@ -918,7 +918,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_31
+      name: LookUp6
       rect:
         serializedVersion: 2
         x: 200
@@ -940,7 +940,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_32
+      name: LookUp_Run0
       rect:
         serializedVersion: 2
         x: 2
@@ -962,7 +962,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_34
+      name: LookUp_Run2
       rect:
         serializedVersion: 2
         x: 68
@@ -984,7 +984,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_35
+      name: LookUp_Run3
       rect:
         serializedVersion: 2
         x: 101
@@ -1006,7 +1006,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_36
+      name: LookUp_Run4
       rect:
         serializedVersion: 2
         x: 134
@@ -1028,7 +1028,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_37
+      name: Sliding
       rect:
         serializedVersion: 2
         x: 3
@@ -1050,7 +1050,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IWBTBG_38
+      name: Hide
       rect:
         serializedVersion: 2
         x: 34
@@ -1085,45 +1085,45 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      IWBTBG_0: -1828243495
-      IWBTBG_1: -803470005
-      IWBTBG_10: -2085745227
-      IWBTBG_11: 1885707393
-      IWBTBG_12: -1509997400
-      IWBTBG_13: -1049680684
-      IWBTBG_14: 1894521817
-      IWBTBG_15: -1508452501
-      IWBTBG_16: -1009162116
-      IWBTBG_17: 1660224539
-      IWBTBG_18: -311584934
-      IWBTBG_19: -1641945086
-      IWBTBG_2: -454979048
-      IWBTBG_20: -1140398921
-      IWBTBG_21: 667018225
-      IWBTBG_22: 952897
-      IWBTBG_23: -976442024
-      IWBTBG_24: 1958825383
-      IWBTBG_25: -319727274
-      IWBTBG_26: -1890557462
-      IWBTBG_27: 288075072
-      IWBTBG_28: -411583701
-      IWBTBG_29: 1242660391
-      IWBTBG_3: -587070204
-      IWBTBG_30: -1554587271
-      IWBTBG_31: 427813301
-      IWBTBG_32: -1278710790
-      IWBTBG_33: 3956700024852534040
-      IWBTBG_34: 76317235
-      IWBTBG_35: 1671697335
-      IWBTBG_36: 1959830421
-      IWBTBG_37: 1564231702
-      IWBTBG_38: 709484997
-      IWBTBG_4: 1680593289
-      IWBTBG_5: 235269719
-      IWBTBG_6: -183934699
-      IWBTBG_7: -1085316070
-      IWBTBG_8: 962610146
-      IWBTBG_9: 1431872774
+      Crouch0: -1641945086
+      Crouch1: -1140398921
+      Crouch2: 667018225
+      Crouch3: 952897
+      Crouch4: -976442024
+      Crouch5: 1958825383
+      Hide: 709484997
+      Idle0: 1680593289
+      Idle1: 235269719
+      Idle2: -183934699
+      Idle3: -1085316070
+      Idle4: 962610146
+      Jump0: 1431872774
+      Jump1: -2085745227
+      Jump2: 1885707393
+      Jump3: -1509997400
+      Jump4: -1049680684
+      LookUp0: -319727274
+      LookUp1: -1890557462
+      LookUp2: 288075072
+      LookUp3: -411583701
+      LookUp4: 1242660391
+      LookUp5: -1554587271
+      LookUp6: 427813301
+      LookUp_Run0: -1278710790
+      LookUp_Run1: 3956700024852534040
+      LookUp_Run2: 76317235
+      LookUp_Run3: 1671697335
+      LookUp_Run4: 1959830421
+      Run0: 1894521817
+      Run1: -1508452501
+      Run2: -1009162116
+      Run3: 1660224539
+      Run4: -311584934
+      ShootDown0: -1828243495
+      ShootDown1: -803470005
+      ShootDown2: -454979048
+      ShootDown3: -587070204
+      Sliding: 1564231702
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
