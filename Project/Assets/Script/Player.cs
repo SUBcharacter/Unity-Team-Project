@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        gameObject.SetActive(true);
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
         gun = GetComponentInChildren<Gun>();
 
         jumpSpeeds = new float[] { 10.0f, 7.0f };
+        
     }
 
     void Start()
@@ -105,6 +107,13 @@ public class Player : MonoBehaviour
             return;
 
         isGround = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Obstacle"))
+            return;
+        gameObject.SetActive(false);
     }
 
     #region UNITY_EVENTS
