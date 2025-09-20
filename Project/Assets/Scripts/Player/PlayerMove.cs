@@ -24,9 +24,9 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        // ¹æÇâÅ°·Î ÇÃ·¹ÀÌ¾î ¿òÁ÷ÀÌ´Â ÄÚµå
+        // ë°©í–¥í‚¤ë¡œ í”Œë ˆì´ì–´ ì›€ì§ì´ëŠ” ì½”ë“œ
         Vector2 moveDir = playerAction.Player.Move.ReadValue<Vector2>();
-
+        Debug.Log("moveDir: " + moveDir); 
         if (moveDir.x > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
@@ -39,7 +39,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            // ÀÌµ¿ ¸ØÃèÀ» ¶§ ¡æ µÚµ¹¾Ò´Ù°í °¡Á¤ (¿øÇÏ¸é ¹æÇâ À¯ÁöÇØµµ µÊ)
+            // ì´ë™ ë©ˆì·„ì„ ë•Œ â†’ ë’¤ëŒì•˜ë‹¤ê³  ê°€ì • (ì›í•˜ë©´ ë°©í–¥ ìœ ì§€í•´ë„ ë¨)
             spriteRenderer.sprite = backSprite;
         }
 

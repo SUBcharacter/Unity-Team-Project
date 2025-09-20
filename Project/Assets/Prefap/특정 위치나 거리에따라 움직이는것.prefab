@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434174eea4a0b0b45a659d8c4c547290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 3401252575948242489, guid: 0d4a230f27771664cbd1101a911beb63, type: 3}
   moveSpeed: 1
   stopDistance: 1
 --- !u!114 &7029772506866907989
@@ -144,5 +144,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ff816ee074e874d9375f27315dc73b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 3401252575948242489, guid: 0d4a230f27771664cbd1101a911beb63, type: 3}
   activateDistance: 20

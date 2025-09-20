@@ -4,44 +4,25 @@ using UnityEngine;
 
 public class MissileLauncher : MonoBehaviour
 {
+    [SerializeField] Scanner scanner;                    // 타겟 감지용 스캐너
     [SerializeField] GameObject bulletPrefab;            // 프리팹으로 만든 미사일
     [SerializeField] Transform firePoint;                // 발사 위치
     [SerializeField] float fireDelay = 1.5f;             // 발사 주기
-    private float fireTimer;
-
-    [SerializeField] Scanner scanner;                    // 타겟 감지용 스캐너
 
     private Coroutine fireCoroutine;
 
-    private void OnEnable()
-    {
-        fireCoroutine = StartCoroutine(FireCouroutine());
-    }
+    bool Isfiring = false;
 
-    private void OnDisable()
+
+    void Update()
     {
-        if(fireCoroutine != null)
+        Transform target = scanner.nearestTarget;
+        if (target != null && !Isfiring)
         {
-            StopCoroutine(fireCoroutine);
+            fireCoroutine = StartCoroutine(FireCouroutine());
+            Isfiring = true;
         }
     }
-
-    //void Update()
-    //{
-    //    fireTimer += Time.deltaTime;
-
-    //    if (fireTimer >= fireDelay)
-    //    {
-    //        Transform target = scanner.nearestTarget;
-
-    //        if (target != null)
-    //        {
-    //            Debug.Log(" 타겟 감지됨: " + target.name + " / 위치: " + target.position);
-    //            Fire(target);
-    //            fireTimer = 0f;
-    //        }
-    //    }
-    //}
 
     void Fire(Transform target)
     {
@@ -60,11 +41,12 @@ public class MissileLauncher : MonoBehaviour
 
     IEnumerator FireCouroutine()
     {
-        while(true)
+        while (true)
         {
             Transform target = scanner.nearestTarget;
             if (target != null)
             {
+
                 Debug.Log(" 타겟 감지됨: " + target.name + " / 위치: " + target.position);
                 Fire(target);
             }

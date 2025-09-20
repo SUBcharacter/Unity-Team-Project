@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 
 public class ShyEnemy : MonoBehaviour
@@ -9,38 +9,47 @@ public class ShyEnemy : MonoBehaviour
 
     Rigidbody2D playerRb;
 
-    private Vector2 lastPlayerPos;        //  ÇÃ·¹ÀÌ¾î°¡ ¾È¿òÁ÷ÀÏ ¶§
-
-    private float playerLookDir;      // ÇÃ·¹ÀÌ¾î°¡ ¹Ù¶óº¸´Â ¹æÇâ
-    private float toEnemyDir;      // ÇÃ·¹ÀÌ¾î¿Í ÀûÀÇ ¹æÇâ
-    private bool isSameDir;       // °°Àº ¹æÇâÀ» º¸°í ÀÖ´ÂÁö
-
-   private bool isActived = true;      // ÇÃ·¹ÀÌ¾î°¡ °¡±îÀÌ ¿Ô´ÂÁö (Àû È°¼ºÈ­ ¿©ºÎ Ã¼Å©)
+   private bool isActived = true;      // í”Œë ˆì´ì–´ê°€ ê°€ê¹Œì´ ì™”ëŠ”ì§€ (ì  í™œì„±í™” ì—¬ë¶€ ì²´í¬)
     private void Awake()
     {
-        playerRb = player.GetComponent<Rigidbody2D>();
+        // Playerê°€ ì¸ìŠ¤í™í„°ì— ì—°ê²° ì•ˆë˜ì–´ìˆì„ ê²½ìš° ìë™ ì—°ê²°
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+                Debug.Log("í”Œë ˆì´ì–´ ìë™ ì—°ê²° ì™„ë£Œ: " + player.name);
+            }
+            else
+            {
+                Debug.LogWarning("Player ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. íƒœê·¸ í™•ì¸ í•„ìš”!");
+            }
+        }
+
+        // Rigidbody ì—°ê²°
+        if (player != null)
+        {
+            playerRb = player.GetComponent<Rigidbody2D>();
+        }
 
     }
 
     private void Update()
     {
+        Debug.Log("Player ìœ„ì¹˜: " + player.position + " / Player ì´ë¦„: " + player.name);
+
         if (!isActived) { return; }
 
-        playerLookDir = Mathf.Sign(player.localScale.x);
-        toEnemyDir = Mathf.Sign(transform.position.x - player.position.x);
-        isSameDir = playerLookDir != toEnemyDir;
+        float playerLookDir = Mathf.Sign(player.localScale.x);
+        float toEnemyDir = Mathf.Sign(transform.position.x - player.position.x);
+        bool isPlayerLookingAtEnemy = playerLookDir != toEnemyDir;
 
-        // ÇÃ·¹ÀÌ¾î°¡ ¿òÁ÷ÀÌ¸é µû¶ó¿À±â
-
-        /// <summary>
-        /// À¯´ÏÆ¼ 6¿¡¼­ºÎÅÍ Velocity°¡ ¾Æ´Ñ linearVelocity·Î »ç¿ëÇÑ´Ù
-        /// </summary>
-
-        if (isSameDir)      // magnitude : º¤ÅÍÀÇ Å©±â(±æÀÌ) 
+        if (isPlayerLookingAtEnemy)      // magnitude : ë²¡í„°ì˜ í¬ê¸°(ê¸¸ì´) 
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
         }
-        // ¸ØÃß¸é °¡¸¸È÷
+        // ë©ˆì¶”ë©´ ê°€ë§Œíˆ
 
     }
     public void Activate()
