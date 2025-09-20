@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8458546750957304499}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 178047201214406722}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.11, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6908891085283002444}
   - component: {fileID: 606496894608742189}
   - component: {fileID: 955462501116051353}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,9 +195,9 @@ GameObject:
   - component: {fileID: 2042174688862217034}
   - component: {fileID: 3321245160646341330}
   - component: {fileID: 6495889886786782738}
-  - component: {fileID: 7210129566903410962}
-  - component: {fileID: 708931520285994056}
-  - component: {fileID: 3754821088558461762}
+  - component: {fileID: 2872835925762007667}
+  - component: {fileID: 2763055681371342815}
+  - component: {fileID: 4093255259313701268}
   m_Layer: 6
   m_Name: Platform
   m_TagString: Terrain
@@ -788,7 +788,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!19719996 &7210129566903410962
+--- !u!19719996 &2872835925762007667
 TilemapCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -826,7 +826,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!50 &708931520285994056
+--- !u!50 &2763055681371342815
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -834,7 +834,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373583751515540451}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -853,7 +853,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &3754821088558461762
+--- !u!66 &4093255259313701268
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -892,7 +892,7 @@ CompositeCollider2D:
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
-  - m_Collider: {fileID: 7210129566903410962}
+  - m_Collider: {fileID: 2872835925762007667}
     m_ColliderPaths:
     - - X: 91112896
         Y: -41887092
@@ -934,7 +934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3429081050083242479}
   - component: {fileID: 2501920657405302744}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -982,9 +982,9 @@ GameObject:
   - component: {fileID: 1849190165820704296}
   - component: {fileID: 1721351752212475628}
   - component: {fileID: 4091110296897427669}
-  - component: {fileID: 2571190835645007718}
-  - component: {fileID: 3805344724491517857}
-  - component: {fileID: 5900311496740504614}
+  - component: {fileID: 1513648266163679805}
+  - component: {fileID: 566814478913986840}
+  - component: {fileID: 951241635591949793}
   m_Layer: 6
   m_Name: Platform (1)
   m_TagString: Terrain
@@ -1141,7 +1141,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!19719996 &2571190835645007718
+--- !u!19719996 &1513648266163679805
 TilemapCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1179,7 +1179,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!50 &3805344724491517857
+--- !u!50 &566814478913986840
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -1187,7 +1187,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2722192241963852366}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1206,7 +1206,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &5900311496740504614
+--- !u!66 &951241635591949793
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1245,7 +1245,7 @@ CompositeCollider2D:
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
-  - m_Collider: {fileID: 2571190835645007718}
+  - m_Collider: {fileID: 1513648266163679805}
     m_ColliderPaths:
     - - X: -6887096
         Y: -20887098
@@ -1276,7 +1276,7 @@ GameObject:
   - component: {fileID: 5359765412062750048}
   - component: {fileID: 4328016148620039437}
   - component: {fileID: 7471849334014277906}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1367,9 +1367,9 @@ GameObject:
   - component: {fileID: 7741589683081232064}
   - component: {fileID: 6414725421774097874}
   - component: {fileID: 5101673239275207279}
-  - component: {fileID: 8582426210657491398}
-  - component: {fileID: 2096368597783872494}
-  - component: {fileID: 6175149587101292876}
+  - component: {fileID: 3152920885898413104}
+  - component: {fileID: 5664490394080234355}
+  - component: {fileID: 2669419595796702190}
   m_Layer: 6
   m_Name: Wall
   m_TagString: Terrain
@@ -2020,7 +2020,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!19719996 &8582426210657491398
+--- !u!19719996 &3152920885898413104
 TilemapCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2058,7 +2058,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!50 &2096368597783872494
+--- !u!50 &5664490394080234355
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -2066,7 +2066,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7371799334787026909}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -2085,7 +2085,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &6175149587101292876
+--- !u!66 &2669419595796702190
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2124,7 +2124,7 @@ CompositeCollider2D:
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
-  - m_Collider: {fileID: 8582426210657491398}
+  - m_Collider: {fileID: 3152920885898413104}
     m_ColliderPaths:
     - - X: 56112904
         Y: -20887098

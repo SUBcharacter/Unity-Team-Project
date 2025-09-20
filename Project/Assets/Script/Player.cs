@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rigid;
     SpriteRenderer sprite;
-    Collider2D collider;
     Animator animator;
     Gun gun;
 
@@ -27,7 +26,6 @@ public class Player : MonoBehaviour
         gameObject.SetActive(true);
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-        collider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         gun = GetComponentInChildren<Gun>();
 
@@ -49,7 +47,6 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        TerrainCollision();
         if (isGround)
         {
             coyoteTimeCounter = coyoteTime;
@@ -74,21 +71,6 @@ public class Player : MonoBehaviour
     void Move()
     {
         rigid.linearVelocityX = moveVec.x * moveSpeed;
-    }
-
-    void TerrainCollision()
-    {
-        LayerMask terrainLayer = LayerMask.GetMask("Terrain");
-
-        RaycastHit2D hit1 = Physics2D.Raycast(new Vector2(collider.bounds.center.x,collider.bounds.min.y), Vector2.down, distance, terrainLayer);
-        RaycastHit2D hit2 = Physics2D.Raycast(collider.bounds.min, Vector2.down, distance, terrainLayer);
-        RaycastHit2D hit3 = Physics2D.Raycast(new Vector2(collider.bounds.max.x,collider.bounds.min.y), Vector2.down, distance, terrainLayer);
-
-        if((hit1.collider != null) || (hit2.collider != null) || (hit3.collider != null))
-        {
-            isGround = true;
-            canAirJump = true;
-        }
     }
 
     #region EventFunc

@@ -105,8 +105,8 @@ GameObject:
   - component: {fileID: 1142029612999249212}
   - component: {fileID: 7978196138040555175}
   - component: {fileID: 4737511427519497580}
-  - component: {fileID: 6037309675518752825}
-  - component: {fileID: 682340341100216458}
+  - component: {fileID: 115869941975303098}
+  - component: {fileID: 5711810543222675216}
   m_Layer: 6
   m_Name: Platform (2)
   m_TagString: Terrain
@@ -291,7 +291,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!50 &6037309675518752825
+--- !u!50 &115869941975303098
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515576352057234992}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -318,7 +318,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &682340341100216458
+--- !u!66 &5711810543222675216
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,9 +389,9 @@ GameObject:
   - component: {fileID: 601261978974729867}
   - component: {fileID: 645413802547796478}
   - component: {fileID: 6416173578931551908}
-  - component: {fileID: 175232354543506559}
-  - component: {fileID: 7647902696644365829}
-  m_Layer: 6
+  - component: {fileID: 1649049269351995698}
+  - component: {fileID: 8471809345861329125}
+  m_Layer: 0
   m_Name: Obstacle0
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!50 &175232354543506559
+--- !u!50 &1649049269351995698
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -647,7 +647,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3156331863666056787}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -666,7 +666,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &7647902696644365829
+--- !u!66 &8471809345861329125
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -795,7 +795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9067193219850175353}
   - component: {fileID: 3151973462503024955}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -817,11 +817,11 @@ Transform:
   m_Children:
   - {fileID: 132689804524217116}
   - {fileID: 7403915445826929452}
-  - {fileID: 6760427895367200131}
   - {fileID: 398601398959198269}
   - {fileID: 3850796440012712612}
   - {fileID: 3856688234166240617}
   - {fileID: 9192876753226868711}
+  - {fileID: 6760427895367200131}
   m_Father: {fileID: 5741788187214515185}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &3151973462503024955
@@ -848,7 +848,7 @@ GameObject:
   - component: {fileID: 1859601719370725885}
   - component: {fileID: 3618222922209394561}
   - component: {fileID: 3484180889359521832}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -998,10 +998,9 @@ GameObject:
   - component: {fileID: 3907138920470591860}
   - component: {fileID: 6076588395557138834}
   - component: {fileID: 3038180438856551979}
-  - component: {fileID: 7652010020138821479}
-  - component: {fileID: 6385840622557231512}
+  - component: {fileID: 8736802167276924294}
   - component: {fileID: 769138645488908328}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trap
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1189,7 +1188,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!50 &7652010020138821479
+--- !u!50 &8736802167276924294
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -1216,71 +1215,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &6385840622557231512
-CompositeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4134913694946625959}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_GeometryType: 1
-  m_GenerationType: 0
-  m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 3038180438856551979}
-    m_ColliderPaths:
-    - - X: 35112900
-        Y: -54758064
-      - X: 32177418
-        Y: -48887096
-      - X: 30822580
-        Y: -48887096
-      - X: 27887096
-        Y: -54758064
-      - X: 27887096
-        Y: -56112904
-      - X: 35112900
-        Y: -56112904
-  m_CompositePaths:
-    m_Paths:
-    - - {x: 3.5112607, y: -5.6112905}
-      - {x: 3.5112872, y: -5.475801}
-      - {x: 3.2177253, y: -4.8887095}
-      - {x: 3.0822504, y: -4.8887243}
-      - {x: 2.7887096, y: -5.4758124}
-      - {x: 2.7887387, y: -5.6112905}
-  m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
-  m_UseDelaunayMesh: 0
-  m_CompositeGameObject: {fileID: 4134913694946625959}
 --- !u!114 &769138645488908328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,8 +1241,8 @@ GameObject:
   - component: {fileID: 5797362077683425649}
   - component: {fileID: 5694725883820045537}
   - component: {fileID: 299191051885934321}
-  - component: {fileID: 6741809042136082230}
-  - component: {fileID: 2277002280864903678}
+  - component: {fileID: 7658963124911226960}
+  - component: {fileID: 7061862723171660566}
   m_Layer: 6
   m_Name: Platform (1)
   m_TagString: Terrain
@@ -1503,7 +1437,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!50 &6741809042136082230
+--- !u!50 &7658963124911226960
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -1511,7 +1445,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4853361779129335704}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1530,7 +1464,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &2277002280864903678
+--- !u!66 &7061862723171660566
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1598,7 +1532,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5741788187214515185}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Map2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1614,7 +1548,7 @@ Transform:
   m_GameObject: {fileID: 4951009991399042275}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.94, y: -0.11, z: 0}
+  m_LocalPosition: {x: -18.222, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1635,8 +1569,8 @@ GameObject:
   - component: {fileID: 6334543824114295837}
   - component: {fileID: 7517252105124301155}
   - component: {fileID: 3824751792706404110}
-  - component: {fileID: 5459990186672367343}
-  - component: {fileID: 1531943444848371227}
+  - component: {fileID: 6750504563260077377}
+  - component: {fileID: 8451451964688190924}
   m_Layer: 6
   m_Name: Platform
   m_TagString: Terrain
@@ -2285,7 +2219,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!50 &5459990186672367343
+--- !u!50 &6750504563260077377
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -2293,7 +2227,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6472569970613812112}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -2312,7 +2246,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &1531943444848371227
+--- !u!66 &8451451964688190924
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2406,7 +2340,7 @@ GameObject:
   - component: {fileID: 2424097010516384735}
   - component: {fileID: 211789337886197199}
   - component: {fileID: 6535363897240111868}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2498,8 +2432,8 @@ GameObject:
   - component: {fileID: 533981985674927656}
   - component: {fileID: 8371373212549957492}
   - component: {fileID: 1678249366112958455}
-  - component: {fileID: 262011597123605583}
-  - component: {fileID: 625197719360469166}
+  - component: {fileID: 7593523917909171136}
+  - component: {fileID: 336570015162228215}
   m_Layer: 0
   m_Name: Obstacle1
   m_TagString: Obstacle
@@ -2694,7 +2628,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!50 &262011597123605583
+--- !u!50 &7593523917909171136
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -2702,7 +2636,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6541027489294241161}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -2721,7 +2655,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &625197719360469166
+--- !u!66 &336570015162228215
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2807,8 +2741,8 @@ GameObject:
   - component: {fileID: 6769710434149298488}
   - component: {fileID: 6416926661492814741}
   - component: {fileID: 3135803517529495638}
-  - component: {fileID: 7960947979192164803}
-  - component: {fileID: 1761583015664798619}
+  - component: {fileID: 2783488446234809969}
+  - component: {fileID: 6029507393205655520}
   m_Layer: 6
   m_Name: Platform (4)
   m_TagString: Terrain
@@ -2993,7 +2927,7 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!50 &7960947979192164803
+--- !u!50 &2783488446234809969
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -3001,7 +2935,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9023977834903705667}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -3020,7 +2954,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &1761583015664798619
+--- !u!66 &6029507393205655520
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
