@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7713967892339271630}
   m_Layer: 7
   m_Name: "\uBBF8\uC0AC\uC77C \uBC1C\uC0AC\uB300"
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   scanRange: 20
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   nearestTarget: {fileID: 3401252575948242489, guid: 0d4a230f27771664cbd1101a911beb63, type: 3}
 --- !u!114 &7713967892339271630
 MonoBehaviour:
@@ -151,10 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 857c3609c26d52246a45eb9f2d7745f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scanner: {fileID: 4480561777574939404}
   bulletPrefab: {fileID: 7352542458197894748, guid: 9b19e4114f17428459df5777eb9c2271, type: 3}
   firePoint: {fileID: 878812539708160202}
   fireDelay: 1.5
-  scanner: {fileID: 4480561777574939404}
 --- !u!1001 &7933730756601404210
 PrefabInstance:
   m_ObjectHideFlags: 0
