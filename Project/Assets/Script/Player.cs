@@ -77,7 +77,12 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("충돌감지");
-        if(collision.gameObject.CompareTag("Obstacle"))
+        if(collision.gameObject.CompareTag("Terrain"))
+        {
+            isGround = true;
+            canAirJump = true;
+        }
+        else if(collision.gameObject.CompareTag("Obstacle"))
         {
             gameObject.SetActive(false);
         }
