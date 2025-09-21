@@ -8,6 +8,15 @@ public class BulletShooter : MonoBehaviour
     [SerializeField] Vector2 direction;
     private bool isFired = false;
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //Destroy(other.gameObject);      // 플레이어 오브젝트 파괴
+            Destroy(gameObject);            // 미사일 오브젝트 파괴
+        }
+    }
+
     public void SetTarget(Transform target)
     {
         if (target != null)
