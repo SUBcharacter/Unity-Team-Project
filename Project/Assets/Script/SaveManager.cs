@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class SaveData
 {
+    public string sceneName;
     public Vector3 playerPos;
     public Vector3 cameraPos;
 }
@@ -35,9 +37,9 @@ public class SaveManager : MonoBehaviour
 
     public void UpdateData(Vector3 playerPos, Vector3 cameraPos)
     {
-        SaveData save = new SaveData();
-        save.playerPos = playerPos;
-        save.cameraPos = cameraPos;
+        currentData.sceneName = SceneManager.GetActiveScene().name;
+        currentData.playerPos = playerPos;
+        currentData.cameraPos = cameraPos;
     }
 
     public void LoadData()
@@ -45,6 +47,7 @@ public class SaveManager : MonoBehaviour
         if(!File.Exists(path))
         {
             // 플레이어 및 카메라 초기 위치
+            currentData.sceneName = "Game";
             currentData.playerPos = initPlayerPos;
             currentData.cameraPos = initCameraPos;
             return;
@@ -55,6 +58,7 @@ public class SaveManager : MonoBehaviour
         if(saveFile == null || saveFile.slot == null)
         {
             // 세이브 파일 파싱 실패시 플레이어 및 카메라 초기 위치
+            currentData.sceneName = "Game";
             currentData.playerPos = initPlayerPos;
             currentData.cameraPos = initCameraPos;
             return;

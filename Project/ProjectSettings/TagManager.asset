@@ -8,6 +8,7 @@ TagManager:
   - Terrain
   - Border
   - Bullet
+  - Water
   layers:
   - Default
   - TransparentFX

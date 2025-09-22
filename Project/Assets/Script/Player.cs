@@ -2,6 +2,11 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+enum PlayerState
+{
+    Ground, Water
+}
+
 public class Player : MonoBehaviour
 {
     Rigidbody2D rigid;
@@ -14,8 +19,10 @@ public class Player : MonoBehaviour
     float coyoteTimeCounter = 0;
     float coyoteTime = 0.15f;
     float distance = 0.05f;
+    float waterWeight = 0.55f;
     [SerializeField] private float[] jumpSpeeds;
-    
+
+    PlayerState state;
 
     bool shotDir = true; // true : ¿À¸¥ÂÊ, false : ¿ÞÂÊ
     [SerializeField] bool isGround = false;
@@ -98,9 +105,32 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Obstacle"))
+        if (collision.CompareTag("Obstacle"))
+        {
+            gameObject.SetActive(false);
+        }
+        else if (collision.CompareTag("Water"))
+        {
+            state = PlayerState.Water;
+            canAirJump = true;
+        }
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Water"))
             return;
-        gameObject.SetActive(false);
+        state = PlayerState.Water;
+        rigid.gravityScale = 0.75f;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Water"))
+            return;
+        state = PlayerState.Ground;
+        rigid.gravityScale = 2.5f;
     }
 
     #region UNITY_EVENTS
@@ -145,12 +175,28 @@ public class Player : MonoBehaviour
             if(isGround && coyoteTimeCounter>0)
             {
                 isGround = false;
-                rigid.linearVelocityY = jumpSpeeds[0];
+                if(state != PlayerState.Water)
+                {
+                    rigid.linearVelocityY = jumpSpeeds[0];
+                }
+                else
+                {
+                    rigid.linearVelocityY = jumpSpeeds[0] * waterWeight;
+                }
+                
             }
             else if(canAirJump) 
             {
-                canAirJump = false;
-                rigid.linearVelocityY = jumpSpeeds[1];
+                if(state != PlayerState.Water)
+                {
+                    canAirJump = false;
+                    rigid.linearVelocityY = jumpSpeeds[1];
+                }
+                else
+                {
+                    rigid.linearVelocityY = jumpSpeeds[1] * waterWeight;
+                }
+                
             }
         }
         if(context.canceled)
