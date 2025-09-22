@@ -1064,7 +1064,7 @@ GameObject:
   - component: {fileID: 1859601719370725885}
   - component: {fileID: 3618222922209394561}
   - component: {fileID: 3484180889359521832}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1505,7 +1505,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5741788187214515185}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Map2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2313,7 +2313,7 @@ GameObject:
   - component: {fileID: 2424097010516384735}
   - component: {fileID: 211789337886197199}
   - component: {fileID: 6535363897240111868}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2713,7 +2713,7 @@ GameObject:
   - component: {fileID: 685929836099887944}
   - component: {fileID: 7906235454431957630}
   - component: {fileID: 4855408088273944835}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

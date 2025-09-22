@@ -4,6 +4,11 @@ public class Gun : MonoBehaviour
 {
     public bool facingRight = true;
 
+    private void Awake()
+    {
+        Debug.Log("ÃÑ ½Ãµ¿");
+    }
+
     private void Update()
     {
 

@@ -254,7 +254,7 @@ TextureImporter:
         serializedVersion: 2
         x: 9
         y: 250
-        width: 21
+        width: 25
         height: 31
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -274,9 +274,9 @@ TextureImporter:
       name: ShootDown1
       rect:
         serializedVersion: 2
-        x: 39
+        x: 41
         y: 250
-        width: 24
+        width: 31
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -296,9 +296,9 @@ TextureImporter:
       name: ShootDown2
       rect:
         serializedVersion: 2
-        x: 70
+        x: 74
         y: 250
-        width: 26
+        width: 35
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -318,9 +318,9 @@ TextureImporter:
       name: ShootDown3
       rect:
         serializedVersion: 2
-        x: 103
-        y: 250
-        width: 26
+        x: 118
+        y: 251
+        width: 35
         height: 31
       alignment: 7
       pivot: {x: 0.5, y: 0}

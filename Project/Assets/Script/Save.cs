@@ -8,6 +8,8 @@ public class Save : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("세이브 시동");
+
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 

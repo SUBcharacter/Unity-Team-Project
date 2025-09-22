@@ -28,6 +28,7 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("세이브 매니저 시동");
         path = Path.Combine(Application.persistentDataPath, "Save.json");
 
         if (currentData == null)
@@ -64,7 +65,11 @@ public class SaveManager : MonoBehaviour
             return;
         }
         currentData = saveFile.slot;
-        SceneManager.LoadScene(currentData.sceneName);
+        if(currentData.sceneName != SceneManager.GetActiveScene().name)
+        {
+            SceneManager.LoadScene(currentData.sceneName);
+        }
+        
     }
 
     public void SaveData()

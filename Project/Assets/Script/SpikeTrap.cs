@@ -9,6 +9,8 @@ public class SpikeTrap : Trap
 
     protected override void Awake()
     {
+        Debug.Log("스파이크함정 시동");
+
         trigger = GetComponentInParent<Trigger>();
         initPos = transform.position;
         base.Awake();

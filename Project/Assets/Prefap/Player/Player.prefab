@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2342054596628688389}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.29, y: 0.37, z: 0}
+  m_LocalPosition: {x: 0.34, y: 0.551, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -127,7 +127,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3951364628091787833, guid: fe7dc7c30e77080468d0db62ea4032e1, type: 3}
+  m_Sprite: {fileID: -1828243495, guid: d33c903c6a2f90f45949c66f61ce0ba0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -199,8 +199,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.024837852, y: 0.34493363}
-  m_Size: {x: 0.3545567, y: 0.70849556}
+  m_Offset: {x: 0.0133655965, y: 0.48833722}
+  m_Size: {x: 0.53811336, y: 0.99530274}
   m_Direction: 0
 --- !u!114 &4924046860774709108
 MonoBehaviour:
@@ -248,7 +248,19 @@ MonoBehaviour:
     m_ActionId: b9185226-7212-4415-bb22-0e6848548801
     m_ActionName: 'Player/LookUp[/Keyboard/upArrow]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6386672414514596072}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnCrouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d21ebff8-5ee8-4ec9-a19f-aff0c7c378f7
     m_ActionName: 'Player/Crouch[/Keyboard/downArrow]'
   - m_PersistentCalls:
@@ -365,5 +377,6 @@ MonoBehaviour:
   moveVec: {x: 0, y: 0}
   moveSpeed: 3
   jumpSpeeds: []
+  state: 0
   isGround: 0
   canAirJump: 0
