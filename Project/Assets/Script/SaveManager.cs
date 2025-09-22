@@ -64,6 +64,7 @@ public class SaveManager : MonoBehaviour
             return;
         }
         currentData = saveFile.slot;
+        SceneManager.LoadScene(currentData.sceneName);
     }
 
     public void SaveData()

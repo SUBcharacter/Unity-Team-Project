@@ -112,6 +112,7 @@ public class Player : MonoBehaviour
         else if (collision.CompareTag("Water"))
         {
             state = PlayerState.Water;
+            rigid.linearVelocityY *= 0.3f;
             canAirJump = true;
         }
         
