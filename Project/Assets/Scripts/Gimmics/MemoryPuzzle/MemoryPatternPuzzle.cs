@@ -22,7 +22,7 @@ public class MemoryPatternPuzzle : MonoBehaviour
         if (patternUIManager != null && correctOrder != null && memoryTiles.Count > 0)
         {
             StartCoroutine(PuzzleCoroutine());
-            patternUIManager.StartCoroutine(patternUIManager.ShowPatternUI(correctOrder));
+           //patternUIManager.StartCoroutine(patternUIManager.ShowPatternUI(correctOrder));
         }
     }
 
