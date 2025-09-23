@@ -1,34 +1,57 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
-public class WeakPlatformController : MonoBehaviour
+public class WeakPlatform : MonoBehaviour
 {
-    [SerializeField] GameObject weakPlatform;
-    void Awake()
+    private bool isCracking = false;
+    private Collider2D col;
+    private TilemapRenderer tile;
+    private Animator animator;
+
+    private void Awake()
     {
-        weakPlatform = GetComponent<GameObject>();
-        weakPlatform.SetActive(true);
+        col = GetComponent<Collider2D>();
+
+        tile = GetComponentInChildren<TilemapRenderer>(); // 자식 타일맵 찾기.. 추후 수정 가능
+        if (tile == null)
+        {
+            Debug.Log("TilemapRenderer가 자식에 없습니다!");
+        }
+
+        animator = GetComponent<Animator>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (!isCracking && collision.gameObject.CompareTag("Player"))
         {
-            if (weakPlatform.activeSelf == true)
-            {
-                StartCoroutine(Crack());
-            }
+            Debug.Log("약한 발판 충돌");
+
+            StartCoroutine(Crack());
         }
     }
 
     IEnumerator Crack()
     {
+        isCracking = true;
+
+        if (animator != null)
+            animator.SetBool("Shake", true);
+
         yield return new WaitForSeconds(2.0f);
 
-        weakPlatform.SetActive(false);
+        col.enabled = false;
+        tile.enabled = false;
+
+        if (animator != null)
+            animator.SetBool("Shake", false);
 
         yield return new WaitForSeconds(4.0f); // 다시 생성
 
-        weakPlatform.SetActive(true);
+        col.enabled = true;
+        tile.enabled = true;
+
+        isCracking = false;
     }
 }
