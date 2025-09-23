@@ -3,7 +3,7 @@ using UnityEngine;
 public class MemoryTile : MonoBehaviour
 {
     [Header("발판 이름")]
-    public string symbolName;
+    public Symbol symbolType;
 
     [Header("MemoryPuzzle 연결")]
     [SerializeField] MemoryPatternPuzzle memoryPatternPuzzle;
@@ -29,7 +29,8 @@ public class MemoryTile : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            memoryPatternPuzzle.CheckTile(symbolName);
+            memoryPatternPuzzle.CheckTile(symbolType);
+           
         }
 
     }
