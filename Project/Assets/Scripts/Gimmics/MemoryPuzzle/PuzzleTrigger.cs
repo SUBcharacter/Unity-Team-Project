@@ -7,25 +7,17 @@ public class PuzzleTrigger : MonoBehaviour
     public List<Symbol> symbols = new List<Symbol>();
 
     private bool isTriggered = false;
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isTriggered && collision.CompareTag("Player"))
+        Debug.Log("Æ®¸®°Å¿¡ ¹¹ µé¾î¿È: " + other.name);
+        if (!isTriggered && other.CompareTag("Player"))
         {
+            Debug.Log("ÇÃ·¹ÀÌ¾î °¨ÁöµÊ!");
             isTriggered = true;
 
-            //List<Symbol> allSymbols = new List<Symbol> { Symbol.Star, Symbol.Heart, Symbol.Circle, Symbol.Spade };
-            //List<Symbol> randomized = new List<Symbol>();
-
-            //while (allSymbols.Count > 0)
-            //{
-            //    int randIndex = Random.Range(0, allSymbols.Count);
-            //    randomized.Add(allSymbols[randIndex]);
-            //    allSymbols.RemoveAt(randIndex);
-            //}
-
-            //// ·£´ý ÆÐÅÏ ³Ñ±è
-            //StartCoroutine(patternUIManager.ShowPatternUI(randomized));
-
+            //patternUIManager.ShowPatternUI(symbols);
+            patternUIManager.StartPuzzle();
+            gameObject.SetActive(false);
             
         }
     }

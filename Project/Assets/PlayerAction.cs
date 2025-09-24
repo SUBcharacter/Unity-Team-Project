@@ -44,7 +44,7 @@ using UnityEngine.InputSystem.Utilities;
 ///         m_Actions.Dispose();                              // Destroy asset object.
 ///     }
 ///
-///     void OnEnable()
+///     void OnEnableTile()
 ///     {
 ///         m_Player.Enable();                                // Enable all actions within map.
 ///     }

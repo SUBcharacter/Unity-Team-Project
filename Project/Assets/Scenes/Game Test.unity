@@ -392,7 +392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &379419783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3145,11 +3145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d22c6a027e0a29048a10cea502f5dfa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbolimages:
-  - {fileID: 1351888515}
-  - {fileID: 664832573}
-  - {fileID: 863580807}
-  - {fileID: 1226414931}
+  symbolImages: []
   symbolSprites:
   - {fileID: -1761226545520248286, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
   - {fileID: -7263273659138518866, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
