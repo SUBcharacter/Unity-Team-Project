@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MemoryPatternPuzzle : MonoBehaviour
@@ -9,13 +10,17 @@ public class MemoryPatternPuzzle : MonoBehaviour
     [Header("사용 가능한 기호들")]
     public List<Symbol> allSymbols = new List<Symbol>();
 
-    [Header("정답 순서")]
-    public List<Symbol> correctOrder = new List<Symbol>();
-    [SerializeField] private int puzzleLength = 4; // 보여줄 심볼 수
-
     [Header("등록된 타일")]
     public List<MemoryTile> memoryTiles = new List<MemoryTile>();
     [SerializeField] PatternUIManager patternUIManager;
+
+    [Header("정답 순서")]
+    public List<SymbolData> correctOrder = new List<SymbolData>();
+
+    [SerializeField] private int puzzleLength = 4;
+
+    [SerializeField] private List<Sprite> symbolSprites;
+
 
     int currentIndex = 0;       // 횟수
     bool isInputEnabled;
@@ -24,62 +29,85 @@ public class MemoryPatternPuzzle : MonoBehaviour
 
     public void StartPuzzle()
     {
+        
         if (patternUIManager != null && correctOrder != null && memoryTiles.Count > 0)
         {
             GenerateNewPattern();
+            Debug.Log("[UI Pattern 순서]: " + string.Join(", ", correctOrder.Select(x => x.symbol)));
+            for (int i = 0; i < memoryTiles.Count && i < correctOrder.Count; i++)
+            {
+                memoryTiles[i].symbolData = correctOrder[i];
+            }
+
             isInputEnabled = true;
-            //StartCoroutine(PuzzleCoroutine());
 
         }
     }
 
-    private void GenerateNewPattern()
+    public void GenerateNewPattern()
     {
         correctOrder.Clear();
 
-        List<Symbol> tempList = new List<Symbol>(allSymbols);
+        List<Symbol> symbols = new List<Symbol> { Symbol.Yellow, Symbol.Red, Symbol.Green, Symbol.Blue };
+        List<Color> colors = new List<Color> { Color.yellow, Color.red, Color.green, Color.blue };
+        List<Sprite> sprites = new List<Sprite>(symbolSprites);
 
-        // Fisher-Yates 셔플
-        for (int i = 0; i < tempList.Count; i++)
+        symbols = symbols.OrderBy(x => Random.value).ToList();
+        colors = colors.OrderBy(x => Random.value).ToList();
+        sprites = sprites.OrderBy(x => Random.value).ToList();
+
+        int maxLength = Mathf.Min(puzzleLength, symbols.Count, colors.Count, sprites.Count);
+        for (int i = 0; i < maxLength; i++)
         {
-            int rand = Random.Range(i, tempList.Count);
-            Symbol temp = tempList[i];
-            tempList[i] = tempList[rand];
-            tempList[rand] = temp;
+            var c = colors[i];
+            var fixedColor = new Color(c.r, c.g, c.b, 1f); // 알파값 강제 설정
+            correctOrder.Add(new SymbolData(symbols[i], colors[i], sprites[i]));
         }
-
-        // 정답 리스트에 앞에서부터 puzzleLength개 추가
-        for (int i = 0; i < puzzleLength; i++)
+        Debug.Log("[정답 순서 correctOrder]: " + string.Join(", ", correctOrder.Select(x => x.symbol)));
+        for (int i = 0; i < memoryTiles.Count && i < correctOrder.Count; i++)
         {
-            correctOrder.Add(tempList[i]);
-        }
+            memoryTiles[i].symbolData = correctOrder[i];
 
-        Debug.Log("정답 순서: " + string.Join(", ", correctOrder));
+            // 즉시 색깔/스프라이트 갱신
+            memoryTiles[i].spriteRenderer.color = correctOrder[i].color;
+
+            Debug.Log("[MemoryTiles] 배정된 순서: " + string.Join(", ", memoryTiles.Select(t => t.symbolData.symbol.ToString())));
+
+        }
+        //Debug.Log("[PatternUIManager] 받은 순서: " + string.Join(", ", correctOrder.Select(p => p.symbol.ToString())));
+
+
+        //Debug.Log("정답 순서: " + string.Join(", ", correctOrder.Select(s => s.symbol.ToString())));
+
+        // UI에 넘겨주는 패턴 호출
+        patternUIManager.StartPuzzle(correctOrder); // StartPuzzle을 받을 수 있도록 수정 필요
+
+        
 
     }
 
     public void CheckTile(Symbol symbol)
     {
-        Debug.Log($"입력됨: {symbol}, 기대값: {correctOrder[currentIndex]}, 인덱스: {currentIndex}, 입력 가능? {isInputEnabled}");
+        if (!isInputEnabled || currentIndex >= correctOrder.Count)
+            return;
 
-        if (!isInputEnabled) { return; }
-        if (currentIndex >= correctOrder.Count) { return; }
+        Symbol expected = correctOrder[currentIndex].symbol;
 
-        if (symbol == correctOrder[currentIndex])
+        Debug.Log($"입력됨: {symbol}, 기대값: {expected}, 인덱스: {currentIndex}, 입력 가능? {isInputEnabled}");
+
+        if (symbol == expected)
         {
-            Debug.Log($"정답 : {correctOrder}");
+            Debug.Log($"정답. ({symbol})");
             currentIndex++;
 
             if (currentIndex == correctOrder.Count)
             {
-                // 퍼즐 클리어 처리
                 PuzzleClear();
             }
         }
         else
         {
-            Debug.Log($"오답 : {correctOrder}");
-            // 오답 처리
+            Debug.Log($"오답. 입력: {symbol}, 정답: {expected}");
             ResetPuzzle();
         }
     }
@@ -99,8 +127,6 @@ public class MemoryPatternPuzzle : MonoBehaviour
         {
             tile.ResetTile();
         }
-
-        StartCoroutine(PuzzleCoroutine());  // 다시 퍼즐 랜덤 보여주기
         GenerateNewPattern();       // 틀렸을 때 새 정답
     }
 
@@ -111,30 +137,11 @@ public class MemoryPatternPuzzle : MonoBehaviour
             memoryTiles.Add(tile);
         }
     }
-    public IEnumerator PuzzleCoroutine()
+    public IEnumerator PuzzleCoroutine(float delay)
     {
         // 플레이어 입력 잠금
+        yield return new WaitForSeconds(delay);
         isInputEnabled = true;
-        yield break;
-        //isInputEnabled = false;
-
-        //yield return new WaitForSeconds(1f); // 시작 대기
-
-        //foreach (var symbol in correctOrder)
-        //{
-        //    var tile = memoryTiles.Find(t => t.symbolType == symbol);
-
-        //    if (tile != null)
-        //    {
-        //        tile.HighlightTile(); // 타일 하이라이트
-        //        yield return new WaitForSeconds(0.5f); // 깜빡임 시간
-        //        tile.ResetTile();
-        //        yield return new WaitForSeconds(0.2f); // 다음 타일 전 잠깐 대기
-        //    }
-        //}
-
-        //currentIndex = 0;
-        //isInputEnabled = true;
     }
 }
 

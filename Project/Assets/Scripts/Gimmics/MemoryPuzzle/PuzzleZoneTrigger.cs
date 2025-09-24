@@ -3,36 +3,23 @@ using UnityEngine;
 
 public class PuzzleZoneTrigger : MonoBehaviour
 {
-    [SerializeField] PatternUIManager patternUIManager;
-    public MemoryPatternPuzzle puzzle;
-    public GameObject wallBlocker;
-    public List<Symbol> symbols = new List<Symbol>();
+    [SerializeField] private MemoryPatternPuzzle memoryPatternPuzzle;
+    [SerializeField] private GameObject wallBlocker;
 
     private bool isTriggered;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(!isTriggered && other.CompareTag("Player"))
+        if (!isTriggered && other.CompareTag("Player"))
         {
-            Debug.Log("퍼즐 구역 진입");
+            Debug.Log("[PuzzleZoneTrigger] 퍼즐 구역 진입!");
             isTriggered = true;
 
             wallBlocker.SetActive(true);
-            
-            patternUIManager.StartPuzzle();     // 랜덤으로 나오는 이미지 함수
-            puzzle.correctOrder = patternUIManager.currentPattern;
-            puzzle.StartPuzzle();               // 순서대로 밟아야하는 버튼 함수
+
+            // 퍼즐 시작 (내부에서 정답 생성 + UI 출력 + 버튼 대기 다 처리)
+            memoryPatternPuzzle.GenerateNewPattern();
         }
     }
 
-    public void SetupSymbols()
-    {
-        // 예: PatternUIManager에 symbol 리스트 전달
-        if (patternUIManager != null)
-        {
-            patternUIManager.ShowPatternUI(symbols);
-        }
-
-        Debug.Log("심볼 UI 세팅 완료");
-    }
 }

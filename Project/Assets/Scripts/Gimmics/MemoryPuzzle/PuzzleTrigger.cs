@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class PuzzleTrigger : MonoBehaviour
 {
-    [SerializeField] PatternUIManager patternUIManager;
-    public List<Symbol> symbols = new List<Symbol>();
+    [SerializeField] MemoryPatternPuzzle memoryPatternPuzzle;
 
     private bool isTriggered = false;
     private void OnTriggerEnter2D(Collider2D other)
@@ -12,13 +11,13 @@ public class PuzzleTrigger : MonoBehaviour
         Debug.Log("트리거에 뭐 들어옴: " + other.name);
         if (!isTriggered && other.CompareTag("Player"))
         {
-            Debug.Log("플레이어 감지됨!");
+            Debug.Log("[PuzzleTrigger] 플레이어 감지됨! 퍼즐 시작");
+
             isTriggered = true;
 
-            //patternUIManager.ShowPatternUI(symbols);
-            patternUIManager.StartPuzzle();
-            gameObject.SetActive(false);
-            
+            memoryPatternPuzzle.StartPuzzle(); // 여기서 시작!
+
+            gameObject.SetActive(false); // 1회용 트리거
         }
     }
 }

@@ -167,7 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436ca436d103d254daf0e6839068cc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbolType: 1
+  symbolData:
+    symbol: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    sprite: {fileID: 0}
   memoryPatternPuzzle: {fileID: 1532174525}
   spriteRenderer: {fileID: 242350121}
   symbolColor: {r: 0.9666833, g: 1, b: 0.3726415, a: 1}
@@ -452,8 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e038a9e30eb19439d4c3a18c89bfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patternUIManager: {fileID: 1532174524}
-  symbols: 
+  memoryPatternPuzzle: {fileID: 1532174525}
 --- !u!114 &285336028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,10 +468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2fb1ad87676c754fb5fbbae9b9373d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patternUIManager: {fileID: 1532174524}
-  puzzle: {fileID: 1532174525}
+  memoryPatternPuzzle: {fileID: 1532174525}
   wallBlocker: {fileID: 285336024}
-  symbols: 
 --- !u!61 &285336029
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -927,7 +927,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436ca436d103d254daf0e6839068cc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbolType: 3
+  symbolData:
+    symbol: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    sprite: {fileID: 0}
   memoryPatternPuzzle: {fileID: 1532174525}
   spriteRenderer: {fileID: 648260046}
   symbolColor: {r: 0.9666833, g: 1, b: 0.3726415, a: 1}
@@ -2407,7 +2410,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436ca436d103d254daf0e6839068cc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbolType: 0
+  symbolData:
+    symbol: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    sprite: {fileID: 0}
   memoryPatternPuzzle: {fileID: 1532174525}
   spriteRenderer: {fileID: 990719223}
   symbolColor: {r: 0.9666833, g: 1, b: 0.3726415, a: 1}
@@ -2835,7 +2841,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436ca436d103d254daf0e6839068cc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbolType: 2
+  symbolData:
+    symbol: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    sprite: {fileID: 0}
   memoryPatternPuzzle: {fileID: 1532174525}
   spriteRenderer: {fileID: 1253559218}
   symbolColor: {r: 0.9666833, g: 1, b: 0.3726415, a: 1}
@@ -3188,13 +3197,7 @@ MonoBehaviour:
   - {fileID: 1814566891}
   - {fileID: 1386725682}
   - {fileID: 447440600}
-  symbolSprites:
-  - {fileID: -1761226545520248286, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
-  - {fileID: -7263273659138518866, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
-  - {fileID: 6748175200193756222, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
-  - {fileID: -5477907989516303964, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
   ShowSymbolTime: 0.5
-  symbolColors: []
 --- !u!114 &1532174525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3208,10 +3211,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allSymbols: 00000000010000000200000003000000
-  correctOrder: 
-  puzzleLength: 4
   memoryTiles: []
   patternUIManager: {fileID: 1532174524}
+  correctOrder: []
+  puzzleLength: 4
+  symbolSprites:
+  - {fileID: -1761226545520248286, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
+  - {fileID: -7263273659138518866, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
+  - {fileID: 6748175200193756222, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
+  - {fileID: -5477907989516303964, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
   ExitDoor: {fileID: 0}
 --- !u!1 &1677885819
 GameObject:
