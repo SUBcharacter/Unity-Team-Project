@@ -13,10 +13,10 @@ public class WeakPlatform : MonoBehaviour
     {
         col = GetComponent<Collider2D>();
 
-        tile = GetComponentInChildren<TilemapRenderer>(); // 자식 타일맵 찾기.. 추후 수정 가능
+        tile = GetComponent<TilemapRenderer>(); // 타일맵 찾기. 스프라이트 렌더러로 변경하게 된다면 수정할 듯
         if (tile == null)
         {
-            Debug.Log("TilemapRenderer가 자식에 없습니다!");
+            Debug.Log("TilemapRenderer가 없습니다");
         }
 
         animator = GetComponent<Animator>();
@@ -26,7 +26,7 @@ public class WeakPlatform : MonoBehaviour
     {
         if (!isCracking && collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("약한 발판 충돌");
+            Debug.Log("부실한 발판 충돌");
 
             StartCoroutine(Crack());
         }
@@ -36,17 +36,15 @@ public class WeakPlatform : MonoBehaviour
     {
         isCracking = true;
 
-        if (animator != null)
-            animator.SetBool("Shake", true);
+        if (animator != null) { animator.SetBool("Shake", true); }
 
         yield return new WaitForSeconds(2.0f);
 
         col.enabled = false;
         tile.enabled = false;
 
-        if (animator != null)
-            animator.SetBool("Shake", false);
-
+        if (animator != null) { animator.SetBool("Shake", false); }
+            
         yield return new WaitForSeconds(4.0f); // 다시 생성
 
         col.enabled = true;
