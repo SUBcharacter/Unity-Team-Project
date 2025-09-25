@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2342054596628688389}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.34, y: 0.551, z: 0}
+  m_LocalPosition: {x: 0.387, y: 1.002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,6 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66cf8dcc2da3ac4e9a2601679425aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunPos:
+    idle_Right: {x: 0.451, y: 0.563, z: 0}
+    idle_Left: {x: -0.451, y: 0.563, z: 0}
+    crouch_Right: {x: 0.451, y: 0.381, z: 0}
+    crouch_Left: {x: -0.451, y: 0.381, z: 0}
+    shootDown_Right: {x: 0.031, y: 0.299, z: 0}
+    shootDown_Left: {x: -0.031, y: 0.299, z: 0}
+    lookUp_Right: {x: 0.387, y: 1.002, z: 0}
+    lookUp_Left: {x: -0.387, y: 1.002, z: 0}
+  dir: 0
   facingRight: 1
 --- !u!1 &8912101193124811975
 GameObject:
@@ -59,7 +69,7 @@ GameObject:
   - component: {fileID: -1524736718250731077}
   - component: {fileID: 4924046860774709108}
   - component: {fileID: 8792655469287674003}
-  - component: {fileID: 6386672414514596072}
+  - component: {fileID: 4181069193322813325}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -127,7 +137,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1828243495, guid: d33c903c6a2f90f45949c66f61ce0ba0, type: 3}
+  m_Sprite: {fileID: -319727274, guid: d33c903c6a2f90f45949c66f61ce0ba0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -229,7 +239,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6386672414514596072}
+      - m_Target: {fileID: 4181069193322813325}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnShoot
         m_Mode: 0
@@ -249,7 +259,7 @@ MonoBehaviour:
     m_ActionName: 'Player/LookUp[/Keyboard/upArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6386672414514596072}
+      - m_Target: {fileID: 4181069193322813325}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnCrouch
         m_Mode: 0
@@ -265,7 +275,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Crouch[/Keyboard/downArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6386672414514596072}
+      - m_Target: {fileID: 4181069193322813325}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -321,7 +331,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6386672414514596072}
+      - m_Target: {fileID: 4181069193322813325}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -362,7 +372,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6386672414514596072
+--- !u!114 &4181069193322813325
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

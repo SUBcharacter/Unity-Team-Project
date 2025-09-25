@@ -1,6 +1,7 @@
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 enum PlayerState
 {
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour
     Vector2 crouchSize;
     Vector2 crouchOffset;
     public Vector2 moveVec;
+    
+
     public float moveSpeed;
     float coyoteTimeCounter = 0;
     float coyoteTime = 0.15f;
@@ -68,6 +71,7 @@ public class Player : MonoBehaviour
         Move();
         TerrainCollision();
         AnimationControl();
+        GunPosSet();
         if (isGround)
         {
             coyoteTimeCounter = coyoteTime;
@@ -141,6 +145,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    void GunPosSet()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName("Crouch"))
+        {
+            gun.dir = GunDirection.CROUCH;
+        }
+        else if(stateInfo.IsName("ShootDown"))
+        {
+            gun.dir = GunDirection.DOWN;
+        }
+        else
+            gun.dir = GunDirection.STAND;
+    }
+
     #region EventFunc
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -200,20 +220,15 @@ public class Player : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        
-
         Vector2 input = context.ReadValue<Vector2>();
-        Vector3 gunPostion = gun.transform.position;
         if ( input.x < 0)
         {
             sprite.flipX = true;
-            gun.transform.position = new Vector3(-gunPostion.x, gunPostion.y, gunPostion.z);
             gun.facingRight = false;
         }
         else if(input.x > 0)
         {
             sprite.flipX = false;
-            gun.transform.position = new Vector3(gunPostion.x, gunPostion.y, gunPostion.z);
             gun.facingRight = true;
         }
         moveVec = input;
@@ -291,7 +306,6 @@ public class Player : MonoBehaviour
             collider.size = crouchSize;
             collider.offset = crouchOffset;
             animator.SetBool("Crouching", true);
-
         }
         else if(context.canceled)
         {
@@ -310,4 +324,17 @@ public class Player : MonoBehaviour
     }
     #endregion
     #endregion
+}
+[System.Serializable]
+public struct GunPosition
+{
+    public Vector3 idle_Right;
+    public Vector3 idle_Left;
+    public Vector3 crouch_Right;
+    public Vector3 crouch_Left;
+    public Vector3 shootDown_Right;
+    public Vector3 shootDown_Left;
+    public Vector3 lookUp_Right;
+    public Vector3 lookUp_Left;
+
 }
