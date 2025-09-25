@@ -17,5 +17,5 @@ public class SymbolData
 
 public enum Symbol
 {
-    Yellow, Red, Green, Blue
+    Magenta, Red, Green, Blue
 }

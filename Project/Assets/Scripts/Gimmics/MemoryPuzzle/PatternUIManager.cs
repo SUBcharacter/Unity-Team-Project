@@ -12,7 +12,7 @@ public class PatternUIManager : MonoBehaviour
 {
     public Image[] symbolImages;
 
-    [SerializeField] private float ShowSymbolTime = 10f; // 하나 보여주는 시간
+    [SerializeField] private float ShowSymbolTime = 10f; // 화면에 보여주는 시간
 
     public void StartPuzzle(List<SymbolData> pattern)
     {

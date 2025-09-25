@@ -12,7 +12,7 @@ public class MemoryTile : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Color symbolColor;
 
-    private bool isPuzzleActive;    
+    private bool isCleared;    
     private bool isActivated;
 
     public void OnEnableTile()
@@ -28,7 +28,6 @@ public class MemoryTile : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"[{gameObject.name}] Start에서 sprite: {spriteRenderer.sprite?.name}, active? {gameObject.activeSelf}, position: {transform.position}");
         if (memoryPatternPuzzle != null)
         {
             memoryPatternPuzzle.CallbackTile(this);
@@ -38,23 +37,18 @@ public class MemoryTile : MonoBehaviour
             Debug.LogError($"{gameObject.name}에서 PuzzleManager 연결 안 됨");
         }
 
-        // sprite 초기화 (외부에서 연결 안 돼있으면)
+        // sprite 초기화 (외부에서 연결 안 되어있다면)
         if (spriteRenderer == null)
+        { 
             spriteRenderer = GetComponent<SpriteRenderer>();
+        }
 
-        //if (symbolData != null)
-        //{
-        //    spriteRenderer.sprite = symbolData.sprite;
-        //    spriteRenderer.color = symbolData.color;
-        //}
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isCleared)
         {
-            //Debug.Log($"[{gameObject.name}] 발판밟음 {symbolData.symbol}");
-
             isActivated = true;
             HighlightTile();
 
@@ -65,6 +59,7 @@ public class MemoryTile : MonoBehaviour
 
     public void ResetTile()
     {
+        isCleared = false;      // 리셋할 때 초기화
         if (symbolData != null)
             spriteRenderer.color = symbolData.color;
     }

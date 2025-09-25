@@ -12,20 +12,22 @@ public class MemoryPatternPuzzle : MonoBehaviour
 
     [Header("등록된 타일")]
     public List<MemoryTile> memoryTiles = new List<MemoryTile>();
-    [SerializeField] PatternUIManager patternUIManager;
 
     [Header("정답 순서")]
     public List<SymbolData> correctOrder = new List<SymbolData>();
 
+    [SerializeField] PatternUIManager patternUIManager;
     [SerializeField] private int puzzleLength = 4;
 
     [SerializeField] private List<Sprite> symbolSprites;
+    [SerializeField] private GameObject puzzleUI;
 
 
     int currentIndex = 0;       // 횟수
     bool isInputEnabled;
 
     public GameObject ExitDoor;
+    [SerializeField] Animator DoorAnimatior;
 
     public void StartPuzzle()
     {
@@ -48,8 +50,8 @@ public class MemoryPatternPuzzle : MonoBehaviour
     {
         correctOrder.Clear();
 
-        List<Symbol> symbols = new List<Symbol> { Symbol.Yellow, Symbol.Red, Symbol.Green, Symbol.Blue };
-        List<Color> colors = new List<Color> { Color.yellow, Color.red, Color.green, Color.blue };
+        List<Symbol> symbols = new List<Symbol> { Symbol.Magenta, Symbol.Red, Symbol.Green, Symbol.Blue };
+        List<Color> colors = new List<Color> { Color.magenta, Color.red, Color.green, Color.blue };
         List<Sprite> sprites = new List<Sprite>(symbolSprites);
 
         symbols = symbols.OrderBy(x => Random.value).ToList();
@@ -74,15 +76,9 @@ public class MemoryPatternPuzzle : MonoBehaviour
             Debug.Log("[MemoryTiles] 배정된 순서: " + string.Join(", ", memoryTiles.Select(t => t.symbolData.symbol.ToString())));
 
         }
-        //Debug.Log("[PatternUIManager] 받은 순서: " + string.Join(", ", correctOrder.Select(p => p.symbol.ToString())));
-
-
-        //Debug.Log("정답 순서: " + string.Join(", ", correctOrder.Select(s => s.symbol.ToString())));
-
+ 
         // UI에 넘겨주는 패턴 호출
         patternUIManager.StartPuzzle(correctOrder); // StartPuzzle을 받을 수 있도록 수정 필요
-
-        
 
     }
 
@@ -115,7 +111,16 @@ public class MemoryPatternPuzzle : MonoBehaviour
     public void PuzzleClear()
     {
         Debug.Log("퍼즐 클리어");
-        ExitDoor.SetActive(false); // 문 열림 (문 오브젝트 비활성화 or 애니메이션 재생)
+        if (DoorAnimatior != null)
+        {
+            DoorAnimatior.SetTrigger("IsOpen");
+        }
+
+        if (puzzleUI != null)
+        {
+            puzzleUI.SetActive(false);
+        }
+        //ExitDoor.SetActive(false); // 문 열림 (문 오브젝트 비활성화 or 애니메이션 재생)
     }
 
     public void ResetPuzzle()
@@ -127,6 +132,7 @@ public class MemoryPatternPuzzle : MonoBehaviour
         {
             tile.ResetTile();
         }
+        // 추후 다시 리스폰 코드 넣을 예정 
         GenerateNewPattern();       // 틀렸을 때 새 정답
     }
 
