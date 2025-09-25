@@ -57,6 +57,17 @@ public class MemoryTile : MonoBehaviour
 
     }
 
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player") && !isCleared)
+    //    {
+    //        isActivated = true;
+    //        HighlightTile();
+
+    //        memoryPatternPuzzle.CheckTile(symbolData.symbol); // CheckTile은 symbol만 받음
+    //    }
+    //}
+
     public void ResetTile()
     {
         isCleared = false;      // 리셋할 때 초기화

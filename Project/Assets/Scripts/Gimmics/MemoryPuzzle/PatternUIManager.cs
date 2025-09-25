@@ -31,6 +31,8 @@ public class PatternUIManager : MonoBehaviour
         {
             var data = pattern[i];
 
+            Debug.Log($"[UI symbol {i}] sprite: {data.sprite}, color: {data.color}");
+
             if (data.sprite != null)
             {
                 symbolImages[i].sprite = data.sprite;

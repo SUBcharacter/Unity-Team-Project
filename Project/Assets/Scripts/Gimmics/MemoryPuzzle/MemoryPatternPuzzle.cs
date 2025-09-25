@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class MemoryPatternPuzzle : MonoBehaviour
 {
+    SymbolData[] correctSymbol;     // 이걸로 설계하기
+    SymbolData[] inputSymbol;       // 싹다 갈아엎기 
     [Header("사용 가능한 기호들")]
     public List<Symbol> allSymbols = new List<Symbol>();
 
@@ -63,7 +65,7 @@ public class MemoryPatternPuzzle : MonoBehaviour
         {
             var c = colors[i];
             var fixedColor = new Color(c.r, c.g, c.b, 1f); // 알파값 강제 설정
-            correctOrder.Add(new SymbolData(symbols[i], colors[i], sprites[i]));
+            correctOrder.Add(new SymbolData(symbols[i], fixedColor, sprites[i]));
         }
         Debug.Log("[정답 순서 correctOrder]: " + string.Join(", ", correctOrder.Select(x => x.symbol)));
         for (int i = 0; i < memoryTiles.Count && i < correctOrder.Count; i++)
@@ -74,7 +76,7 @@ public class MemoryPatternPuzzle : MonoBehaviour
             memoryTiles[i].spriteRenderer.color = correctOrder[i].color;
 
             Debug.Log("[MemoryTiles] 배정된 순서: " + string.Join(", ", memoryTiles.Select(t => t.symbolData.symbol.ToString())));
-
+            
         }
  
         // UI에 넘겨주는 패턴 호출
