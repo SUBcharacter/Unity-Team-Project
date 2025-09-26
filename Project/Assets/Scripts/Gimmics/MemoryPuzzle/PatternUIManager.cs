@@ -12,15 +12,17 @@ public class PatternUIManager : MonoBehaviour
 {
     public Image[] symbolImages;
 
-    [SerializeField] private float ShowSymbolTime = 10f; // 화면에 보여주는 시간
+    [SerializeField] private float ShowSymbolTime = 3f; // 화면에 보여주는 시간
 
     public void StartPuzzle(List<SymbolData> pattern)
     {
+        Debug.Log("[PatternUIManager] StartPuzzle 호출됨, pattern.Count=" + pattern.Count);
         StartCoroutine(ShowPatternUI(pattern));
     }
 
     public IEnumerator ShowPatternUI(List<SymbolData> pattern)
     {
+        Debug.Log("[PatternUIManager] ShowPatternUI 시작됨!");
         // 시작 시 모든 이미지 숨기기
         for (int i = 0; i < symbolImages.Length; i++)
         {
@@ -30,14 +32,17 @@ public class PatternUIManager : MonoBehaviour
         for (int i = 0; i < pattern.Count && i < symbolImages.Length; i++)
         {
             var data = pattern[i];
-
-            Debug.Log($"[UI symbol {i}] sprite: {data.sprite}, color: {data.color}");
-
+         
             if (data.sprite != null)
             {
+                var fixedColor = data.color;
+                fixedColor.a = 1f;
                 symbolImages[i].sprite = data.sprite;
-                symbolImages[i].color = data.color;
+                symbolImages[i].color = fixedColor;
+                //symbolImages[i].color = data.color;
                 symbolImages[i].gameObject.SetActive(true);
+                symbolImages[i].transform.SetAsFirstSibling();      // ui재시작 테스트 코드
+               
 
                 yield return new WaitForSeconds(ShowSymbolTime);
 

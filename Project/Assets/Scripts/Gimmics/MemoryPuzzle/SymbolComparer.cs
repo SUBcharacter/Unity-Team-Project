@@ -1,5 +1,8 @@
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class SymbolComparer : MonoBehaviour
 {
@@ -12,10 +15,18 @@ public class SymbolComparer : MonoBehaviour
     [Header("퍼즐 관련 오브젝트")]
     [SerializeField] private ColorPlatform[] platforms; // 발판들 인스펙터에 연결
     [SerializeField] private GameObject door;           // 퍼즐 클리어 시 열릴 문
+    Animator animator;
 
     [SerializeField] private Sprite[] symbolSprites; // 스프라이트 배열 추가
+
+    private PatternUIManager patternUIManager;
+
+    private float resetTime = 1f;       // 틀렸을 때 1-2초 카운트
+
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        patternUIManager = GetComponent<PatternUIManager>();
         GenerateCorrectPattern();
     }
 
@@ -23,7 +34,11 @@ public class SymbolComparer : MonoBehaviour
     {
         if (inputIndex < inputSymbol.Length)
         {
-            inputSymbol[inputIndex] = data;
+            // 알파값 1로 보정
+            Color fixedColor = data.color;
+            fixedColor.a = 1f;
+
+            inputSymbol[inputIndex] = new SymbolData(data.symbol, fixedColor, data.sprite);
             inputIndex++;
 
             if (inputIndex >= correctSymbol.Length)
@@ -49,16 +64,19 @@ public class SymbolComparer : MonoBehaviour
         if (isCorrect)
         {
             Debug.Log("퍼즐 클리어!");
-            if (door != null) door.SetActive(false);
+            animator.SetTrigger("IsOpen");
+
         }
         else
         {
             Debug.Log("틀림 퍼즐 리셋");
-            ResetPuzzle();
+            
+            StartCoroutine(ColorResetCoroutine());
+
         }
     }
 
-    private void ResetPuzzle()
+    public void ResetPuzzle()
     {
         inputIndex = 0;
         for (int i = 0; i < inputSymbol.Length; i++)
@@ -72,25 +90,9 @@ public class SymbolComparer : MonoBehaviour
         }
 
         GenerateCorrectPattern();
+
+
     }
-
-    //private void GenerateCorrectPattern()
-    //{
-    //    Symbol[] symbols = new Symbol[] { Symbol.Magenta, Symbol.Red, Symbol.Green, Symbol.Blue };
-    //    System.Array.Sort(symbols, (a, b) => Random.value.CompareTo(Random.value));
-
-    //    correctSymbol = new SymbolData[puzzleLength];
-    //    inputSymbol = new SymbolData[puzzleLength];
-    //    inputIndex = 0;
-
-    //    for (int i = 0; i < puzzleLength; i++)
-    //    {
-    //        correctSymbol[i] = new SymbolData(symbols[i], GetColor(symbols[i]));
-    //    }
-
-    //    Debug.Log("[정답 패턴]: " + string.Join(", ",
-    //        System.Array.ConvertAll(correctSymbol, s => s.symbol.ToString())));
-    //}
 
     private void GenerateCorrectPattern()
     {
@@ -108,8 +110,7 @@ public class SymbolComparer : MonoBehaviour
             correctSymbol[i] = new SymbolData(symbols[i], color, sprite);
         }
 
-        Debug.Log("[정답 패턴]: " + string.Join(", ",
-            System.Array.ConvertAll(correctSymbol, s => s.symbol.ToString())));
+
     }
 
     private Color GetColor(Symbol symbol)
@@ -135,5 +136,32 @@ public class SymbolComparer : MonoBehaviour
             default: return null;
         }
     }
+
+    IEnumerator ColorResetCoroutine()
+    {
+        foreach (var plat in platforms)
+        {
+            Debug.Log($"{plat.gameObject.name} -> Red");
+            plat.ResetColor(Color.red);
+        }
+        yield return new WaitForSeconds(resetTime);
+
+        foreach (var plat in platforms)
+        {
+            plat.ResetPlatform(); // 원래 색상 복원
+        }
+
+        GenerateCorrectPattern();
+
+        if(patternUIManager != null)
+        {
+            patternUIManager.StartPuzzle(correctSymbol.ToList());
+            Debug.Log("[SymbolComparer] 퍼즐 리셋됨 → UI 재시작");
+        }
+    }
+
+    // 트리거를 각각 발판에? 
+
+    
 
 }
