@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 1911677003162083269}
   - component: {fileID: 3429146471360532254}
   - component: {fileID: 4303849143204191035}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MovingPlatform
   m_TagString: Terrain
   m_Icon: {fileID: 0}

@@ -145,12 +145,12 @@ public class Player : MonoBehaviour
             if(isGround && coyoteTimeCounter>0)
             {
                 isGround = false;
-                rigid.linearVelocityY = jumpSpeeds[0];
+                rigid.linearVelocityY = jumpSpeeds[0] * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale)));
             }
             else if(canAirJump) 
             {
                 canAirJump = false;
-                rigid.linearVelocityY = jumpSpeeds[1];
+                rigid.linearVelocityY = jumpSpeeds[1] * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale)));
             }
         }
         if(context.canceled)

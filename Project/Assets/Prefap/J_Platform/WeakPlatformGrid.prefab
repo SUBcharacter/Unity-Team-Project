@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 8529021661882495010}
   - component: {fileID: 7488988833443121542}
   - component: {fileID: 8582890805909535831}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeakPlatform
   m_TagString: Terrain
   m_Icon: {fileID: 0}

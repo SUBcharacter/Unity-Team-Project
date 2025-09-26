@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 1636585807023151259}
   - component: {fileID: 7087741184667521240}
   - component: {fileID: 3495099954675747631}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -572,7 +572,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 962814677
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.016129017, y: 0.016129017, z: 0}
