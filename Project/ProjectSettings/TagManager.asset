@@ -8,6 +8,8 @@ TagManager:
   - Terrain
   - Border
   - Bullet
+  - Water
+  - Enemy
   layers:
   - Default
   - TransparentFX

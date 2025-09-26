@@ -9,6 +9,7 @@ public class MapManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("맵 매니저 시동");
         for(int i = 0; i<prefaps.Count; i++)
         {
             maps.Add(Instantiate(prefaps[i], gameObject.transform,true));

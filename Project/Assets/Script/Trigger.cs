@@ -4,6 +4,12 @@ public class Trigger : MonoBehaviour
 {
     public bool trigger = false;
 
+    private void Awake()
+    {
+        Debug.Log("트리거 시동");
+
+    }
+
     public void init()
     {
         trigger = false;

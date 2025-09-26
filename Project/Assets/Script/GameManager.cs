@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(camera == null)
+        Debug.Log("게임 매니저 시동");
+
+        if (camera == null)
         {
             camera = Camera.main;
         }

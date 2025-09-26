@@ -9,6 +9,8 @@ public abstract class Trap : MonoBehaviour, IResetable
 
     protected virtual void Awake()
     {
+        Debug.Log("함정 시동");
+
         rigid = GetComponent<Rigidbody2D>();
     }
 
