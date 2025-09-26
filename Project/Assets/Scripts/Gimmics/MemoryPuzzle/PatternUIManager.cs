@@ -39,7 +39,6 @@ public class PatternUIManager : MonoBehaviour
                 fixedColor.a = 1f;
                 symbolImages[i].sprite = data.sprite;
                 symbolImages[i].color = fixedColor;
-                //symbolImages[i].color = data.color;
                 symbolImages[i].gameObject.SetActive(true);
                 symbolImages[i].transform.SetAsFirstSibling();      // ui재시작 테스트 코드
                

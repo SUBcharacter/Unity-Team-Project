@@ -23,7 +23,7 @@ public class SymbolComparer : MonoBehaviour
 
     private float resetTime = 1f;       // 틀렸을 때 1-2초 카운트
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         patternUIManager = GetComponent<PatternUIManager>();

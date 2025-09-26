@@ -37,21 +37,20 @@ public class ColorPlatform : MonoBehaviour
         if (!other.CompareTag("Player"))
         {
             return;
-
-            // 누르면 하이라이트 효과
-            
-            // 여기다 전달을 해줘야한다는건데 
         }
+
         comparer.AddInput(symbolData);
+
         if(!isInResetState)
         {
             spriteRenderer.color = Color.yellow;
         }
         
     }
-
-    // 트리거 
-
+    #region 발판 리셋 관련 코드
+    /// <summary>
+    /// 발판 리셋 함수
+    /// </summary>
     public void ResetPlatform()
     {
         if (symbolData != null)
@@ -60,20 +59,15 @@ public class ColorPlatform : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 틀렸을 때 발판 초기화해주는 함수
+    /// </summary>
+    /// <param name="color"></param>
     public void ResetColor(Color color)
     {
-        //var fixedColor = color;
-        //fixedColor.a = 1f;
-        //spriteRenderer.color = fixedColor;
         StartCoroutine(ChangeColorRed(color));
     }
 
-    public void PassColor(Color color)
-    {
-        var fixedColor = color;
-        fixedColor.a = 1f;
-        spriteRenderer.color = fixedColor;
-    }
 
     IEnumerator ChangeColorRed(Color color)
     {
@@ -88,9 +82,16 @@ public class ColorPlatform : MonoBehaviour
         isInResetState = false;
     }
 
-    //IEnumerator HighLight(Color color, float d)
-    //{
-    //    yield
+#endregion
+    /// <summary>
+    /// 이건 보류
+    /// </summary>
+    /// <param name="color"></param>
+    public void PassColor(Color color)
+    {
+        var fixedColor = color;
+        fixedColor.a = 1f;
+        spriteRenderer.color = fixedColor;
+    }
 
-    //}
 }
