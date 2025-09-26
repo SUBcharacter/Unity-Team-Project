@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9ce1689aba00944860a0a26b3835fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefap: {fileID: 8912101193124811975, guid: 14ce67487568b3a40a9397acd8291d64, type: 3}
+  playerPrefap: {fileID: 8912101193124811975, guid: a209530c6c14764439342d9cbbbacad0, type: 3}
   player: {fileID: 0}
   bulletManager: {fileID: 1577240385}
   camera: {fileID: 519420031}

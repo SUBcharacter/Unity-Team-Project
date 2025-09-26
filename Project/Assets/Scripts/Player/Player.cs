@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (rigid.linearVelocityY < -0.1)
+        if (rigid.linearVelocityY < -0.1* (rigid.gravityScale * (1/rigid.gravityScale)))
         {
             animator.SetBool("Falling", true);
         }

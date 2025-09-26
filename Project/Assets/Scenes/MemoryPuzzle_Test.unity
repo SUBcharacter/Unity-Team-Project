@@ -986,6 +986,7 @@ MonoBehaviour:
   prefaps:
   - {fileID: 178047201214406722, guid: b07fa83e7f002f34c96b0d8820773857, type: 3}
   - {fileID: 4951009991399042275, guid: e2ca25a21f68a2947b610be8ad3e1e9a, type: 3}
+  - {fileID: 5576469605938626610, guid: 36d670d49b584fc40adb538c3ecda8dd, type: 3}
   maps: []
 --- !u!4 &1083009189
 Transform:
@@ -1726,10 +1727,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9ce1689aba00944860a0a26b3835fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefap: {fileID: 8912101193124811975, guid: 14ce67487568b3a40a9397acd8291d64, type: 3}
+  playerPrefap: {fileID: 8912101193124811975, guid: a209530c6c14764439342d9cbbbacad0, type: 3}
   player: {fileID: 0}
   bulletManager: {fileID: 336191031}
-  camera: {fileID: 0}
+  camera: {fileID: 403089215}
   saveManager: {fileID: 544157311}
   mapManager: {fileID: 1083009188}
 --- !u!4 &1403637488

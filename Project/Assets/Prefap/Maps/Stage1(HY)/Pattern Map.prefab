@@ -1345,7 +1345,7 @@ GameObject:
   - component: {fileID: 1995059831451907101}
   - component: {fileID: 8270339643282676163}
   - component: {fileID: 430191129461990323}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Purple
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -1622,7 +1622,7 @@ GameObject:
   - component: {fileID: 6795206015357431731}
   - component: {fileID: 8991335157830549975}
   - component: {fileID: 3449206243130359602}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Green
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -2283,7 +2283,7 @@ GameObject:
   - component: {fileID: 2209203523538262707}
   - component: {fileID: 6511115383608433632}
   - component: {fileID: 8082742994836252889}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Red
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -2749,7 +2749,7 @@ GameObject:
   - component: {fileID: 3152648769167554389}
   - component: {fileID: 8370877821416579137}
   - component: {fileID: 3745284915311329980}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Blue
   m_TagString: Terrain
   m_Icon: {fileID: 0}
