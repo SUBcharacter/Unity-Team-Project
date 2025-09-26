@@ -407,6 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentData:
+    sceneName: 
     playerPos: {x: 0, y: 0, z: 0}
     cameraPos: {x: 0, y: 0, z: 0}
   path: 
