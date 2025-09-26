@@ -231,17 +231,7 @@ CompositeCollider2D:
   m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 191078543}
-    m_ColliderPaths:
-    - - X: 90161288
-        Y: -29838710
-      - X: -90161288
-        Y: -29838710
-      - X: -90161288
-        Y: -50161292
-      - X: 90161288
-        Y: -50161292
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 9.016099, y: -5.0161295}
@@ -817,19 +807,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 178047201214406722, guid: b07fa83e7f002f34c96b0d8820773857, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 951241635591949793, guid: b07fa83e7f002f34c96b0d8820773857, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2669419595796702190, guid: b07fa83e7f002f34c96b0d8820773857, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4093255259313701268, guid: b07fa83e7f002f34c96b0d8820773857, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5359765412062750048, guid: b07fa83e7f002f34c96b0d8820773857, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1256,23 +1246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436ca436d103d254daf0e6839068cc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbolData:
-    symbol: 0
-    color:
-      r: 0
-      g: 0
-      b: 0
-      a: 0
-    sprite: {fileID: 0}
-  memoryPatternPuzzle: {fileID: 1726495611}
-  spriteRenderer: {fileID: 791040185}
-  symbolColor:
-    r: 0.9666833
-    g: 1
-    b: 0.3726415
-    a: 1
-  isCleared: 0
-  isActivated: 0
 --- !u!61 &791040183
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1643,23 +1616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436ca436d103d254daf0e6839068cc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbolData:
-    symbol: 0
-    color:
-      r: 0
-      g: 0
-      b: 0
-      a: 0
-    sprite: {fileID: 0}
-  memoryPatternPuzzle: {fileID: 1726495611}
-  spriteRenderer: {fileID: 970455252}
-  symbolColor:
-    r: 0.9666833
-    g: 1
-    b: 0.3726415
-    a: 1
-  isCleared: 0
-  isActivated: 0
 --- !u!61 &970455250
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1804,7 +1760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1083009188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,7 +1776,6 @@ MonoBehaviour:
   prefaps:
   - {fileID: 178047201214406722, guid: b07fa83e7f002f34c96b0d8820773857, type: 3}
   - {fileID: 4951009991399042275, guid: e2ca25a21f68a2947b610be8ad3e1e9a, type: 3}
-  - {fileID: 1911488889592843092, guid: 9b80d67d0c4e4fd4385fa1aab04c3232, type: 3}
   maps: []
 --- !u!4 &1083009189
 Transform:
@@ -2746,7 +2701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1656377378
 Transform:
   m_ObjectHideFlags: 0
@@ -2865,17 +2820,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1726495611 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2402389542819574453, guid: bbee93720f65eff46a721a610d06d02f, type: 3}
-  m_PrefabInstance: {fileID: 2033351865}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af87ab1464cfbc47a01c1e88ecb3b67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1771284885
 GameObject:
   m_ObjectHideFlags: 0
@@ -3201,23 +3145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436ca436d103d254daf0e6839068cc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbolData:
-    symbol: 0
-    color:
-      r: 0
-      g: 0
-      b: 0
-      a: 0
-    sprite: {fileID: 0}
-  memoryPatternPuzzle: {fileID: 1726495611}
-  spriteRenderer: {fileID: 2121720731}
-  symbolColor:
-    r: 0.9666833
-    g: 1
-    b: 0.3726415
-    a: 1
-  isCleared: 0
-  isActivated: 0
 --- !u!61 &2121720729
 BoxCollider2D:
   m_ObjectHideFlags: 0

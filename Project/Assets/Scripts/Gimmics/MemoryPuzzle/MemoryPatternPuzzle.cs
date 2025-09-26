@@ -8,7 +8,7 @@ using UnityEngine;
 /// <summary>
 /// 여기에 r키 누르면 리셋되는 인터페이스 넣어야할듯
 /// </summary>
-public class MemoryPatternPuzzle : MonoBehaviour
+public class MemoryPatternPuzzle : MonoBehaviour, IResetable
 {
 
     public List<ColorPlatform> platforms;
@@ -20,7 +20,14 @@ public class MemoryPatternPuzzle : MonoBehaviour
     [SerializeField] private PatternUIManager patternUIManager;
     [SerializeField] private SymbolComparer symbolComparer;
 
+
+
     private void Start()
+    {
+        Init();
+    }
+
+    public void Init()
     {
         InitPuzzle();
     }
@@ -51,5 +58,7 @@ public class MemoryPatternPuzzle : MonoBehaviour
         symbolComparer.correctSymbol = correctPattern.ToArray();
         patternUIManager.StartPuzzle(correctPattern);
     }
+
+   
 }
 

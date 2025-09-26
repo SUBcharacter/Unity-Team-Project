@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class SymbolComparer : MonoBehaviour
+public class SymbolComparer : MonoBehaviour, IResetable
 {
     [Header("퍼즐 기본 설정")]
     [SerializeField] private int puzzleLength = 4;
@@ -22,6 +22,11 @@ public class SymbolComparer : MonoBehaviour
     private PatternUIManager patternUIManager;
 
     private float resetTime = 1f;       // 틀렸을 때 1-2초 카운트
+
+    public void Init()
+    {
+        ResetPuzzle();
+    }
 
     private void Awake()
     {
@@ -160,8 +165,7 @@ public class SymbolComparer : MonoBehaviour
         }
     }
 
-    // 트리거를 각각 발판에? 
+ 
 
-    
 
 }
