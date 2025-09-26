@@ -7,21 +7,23 @@ using UnityEngine.UIElements;
 public class SymbolComparer : MonoBehaviour, IResetable
 {
     [Header("퍼즐 기본 설정")]
-    [SerializeField] private int puzzleLength = 4;
     public SymbolData[] correctSymbol;
     public SymbolData[] inputSymbol;
-    private int inputIndex = 0;
 
     [Header("퍼즐 관련 오브젝트")]
     [SerializeField] private ColorPlatform[] platforms; // 발판들 인스펙터에 연결
     [SerializeField] private GameObject door;           // 퍼즐 클리어 시 열릴 문
     Animator animator;
-
     [SerializeField] private Sprite[] symbolSprites; // 스프라이트 배열 추가
-
     private PatternUIManager patternUIManager;
 
+    public Vector3 initPos;
+
+    [SerializeField] private int puzzleLength = 4;
+    private int inputIndex = 0;
     private float resetTime = 1f;       // 틀렸을 때 1-2초 카운트
+
+
 
     public void Init()
     {
@@ -32,6 +34,7 @@ public class SymbolComparer : MonoBehaviour, IResetable
     {
         animator = GetComponent<Animator>();
         patternUIManager = GetComponent<PatternUIManager>();
+        initPos = transform.localPosition;
         GenerateCorrectPattern();
     }
 
@@ -69,7 +72,7 @@ public class SymbolComparer : MonoBehaviour, IResetable
         if (isCorrect)
         {
             Debug.Log("퍼즐 클리어!");
-            animator.SetTrigger("IsOpen");
+            animator.SetBool("Correct",true);
 
         }
         else
@@ -95,7 +98,9 @@ public class SymbolComparer : MonoBehaviour, IResetable
         }
 
         GenerateCorrectPattern();
-
+        animator.SetBool("Correct", false);
+        transform.localPosition = initPos;
+        
 
     }
 

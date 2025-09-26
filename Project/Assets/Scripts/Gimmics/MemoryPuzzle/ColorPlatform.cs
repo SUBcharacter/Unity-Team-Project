@@ -20,6 +20,11 @@ public class ColorPlatform : MonoBehaviour
     private void Start()
     {
         // 발판 초기 색/스프라이트 반영
+        Init();
+    }
+
+    public void Init()
+    {
         if (symbolData != null)
         {
             Color fixedColor = symbolData.color;
@@ -29,6 +34,7 @@ public class ColorPlatform : MonoBehaviour
 
             if (symbolData.sprite != null)
                 spriteRenderer.sprite = symbolData.sprite;
+            ResetPlatform();
         }
     }
 

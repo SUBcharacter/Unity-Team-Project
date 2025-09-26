@@ -8,9 +8,10 @@ using UnityEngine.UI;
 using static UnityEngine.Rendering.BoolParameter;
 
 
-public class PatternUIManager : MonoBehaviour
+public class PatternUIManager : MonoBehaviour, IResetable
 {
     public Image[] symbolImages;
+    bool reset = false;
 
     [SerializeField] private float ShowSymbolTime = 3f; // 화면에 보여주는 시간
 
@@ -20,14 +21,18 @@ public class PatternUIManager : MonoBehaviour
         StartCoroutine(ShowPatternUI(pattern));
     }
 
+    public void Init()
+    {
+        reset = true;
+        for (int x = 0; x < symbolImages.Length; x++)
+        {
+            symbolImages[x].gameObject.SetActive(false);
+        }
+    }
+
     public IEnumerator ShowPatternUI(List<SymbolData> pattern)
     {
         Debug.Log("[PatternUIManager] ShowPatternUI 시작됨!");
-        // 시작 시 모든 이미지 숨기기
-        for (int i = 0; i < symbolImages.Length; i++)
-        {
-            symbolImages[i].gameObject.SetActive(false);
-        }
 
         for (int i = 0; i < pattern.Count && i < symbolImages.Length; i++)
         {
@@ -41,7 +46,15 @@ public class PatternUIManager : MonoBehaviour
                 symbolImages[i].color = fixedColor;
                 symbolImages[i].gameObject.SetActive(true);
                 symbolImages[i].transform.SetAsFirstSibling();      // ui재시작 테스트 코드
-               
+                if (reset)
+                {
+                    reset = false;
+                    for (int x = 0; x < symbolImages.Length; x++)
+                    {
+                        symbolImages[x].gameObject.SetActive(false);
+                    }
+                    yield break;
+                }
 
                 yield return new WaitForSeconds(ShowSymbolTime);
 
@@ -51,6 +64,8 @@ public class PatternUIManager : MonoBehaviour
             {
                 Debug.LogWarning($"[PatternUIManager] SymbolData {i}에 스프라이트가 없음!");
             }
+
+            
         }
     }
 
