@@ -9,6 +9,7 @@ TagManager:
   - Border
   - Bullet
   - Water
+  - Enemy
   layers:
   - Default
   - TransparentFX

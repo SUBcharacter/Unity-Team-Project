@@ -122,8 +122,11 @@ public class Player : MonoBehaviour
     {
         if (animator.GetBool("Crouching") && isGround)
         {
-            rigid.linearVelocityX = 0;
-            return;
+            if(!animator.GetBool("LookUp"))
+            {
+                rigid.linearVelocityX = 0;
+                return;
+            }
         }
             
         rigid.linearVelocityX = moveVec.x * moveSpeed;
@@ -156,6 +159,10 @@ public class Player : MonoBehaviour
         else if(stateInfo.IsName("ShootDown"))
         {
             gun.dir = GunDirection.DOWN;
+        }
+        else if(stateInfo.IsName("LookUp") || stateInfo.IsName("LookUp_Run"))
+        {
+            gun.dir = GunDirection.UP;
         }
         else
             gun.dir = GunDirection.STAND;
@@ -249,11 +256,11 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("1stJump");
                 if(state != PlayerState.Water)
                 {
-                    rigid.linearVelocityY = jumpSpeeds[0];
+                    rigid.linearVelocityY = jumpSpeeds[0] * (rigid.gravityScale * (1/Mathf.Abs(rigid.gravityScale)));
                 }
                 else
                 {
-                    rigid.linearVelocityY = jumpSpeeds[0] * waterWeight;
+                    rigid.linearVelocityY = jumpSpeeds[0] * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale))) * waterWeight;
                 }
                 
             }
@@ -264,12 +271,12 @@ public class Player : MonoBehaviour
                 {
                     animator.SetTrigger("2ndJump");
                     canAirJump = false;
-                    rigid.linearVelocityY = jumpSpeeds[1];
+                    rigid.linearVelocityY = jumpSpeeds[1] * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale)));
                 }
                 else
                 {
                     animator.SetTrigger("2ndJump");
-                    rigid.linearVelocityY = jumpSpeeds[1] * waterWeight;
+                    rigid.linearVelocityY = jumpSpeeds[1] * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale))) * waterWeight;
                 }
                 
                 
@@ -291,11 +298,11 @@ public class Player : MonoBehaviour
     {
         if(context.performed)
         {
-
+            animator.SetBool("LookUp", true);
         }
         else if(context.canceled)
         {
-
+            animator.SetBool("LookUp", false);
         }
     }
 
