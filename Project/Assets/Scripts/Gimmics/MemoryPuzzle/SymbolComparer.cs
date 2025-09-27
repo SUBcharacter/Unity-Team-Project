@@ -170,7 +170,4 @@ public class SymbolComparer : MonoBehaviour, IResetable
         }
     }
 
- 
-
-
 }
