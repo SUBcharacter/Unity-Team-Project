@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     bool shotDir = true; // true : 오른쪽, false : 왼쪽
     [SerializeField] bool isGround = false;
     [SerializeField] bool canAirJump = false;
+    [SerializeField] bool isDead = false;
 
     void Awake()
     {
@@ -85,11 +86,18 @@ public class Player : MonoBehaviour
     {
         transform.position = initPos;
         rigid.linearVelocityY = 0f;
+        isDead = false;
+        rigid.simulated = true;
+        collider.enabled = true;
+        animator.Play("Idle",0,0f);
         gameObject.SetActive(true);
+       
     }
 
     void AnimationControl()
     {
+        if (isDead) return;
+
         if(moveVec.x != 0)
         {
             animator.SetBool("Walk", true);
@@ -110,7 +118,6 @@ public class Player : MonoBehaviour
             animator.SetBool("Jumping", true);
         }
             
-        
     }
 
     void Control()
@@ -120,14 +127,16 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        if (animator.GetBool("Crouching") && isGround)
+        if (isDead)
+            return;
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName("Crouch"))
         {
-            if(!animator.GetBool("LookUp"))
-            {
-                rigid.linearVelocityX = 0;
-                return;
-            }
+            rigid.linearVelocityX = 0;
+            return;
         }
+        
             
         rigid.linearVelocityX = moveVec.x * moveSpeed;
     }
@@ -168,18 +177,22 @@ public class Player : MonoBehaviour
             gun.dir = GunDirection.STAND;
     }
 
+    void Death()
+    {
+        isDead = true;
+        rigid.simulated = false;
+        collider.enabled = false;
+        animator.SetTrigger("Death");
+
+    }
+
     #region EventFunc
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("충돌감지");
-        /*if (collision.gameObject.CompareTag("Terrain"))
+         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            isGround = true;
-            canAirJump = true;
-        }
-        else*/ if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            gameObject.SetActive(false);
+            Death();
         }
     }
 
@@ -196,7 +209,8 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Obstacle"))
         {
-            gameObject.SetActive(false);
+            Death();
+
         }
         else if (collision.CompareTag("Water"))
         {
@@ -243,7 +257,7 @@ public class Player : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!(isGround || canAirJump))
+        if (!(isGround || canAirJump || isDead))
             return;
 
         if(context.performed)
