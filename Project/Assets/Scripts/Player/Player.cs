@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     bool shotDir = true; // true : ¿À¸¥ÂÊ, false : ¿ÞÂÊ
     [SerializeField] bool isGround = false;
     [SerializeField] bool canAirJump = false;
-    [SerializeField] bool isDead = false;
+    public bool isDead = false;
 
     void Awake()
     {
@@ -177,7 +177,7 @@ public class Player : MonoBehaviour
             gun.dir = GunDirection.STAND;
     }
 
-    void Death()
+    public void Death()
     {
         isDead = true;
         rigid.simulated = false;

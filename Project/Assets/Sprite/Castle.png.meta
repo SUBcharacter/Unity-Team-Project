@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 28078d2791ca8f744af5eee9e2290c4a
+guid: a742804322f5d6e40ae1487fa4d09bfe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1120805775786612082
-    second: PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_0
+      213: -5776566887823889697
+    second: The_Guy_Castle_transparent_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_0
+      name: The_Guy_Castle_transparent_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,14 +115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 27597ff2ae6ed8f00800000000000000
-      internalID: 1120805775786612082
+      spriteID: fda29f5650385dfa0800000000000000
+      internalID: -5776566887823889697
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_1
+      name: The_Guy_Castle_transparent_1
       rect:
         serializedVersion: 2
         x: 32
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f46d9dea98302a945b2c8fd3f60baffe
-      internalID: 1914757412
+      spriteID: a1f8a664acb5b404cade5d671db06bc8
+      internalID: -2042243371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_2
+      name: The_Guy_Castle_transparent_2
       rect:
         serializedVersion: 2
         x: 64
@@ -159,36 +159,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82799d567f1263a4a89fc88eebc56122
-      internalID: 620402843
+      spriteID: 5196c50f78e47b14990fdc61d9e6e265
+      internalID: -1670872890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_3
+      name: The_Guy_Castle_transparent_3
       rect:
         serializedVersion: 2
-        x: 0
+        x: 160
         y: 0
-        width: 384
+        width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de8e4defa6646ec4ab7afe61ce937d69
-      internalID: 712781557
+      spriteID: 4e49ad32454d5484d982724a5b1b1528
+      internalID: -1867319412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_4
+      name: The_Guy_Castle_transparent_4
       rect:
         serializedVersion: 2
         x: 288
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32e0eaba655facc43ba49d60a73932a1
-      internalID: -305589908
+      spriteID: f8c687984e29c224585b5456d9d4c9e7
+      internalID: -730963333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_5
+      name: The_Guy_Castle_transparent_5
       rect:
         serializedVersion: 2
         x: 320
@@ -225,14 +225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9bea43413273764bb8ca888d7519e4c
-      internalID: -1060263951
+      spriteID: 17a61ed66232d674987994d9bdfa9f4e
+      internalID: -782961019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_6
+      name: The_Guy_Castle_transparent_6
       rect:
         serializedVersion: 2
         x: 288
@@ -247,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e58926346cf10064697f387b9aaa3406
-      internalID: -1967827145
+      spriteID: 543eba26dc3139b4883ecff0a9b56dd6
+      internalID: -969846434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_7
+      name: The_Guy_Castle_transparent_7
       rect:
         serializedVersion: 2
         x: 320
@@ -269,14 +269,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 154de499ac499ab41ac077c1e0542e6b
-      internalID: 570774732
+      spriteID: 310d47a11b0caa34ea8348d2d1e74b60
+      internalID: 1087722045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_8
+      name: The_Guy_Castle_transparent_8
       rect:
         serializedVersion: 2
         x: 352
@@ -291,8 +291,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78b9d00bdd654834bbde2044af6ab2ab
-      internalID: 648815499
+      spriteID: cec6049257c1e45479900569246b19e5
+      internalID: -1807872968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Castle_0
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 50
+        width: 36
+        height: 52
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94e097a62a16f494b9b746b3587c90e4
+      internalID: 398422133
       vertices: []
       indices: 
       edges: []
@@ -301,7 +323,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 701b746611eb78147a210546d65b02db
+    spriteID: ef44f6e1f4f2332479662d30146ddfe1
     internalID: 0
     vertices: []
     indices: 
@@ -311,15 +333,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_0: 1120805775786612082
-      PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_1: 1914757412
-      PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_2: 620402843
-      PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_3: 712781557
-      PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_4: -305589908
-      PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_5: -1060263951
-      PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_6: -1967827145
-      PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_7: 570774732
-      PC _ Computer - I Wanna Be The Guy - Tilesets - The Guy Castle_8: 648815499
+      Castle_0: 398422133
+      The_Guy_Castle_transparent_0: -5776566887823889697
+      The_Guy_Castle_transparent_1: -2042243371
+      The_Guy_Castle_transparent_2: -1670872890
+      The_Guy_Castle_transparent_3: -1867319412
+      The_Guy_Castle_transparent_4: -730963333
+      The_Guy_Castle_transparent_5: -782961019
+      The_Guy_Castle_transparent_6: -969846434
+      The_Guy_Castle_transparent_7: 1087722045
+      The_Guy_Castle_transparent_8: -1807872968
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -2,41 +2,73 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletShooter : MonoBehaviour
+public class BulletShooter : MonoBehaviour, IResetable
 {
-    [SerializeField] float speed = 10f;
+    Rigidbody2D rigid;
+    [SerializeField] float speed;
     [SerializeField] Vector2 direction;
-    private bool isFired = false;
+    Scanner scanner;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Awake()
     {
-        if (other.CompareTag("Player"))
+        rigid = GetComponent<Rigidbody2D>();
+        scanner = GetComponent<Scanner>();
+        gameObject.SetActive(false);
+        
+    }
+
+    void FixedUpdate()
+    {
+        if (!gameObject.activeSelf)
         {
-            //Destroy(other.gameObject);      // 플레이어 오브젝트 파괴
-            Destroy(gameObject);            // 미사일 오브젝트 파괴
+            Debug.Log("발사불가 활성화 안됨");
+            return;
         }
-    }
 
-    public void SetTarget(Transform target)
-    {
-        if (target != null)
+        if (scanner.nearestTarget)
         {
-            direction = (target.position - transform.position).normalized;
-            Debug.Log("방향 벡터: " + direction);
-            isFired = true;
+            Debug.Log("미사일 발사중");
+            direction = (scanner.nearestTarget.position - transform.position).normalized;
+
+            rigid.linearVelocity = direction * speed;
+
+            transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
         }
+        
     }
 
-    private void Start()
+    public void Init()
     {
-        Destroy(gameObject, 2.0f); // 5초 후에 총알 제거
+        gameObject.SetActive(false);
     }
 
-    void Update()
+    public void Launch(Vector3 position)
     {
-        if (isFired)
+        Debug.Log("미사일 발사!");
+        transform.position = position;
+        gameObject.SetActive(true);
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        bool player = collision.CompareTag("Player");
+        bool terrain = collision.CompareTag("Terrain");
+        bool obstacle = collision.CompareTag("Obstacle");
+        bool enemy = collision.CompareTag("Enemy");
+        if (player)
         {
-            transform.Translate(direction * speed * Time.deltaTime, Space.World);
+            gameObject.SetActive(false);
+            collision.GetComponent<Player>().Death();
+        }
+        else if (enemy)
+        {
+            gameObject.SetActive(false);
+            collision.gameObject.SetActive(false);
+        }
+        else if (terrain || obstacle)
+        {
+            gameObject.SetActive(false);
         }
     }
 }

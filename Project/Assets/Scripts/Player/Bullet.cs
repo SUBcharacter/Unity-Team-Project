@@ -25,8 +25,9 @@ public class Bullet : MonoBehaviour
     {
         bool border = collision.gameObject.CompareTag("Border");
         bool terrain = collision.gameObject.CompareTag("Terrain");
+        bool enemy = collision.gameObject.CompareTag("Enemy");
 
-        if (!(border || terrain))
+        if (!(border || terrain || enemy))
             return;
 
         gameObject.SetActive(false);
