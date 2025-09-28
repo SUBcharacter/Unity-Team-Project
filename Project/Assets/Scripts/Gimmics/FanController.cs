@@ -4,7 +4,7 @@ public class FanController : MonoBehaviour
 {
     Animator animator;
     [SerializeField] Collider2D windSpace;
-    [SerializeField] bool alwaysOn = false;
+    [SerializeField] bool isOn = false;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class FanController : MonoBehaviour
             windSpace = GetComponentInChildren<Collider2D>();
         }
 
-        if (alwaysOn)
+        if (isOn)
         {
             TurnOn();
         }
