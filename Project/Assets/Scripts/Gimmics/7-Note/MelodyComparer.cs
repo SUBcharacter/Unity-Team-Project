@@ -10,12 +10,14 @@ public class MelodyComparer : MonoBehaviour, IResetable
     public MelodyData[] correctMelodys;
     public MelodyData[] inputMelodys;
 
-    //[SerializeField] private AudioClip[] melodyClips; // 음표 소리
+    [SerializeField] private AudioClip[] melodyClips; // 음표 소리
     [SerializeField] private MelodyPlatform[] platforms;
     [SerializeField] private Sprite[] melodySprites; // 스프라이트 배열 추가
     [SerializeField] private GameObject door;           // 퍼즐 클리어 시 열릴 문
     private MelodyUI melodyUI;
     private Animator animator;
+
+    [SerializeField] SpriteDoor spriteDoor;
 
     public Vector3 initPos;
 
@@ -50,7 +52,7 @@ public class MelodyComparer : MonoBehaviour, IResetable
         {
             Color fixedColor = new Color(md.color.r, md.color.g, md.color.b, 1f); // 확실하게 알파 고정
 
-            inputMelodys[inputIndex] = new MelodyData(md.noteMelody, fixedColor, md.sprite);
+            inputMelodys[inputIndex] = new MelodyData(md.noteMelody, fixedColor, md.noteAudio, md.sprite);
             inputIndex++;
 
             Debug.Log($"[MelodyComparer] 현재 입력 수: {inputMelodys.Count(m => m != null)}");
@@ -72,7 +74,7 @@ public class MelodyComparer : MonoBehaviour, IResetable
         {
             if (inputMelodys[i] == null || inputMelodys[i].noteMelody != correctMelodys[i].noteMelody)
             {
-                Debug.Log("[MelodyComparer] 틀렸습니다!");
+                Debug.Log("[MelodyComparer] 틀렸음");
                 isCorrectd = false;
                 break;
             }
@@ -81,6 +83,11 @@ public class MelodyComparer : MonoBehaviour, IResetable
         if (isCorrectd)
         {
             Debug.Log("[MelodyComparer] 퍼즐 클리어!");
+
+            foreach (var plat in platforms)
+            {
+                plat.SetClearedState();
+            }
             // 클리어 처리
             // animator.SetTrigger("Open");
             // if (door != null)
@@ -90,7 +97,7 @@ public class MelodyComparer : MonoBehaviour, IResetable
         }
         else
         {
-            Debug.Log("[MelodyComparer] 틀렸습니다!");
+            Debug.Log("[MelodyComparer] 틀렸음");
             StartCoroutine(ColorResetCoroutine());
         }
     }
@@ -118,24 +125,18 @@ public class MelodyComparer : MonoBehaviour, IResetable
 
         for (int i = 0; i < melodyLength; i++)
         {
+            NoteMelody note = allNotes[i];
+            Color color = GetColor(note);
+            Sprite sprite = GetSprite(note);
 
-            Color color = GetColor(allNotes[i]); // 효가 이미 만든 메서드
-            Sprite sprite = GetSprite(allNotes[i]);
-            Debug.Log($"[Generate] {i}번 음표 생성됨: {allNotes}, sprite: {sprite?.name}");
-            correctMelodys[i] = new MelodyData(allNotes[i], color, sprite);
-            //AudioClip clip = null;
+            AudioClip clip = (int)note < melodyClips.Length ? melodyClips[(int)note] : null;
 
-            //if ((int)note < melodyClips.Length)
-            //{
-            //    clip = melodyClips[(int)note];
-            //}
-            //else
-            //{
-            //    Debug.LogWarning($"[MelodyComparer] {note}에 해당하는 AudioClip이 없음!");
-            //}
+            if (clip == null)
+                Debug.LogWarning($"[MelodyComparer] {note}에 맞는 AudioClip이 melodyClips에 없음!");
 
-
+            correctMelodys[i] = new MelodyData(note, color, clip, sprite);
         }
+
     }
 
     public void ResetMelody()
@@ -153,6 +154,13 @@ public class MelodyComparer : MonoBehaviour, IResetable
         GenerateMelodyPattern();
         animator.SetBool("Correct", false);
         transform.localPosition = initPos;
+
+        //// UI 다시 보여주기
+        //if (melodyUI != null)
+        //{
+        //    melodyUI.StopAllCoroutines(); // 혹시 이전 코루틴 남아있으면 중단
+        //    melodyUI.StartMelody(correctMelodys.ToList());
+        //}
     }
 
     private Color GetColor(NoteMelody noteMelody)

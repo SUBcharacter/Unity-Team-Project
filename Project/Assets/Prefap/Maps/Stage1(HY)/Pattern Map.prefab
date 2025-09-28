@@ -2611,7 +2611,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: d2d3d5040c411a846a91632271e16977, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2641,7 +2641,6 @@ MonoBehaviour:
   - {fileID: 3449206243130359602}
   - {fileID: 8270339643282676163}
   - {fileID: 8082742994836252889}
-  door: {fileID: 0}
   symbolSprites:
   - {fileID: -1761226545520248286, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
   - {fileID: -7263273659138518866, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
@@ -2649,6 +2648,7 @@ MonoBehaviour:
   - {fileID: -5477907989516303964, guid: 0180a4e6558ba864c9d56977c4b33c75, type: 3}
   initPos: {x: 0, y: 0, z: 0}
   puzzleLength: 4
+  door: {fileID: 0}
 --- !u!114 &3761421317670975817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2677,7 +2677,7 @@ Animator:
   m_GameObject: {fileID: 7535639855473004266}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 34e2ba7bd10fca1409457340ed3ce925, type: 2}
+  m_Controller: {fileID: 9100000, guid: 50671f86967b11f4dacc443a4b2d7259, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

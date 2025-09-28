@@ -6,14 +6,18 @@ public class MelodyPlatform : MonoBehaviour, IResetable
 {
     public MelodyData melodyData;  // 이 발판이 가진 음표
     [SerializeField] private MelodyComparer comparer; // 인스펙터 연결
+    private AudioSource audioSource;
+
 
     private SpriteRenderer spriteRenderer;
     private bool isPressed = false;
     private bool isInResetState = false;
+    private bool isCleared = false;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -35,6 +39,8 @@ public class MelodyPlatform : MonoBehaviour, IResetable
 
     public void Init()
     {
+        isCleared = false;
+
         if (melodyData != null)
         {
             Color fixedColor = melodyData.color;
@@ -53,10 +59,16 @@ public class MelodyPlatform : MonoBehaviour, IResetable
     {
         if (!collision.collider.CompareTag("Player")) return;
 
-        if (!isInResetState && !isPressed)
+        if (!isInResetState && !isPressed && !isCleared)
         {
             isPressed = true;
             spriteRenderer.color = Color.yellow;
+
+            if (melodyData.noteAudio != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(melodyData.noteAudio); // 발판 소리 재생
+            }
+
 
             // 입력값 MelodyComparer로 전달
             if (comparer != null)
@@ -79,12 +91,24 @@ public class MelodyPlatform : MonoBehaviour, IResetable
             isPressed = false;
             isInResetState = false;
             spriteRenderer.color = melodyData.color;
+
+            //if (melodyData.sprite != null)
+            //    spriteRenderer.sprite = melodyData.sprite;
+
+            //// 오디오도 멈추고 싶다면
+            //if (audioSource != null)
+            //    audioSource.Stop();
         }
     }
 
     public void ResetColor(Color color)
     {
         StartCoroutine(ChangeColorRed(color));
+    }
+
+    public void SetClearedState()
+    {
+        isCleared = true;
     }
 
     IEnumerator ChangeColorRed(Color color)

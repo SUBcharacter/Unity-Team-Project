@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.Audio;
 
 
-public class MelodyUI : MonoBehaviour
+public class MelodyUI : MonoBehaviour, IResetable
 {
     public Image[] melodySymbols;
+    AudioSource audioSource; // 오디오 소스
     bool reset = false;
 
     [SerializeField] private float ShowSymbolTime = 3f; // 화면에 보여주는 시간
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void StartMelody(List<MelodyData> pattern)
     {
@@ -54,6 +61,9 @@ public class MelodyUI : MonoBehaviour
                 melodySymbols[slotIndex].color = data.color;
                 melodySymbols[slotIndex].gameObject.SetActive(true);
                 melodySymbols[slotIndex].transform.SetAsFirstSibling();
+
+                if (data.noteAudio != null && audioSource != null)
+                    audioSource.PlayOneShot(data.noteAudio);
 
                 yield return new WaitForSeconds(ShowSymbolTime);
 

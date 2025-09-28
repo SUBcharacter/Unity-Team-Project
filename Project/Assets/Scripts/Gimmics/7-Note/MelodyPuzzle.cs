@@ -8,6 +8,7 @@ public class MelodyPuzzle : MonoBehaviour, IResetable
 {
     public List<MelodyPlatform> platforms;
     public List<Sprite> availableSprites;
+    public List<AudioClip> noteAudio;
     public List<Color> colors;
 
     public List<MelodyData> correctMelody;
@@ -37,7 +38,7 @@ public class MelodyPuzzle : MonoBehaviour, IResetable
             var color = colors[rand];
             color.a = 1f;
 
-            var data = new MelodyData(note, color, availableSprites[rand]);
+            var data = new MelodyData(note, color, noteAudio[rand], availableSprites[rand]);
             platforms[i].melodyData = data;
             platforms[i].ResetPlatform();
         }
