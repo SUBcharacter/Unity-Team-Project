@@ -13,7 +13,6 @@ public class MelodyComparer : MonoBehaviour, IResetable
     [SerializeField] private AudioClip[] melodyClips; // 음표 소리
     [SerializeField] private MelodyPlatform[] platforms;
     [SerializeField] private Sprite[] melodySprites; // 스프라이트 배열 추가
-    [SerializeField] private GameObject door;           // 퍼즐 클리어 시 열릴 문
     private MelodyUI melodyUI;
     private Animator animator;
 
@@ -25,6 +24,7 @@ public class MelodyComparer : MonoBehaviour, IResetable
 
     private int inputIndex = 0;
     private float resetTime = 1f;
+    
 
     private void Start()
     {
@@ -38,6 +38,11 @@ public class MelodyComparer : MonoBehaviour, IResetable
 
     private void Awake()
     {
+        if(exitDoor == null)
+        {
+            exitDoor = FindAnyObjectByType<ExitDoor>();
+        }
+       
         animator = GetComponent<Animator>();
         melodyUI = GetComponent<MelodyUI>();
         initPos = transform.localPosition;
@@ -93,7 +98,8 @@ public class MelodyComparer : MonoBehaviour, IResetable
 
             if (exitDoor != null)
             {
-                
+                Debug.Log("문 활성화 됨");
+                exitDoor.OpenDoor();
             }
         }
         else

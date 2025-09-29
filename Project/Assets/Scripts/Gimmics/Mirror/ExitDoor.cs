@@ -30,5 +30,15 @@ public class ExitDoor : MonoBehaviour
 
         Debug.Log("[ExitDoor] ¹® ¿­¸²!");
     }
-}
 
+    public void CloseDoor()
+    {
+        if (!isOpen) return;
+        isOpen = false;
+
+        sr.sprite = closedSprite;
+        if (doorCollider != null) doorCollider.enabled = true;
+
+        Debug.Log("[ExitDoor] ¹® ´ÝÈû!");
+    }
+}

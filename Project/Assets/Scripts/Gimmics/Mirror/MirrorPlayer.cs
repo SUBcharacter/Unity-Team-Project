@@ -32,16 +32,24 @@ public class MirrorPlayer : MonoBehaviour
     [SerializeField] bool isGround = false;
     [SerializeField] bool canAirJump = false;
 
-    [SerializeField] private Transform realPlayer;  // 실제 플레이어 위치 연결
-    [SerializeField] public float mirrorCenterX;   // 거울 기준점 (x축 기준선)
+    public Transform realPlayer;  // 실제 플레이어 위치 연결
+    public float mirrorCenterX = 70.3f;   // 거울 기준점 (x축 기준선)
 
-    [SerializeField] private SpriteRenderer mirrorSprite; // 거울 캐릭터의 스프라이트 렌더러
-    [SerializeField] private SpriteRenderer realSprite;   // 실제 캐릭터의 스프라이트 렌더러
+    public SpriteRenderer mirrorSprite; // 거울 캐릭터의 스프라이트 렌더러
+    public SpriteRenderer realSprite;   // 실제 캐릭터의 스프라이트 렌더러
 
     private bool isPlayerLinked = false;
     void Awake()
     {
-        Debug.Log("플레이어 시동");
+        Debug.Log("미러 플레이어 시동");
+
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
+        {
+            realPlayer = playerObj.transform;
+            realSprite = playerObj.GetComponent<SpriteRenderer>();
+            Debug.Log("[Mirror] 플레이어 연결 성공!");
+        }
 
         gameObject.SetActive(true);
         rigid = GetComponent<Rigidbody2D>();
@@ -101,11 +109,9 @@ public class MirrorPlayer : MonoBehaviour
         if (realPlayer == null || realSprite == null || mirrorSprite == null)
             return;
 
+        float offset = realPlayer.position.x - mirrorCenterX;
         // 위치를 x축 기준으로 대칭
-        Vector3 realPos = realPlayer.position;
-        float mirroredX = mirrorCenterX - (realPos.x - mirrorCenterX);
-
-        transform.position = new Vector3(mirroredX, realPos.y, realPos.z);
+        transform.position = new Vector3(mirrorCenterX - offset, realPlayer.position.y, realPlayer.position.z);
 
         mirrorSprite.flipX = !realSprite.flipX;
 

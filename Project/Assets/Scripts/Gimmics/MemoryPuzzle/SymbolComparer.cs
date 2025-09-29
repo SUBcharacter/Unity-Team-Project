@@ -22,9 +22,6 @@ public class SymbolComparer : MonoBehaviour, IResetable
     private int inputIndex = 0;
     private float resetTime = 1f;       // 틀렸을 때 1-2초 카운트
 
-    [SerializeField] SpriteDoor door;
-
-
 
     public void Init()
     {
