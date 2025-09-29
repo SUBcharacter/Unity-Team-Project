@@ -26,12 +26,12 @@ public class Bullet : MonoBehaviour
         bool border = collision.gameObject.CompareTag("Border");
         bool terrain = collision.gameObject.CompareTag("Terrain");
         bool enemy = collision.gameObject.CompareTag("Enemy");
+        bool boss = collision.gameObject.CompareTag("Boss");
 
-        if (!(border || terrain || enemy))
+        if (!(border || terrain || enemy || boss))
             return;
 
         gameObject.SetActive(false);
         GameManager.instance.bulletManager.activeBullet--;
     }
-        
 }
