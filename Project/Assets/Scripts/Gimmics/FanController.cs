@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class FanController : MonoBehaviour
+public class FanController : MonoBehaviour, IResetable
 {
     Animator animator;
     [SerializeField] Collider2D windSpace;
-    [SerializeField] bool isOn = false;
+    [SerializeField] public bool isOnWhenStart = false;
 
     private void Start()
     {
@@ -19,26 +19,26 @@ public class FanController : MonoBehaviour
             windSpace = GetComponentInChildren<Collider2D>();
         }
 
-        if (isOn)
-        {
-            TurnOn();
-        }
-        else
-        {
-            TurnOff();
-        }
+        if (isOnWhenStart) { TurnOn(); }
+        else { TurnOff(); }
 
     }
 
-    private void TurnOn()
+    public void TurnOn()
     {
         animator.SetBool("FanOn", true);
         if (windSpace != null) windSpace.enabled = true;
     }
 
-    private void TurnOff()
+    public void TurnOff()
     {
         animator.SetBool("FanOn", false);
         if (windSpace != null) windSpace.enabled = false;
+    }
+
+    public void Init()
+    {
+        if (isOnWhenStart) { TurnOn(); }
+        else { TurnOff(); }
     }
 }
