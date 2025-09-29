@@ -19,8 +19,14 @@ public class FanController : MonoBehaviour, IResetable
             windSpace = GetComponentInChildren<Collider2D>();
         }
 
-        if (isOnWhenStart) { TurnOn(); }
-        else { TurnOff(); }
+        if (isOnWhenStart) 
+        { 
+            TurnOn(); 
+        }
+        else
+        {
+            TurnOff();
+        }
 
     }
 
@@ -38,7 +44,13 @@ public class FanController : MonoBehaviour, IResetable
 
     public void Init()
     {
-        if (isOnWhenStart) { TurnOn(); }
-        else { TurnOff(); }
+        if (isOnWhenStart)
+        {
+            TurnOn();
+        }
+        else
+        {
+            TurnOff();
+        }
     }
 }

@@ -17,22 +17,21 @@ public class FanSwitch : MonoBehaviour, IResetable
     [SerializeField] TilemapRenderer pushTile;
     [SerializeField] TilemapRenderer noPushTile;
 
+    bool isActive;
+
     void Start()
     {
         fan = GetComponentInChildren<FanController>();
 
         noPushTile.enabled = true;
         pushTile.enabled = false;
+
+        isActive = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 일로 수정해야함
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !isActive)
         {
             StartCoroutine(FanTimer());
         }
@@ -40,6 +39,8 @@ public class FanSwitch : MonoBehaviour, IResetable
 
     IEnumerator FanTimer()
     {
+        isActive = true;
+
         noPushTile.enabled = false;
         pushTile.enabled = true;
 
@@ -53,6 +54,8 @@ public class FanSwitch : MonoBehaviour, IResetable
 
         noPushTile.enabled = true;
         pushTile.enabled = false;
+
+        isActive = false;
     }
 
     public void Init()
@@ -61,5 +64,7 @@ public class FanSwitch : MonoBehaviour, IResetable
 
         noPushTile.enabled = true;
         pushTile.enabled = false;
+
+        isActive = false;
     }
 }
