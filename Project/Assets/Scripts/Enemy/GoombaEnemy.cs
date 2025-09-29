@@ -7,7 +7,8 @@ public class GoombaEnemy : MonoBehaviour, IResetable
     SpriteRenderer renderer;
 
     [SerializeField] private float moveSpeed;
-     float moveDistance = 2.0f;   // 움직일 거리
+    [SerializeField] int health;
+    float moveDistance = 2.0f;   // 움직일 거리
    
     private bool IsMoveRight = true;
     private Vector3 startPos;
@@ -17,8 +18,18 @@ public class GoombaEnemy : MonoBehaviour, IResetable
         rigid = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         startPos = transform.position;
+        health = 2;
     }
     // 지알아서 특정 범위에서만 움직여야 함
+
+    void Update()
+    {
+        if(health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     private void FixedUpdate()
     {   
         float moveDir = IsMoveRight ? 1f : -1f;     // 움직이는 방향이 같으면 왼쪽으로 1, 다르면 오른쪽으로 -1
@@ -36,8 +47,26 @@ public class GoombaEnemy : MonoBehaviour, IResetable
 
     public void Init()
     {
-        gameObject.SetActive(true);
+        health = 2;
         transform.position = startPos;
+        gameObject.SetActive(true);
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Bullet"))
+            return;
+
+        health -= collision.GetComponent<Bullet>().damage;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        collision.gameObject.GetComponent<Player>().Death();
     }
 
 }

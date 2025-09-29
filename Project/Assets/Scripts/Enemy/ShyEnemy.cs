@@ -1,64 +1,84 @@
 ﻿using UnityEngine;
 
 
-public class ShyEnemy : MonoBehaviour
+public class ShyEnemy : MonoBehaviour,IResetable
 {
-    [SerializeField] Transform player;
+
+    [SerializeField] Sprite[] sprites;
+    SpriteRenderer sprite;
+    Scanner scanner;
+    Rigidbody2D rigid;
+    Vector3 initPos;
+    Vector2 direction;
+
     [SerializeField] private float moveSpeed = 3.0f;
     [SerializeField] private float stopDistance = 0.1f;
-
-    Rigidbody2D playerRb;
 
    private bool isActived = true;      // 플레이어가 가까이 왔는지 (적 활성화 여부 체크)
     private void Awake()
     {
-        // Player가 인스펙터에 연결 안되어있을 경우 자동 연결
-        if (player == null)
-        {
-            GameObject playerObj = GameObject.FindWithTag("Player");
-            if (playerObj != null)
-            {
-                player = playerObj.transform;
-                Debug.Log("플레이어 자동 연결 완료: " + player.name);
-            }
-            else
-            {
-                Debug.LogWarning("Player 오브젝트를 찾을 수 없습니다. 태그 확인 필요!");
-            }
-        }
+        sprite = GetComponent<SpriteRenderer>();
+        scanner = GetComponent<Scanner>();
+        rigid = GetComponent<Rigidbody2D>();
 
-        // Rigidbody 연결
-        if (player != null)
-        {
-            playerRb = player.GetComponent<Rigidbody2D>();
-        }
-
+        sprite.sprite = sprites[0];
+        initPos = transform.position;
     }
 
     private void Update()
     {
-        Debug.Log("Player 위치: " + player.position + " / Player 이름: " + player.name);
+        bool playerFacingRight = GameManager.instance.player.gun.facingRight;
 
-        if (!isActived) { return; }
-
-        float playerLookDir = Mathf.Sign(player.localScale.x);
-        float toEnemyDir = Mathf.Sign(transform.position.x - player.position.x);
-        bool isPlayerLookingAtEnemy = playerLookDir != toEnemyDir;
-
-        if (isPlayerLookingAtEnemy)      // magnitude : 벡터의 크기(길이) 
+        if (scanner.nearestTarget)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            direction = (scanner.nearestTarget.position - transform.position).normalized;
+            if(playerFacingRight)
+            {
+                if(direction.x >0)
+                {
+                    sprite.sprite = sprites[0];
+                    sprite.flipX = false;
+                    rigid.linearVelocity = direction * moveSpeed;
+                }
+                else
+                {
+                    sprite.sprite = sprites[1];
+                    rigid.linearVelocity = Vector2.zero;
+                }
+            }
+            else
+            {
+                if(direction.x < 0)
+                {
+                    sprite.sprite = sprites[0];
+                    sprite.flipX = true;
+                    rigid.linearVelocity = direction * moveSpeed;
+                }
+                else
+                {
+                    sprite.sprite = sprites[1];
+                    rigid.linearVelocity = Vector2.zero;
+                }
+
+            }
         }
-        // 멈추면 가만히
-
-    }
-    public void Activate()
-    {
-        isActived = true;
+        else
+        {
+            rigid.linearVelocity = Vector2.zero;
+        }
     }
 
-    public void Deactivate()
+    public void Init()
     {
-        isActived = false;
+        sprite.sprite = sprites[0];
+        transform.position = initPos;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Player"))
+            return;
+
+        collision.GetComponent<Player>().Death();
     }
 }

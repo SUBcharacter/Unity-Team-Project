@@ -48,7 +48,7 @@ public class SaveManager : MonoBehaviour
         if(!File.Exists(path))
         {
             // 플레이어 및 카메라 초기 위치
-            currentData.sceneName = "Game";
+            currentData.sceneName = SceneManager.GetActiveScene().name;
             currentData.playerPos = initPlayerPos;
             currentData.cameraPos = initCameraPos;
             return;
@@ -59,7 +59,7 @@ public class SaveManager : MonoBehaviour
         if(saveFile == null || saveFile.slot == null)
         {
             // 세이브 파일 파싱 실패시 플레이어 및 카메라 초기 위치
-            currentData.sceneName = "Game";
+            currentData.sceneName = SceneManager.GetActiveScene().name;
             currentData.playerPos = initPlayerPos;
             currentData.cameraPos = initCameraPos;
             return;
