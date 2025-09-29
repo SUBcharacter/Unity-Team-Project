@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     SpriteRenderer sprite;
     Animator animator;
     CapsuleCollider2D collider;
-    Gun gun;
+    public Gun gun { get; private set; }
+    
 
     Vector2 originalSize;
     Vector2 originalOffset;

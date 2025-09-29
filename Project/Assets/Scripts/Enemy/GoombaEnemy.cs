@@ -47,8 +47,10 @@ public class GoombaEnemy : MonoBehaviour, IResetable
 
     public void Init()
     {
-        gameObject.SetActive(true);
+        health = 2;
         transform.position = startPos;
+        gameObject.SetActive(true);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -57,6 +59,14 @@ public class GoombaEnemy : MonoBehaviour, IResetable
             return;
 
         health -= collision.GetComponent<Bullet>().damage;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        collision.gameObject.GetComponent<Player>().Death();
     }
 
 }

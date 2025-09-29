@@ -34,6 +34,11 @@ public class BulletShooter : MonoBehaviour, IResetable
 
             transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
         }
+
+        if(GameManager.instance.player.isDead)
+        {
+            gameObject.SetActive(false);
+        }
         
     }
 
