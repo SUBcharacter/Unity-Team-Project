@@ -13,6 +13,8 @@ public class MelodyComparer : MonoBehaviour, IResetable
     [SerializeField] private AudioClip[] melodyClips; // 음표 소리
     [SerializeField] private MelodyPlatform[] platforms;
     [SerializeField] private Sprite[] melodySprites; // 스프라이트 배열 추가
+
+    [SerializeField] BooTrigger booTrigger;
     private MelodyUI melodyUI;
     private Animator animator;
 
@@ -21,6 +23,8 @@ public class MelodyComparer : MonoBehaviour, IResetable
     public Vector3 initPos;
 
     [SerializeField] private int melodyLength = 3;      // 7개 중 3개가 랜덤으로 나옴
+
+
 
     private int inputIndex = 0;
     private float resetTime = 1f;
@@ -87,6 +91,7 @@ public class MelodyComparer : MonoBehaviour, IResetable
 
         if (isCorrectd)
         {
+            booTrigger.DeactivateShy();
             Debug.Log("[MelodyComparer] 퍼즐 클리어!");
 
             foreach (var plat in platforms)
@@ -154,6 +159,8 @@ public class MelodyComparer : MonoBehaviour, IResetable
             inputMelodys[i] = null;
         }
 
+      
+
         foreach (var p in platforms)
         {
             p.ResetPlatform(); // 발판 색 복원
@@ -215,6 +222,10 @@ public class MelodyComparer : MonoBehaviour, IResetable
             plat.ResetPlatform(); // 원래 색상 복원
         }
 
+        if (booTrigger != null)
+        {
+            booTrigger.ActivateShy();  
+        }
         GenerateMelodyPattern();
 
         if (melodyUI != null)

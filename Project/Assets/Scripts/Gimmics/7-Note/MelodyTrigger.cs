@@ -6,6 +6,8 @@ public class MelodyTrigger : MonoBehaviour, IResetable
     [SerializeField] private MelodyComparer melodyComparer;
     [SerializeField] private MelodyUI melodyUI;
 
+    [SerializeField] BooTrigger booTrigger;
+
     [SerializeField] private bool isTriggered = false;
 
     public void Init()
@@ -18,6 +20,8 @@ public class MelodyTrigger : MonoBehaviour, IResetable
         if (!isTriggered && other.CompareTag("Player"))
         {
             isTriggered = true;
+
+            booTrigger.ActivateShy();
 
             // ∆€¡Ò √ ±‚»≠
             melodyComparer.ResetMelody();
