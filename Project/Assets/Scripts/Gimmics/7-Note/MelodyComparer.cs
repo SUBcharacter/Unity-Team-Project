@@ -17,7 +17,7 @@ public class MelodyComparer : MonoBehaviour, IResetable
     private MelodyUI melodyUI;
     private Animator animator;
 
-    [SerializeField] SpriteDoor spriteDoor;
+    ExitDoor exitDoor; 
 
     public Vector3 initPos;
 
@@ -88,12 +88,13 @@ public class MelodyComparer : MonoBehaviour, IResetable
             {
                 plat.SetClearedState();
             }
-            // 努府绢 贸府
-            // animator.SetTrigger("Open");
-            // if (door != null)
-            // {
-            //     door.SetActive(false);
-            // }
+            //努府绢 贸府
+            
+
+            if (exitDoor != null)
+            {
+                
+            }
         }
         else
         {
