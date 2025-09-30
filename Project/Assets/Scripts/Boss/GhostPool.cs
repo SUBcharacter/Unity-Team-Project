@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostPool : MonoBehaviour
+public class GhostPool : MonoBehaviour,IResetable
 {
     public GameObject ghostPrefab;
     public int size = 10;
@@ -14,6 +14,15 @@ public class GhostPool : MonoBehaviour
         for (int i = 0; i < size; i++)
         {
             pools.Add(Instantiate(ghostPrefab,transform));
+            pools[i].SetActive(false);
+        }
+    }
+
+    public void Init()
+    {
+        index = 0;
+        for(int i = 0; i< size; i++)
+        {
             pools[i].SetActive(false);
         }
     }

@@ -14,7 +14,6 @@ public class Gun : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("ÃÑ ½Ãµ¿");
     }
 
     private void Update()

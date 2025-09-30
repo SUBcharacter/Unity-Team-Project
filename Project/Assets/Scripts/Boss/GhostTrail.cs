@@ -8,7 +8,7 @@ public class GhostTrail : MonoBehaviour
     public GhostPool pool;
     public Vector3 currentPos;
 
-    public float spawnInterval = 0.05f;
+    public float spawnInterval = 0.1f;
     float timer;
 
     private void Awake()

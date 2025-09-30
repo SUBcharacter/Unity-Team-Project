@@ -28,7 +28,6 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("세이브 매니저 시동");
         path = Path.Combine(Application.persistentDataPath, "Save.json");
 
         if (currentData == null)

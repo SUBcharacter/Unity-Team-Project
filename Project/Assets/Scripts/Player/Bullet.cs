@@ -10,7 +10,6 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("ÃÑ¾Ë ½Ãµ¿");
 
         rigid = GetComponent<Rigidbody2D>();
     }

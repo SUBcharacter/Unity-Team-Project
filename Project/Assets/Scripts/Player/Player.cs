@@ -40,7 +40,6 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("플레이어 시동");
 
         gameObject.SetActive(true);
         rigid = GetComponent<Rigidbody2D>();
@@ -190,7 +189,6 @@ public class Player : MonoBehaviour
     #region EventFunc
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("충돌감지");
          if (collision.gameObject.CompareTag("Obstacle"))
         {
             Death();

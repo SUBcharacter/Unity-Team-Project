@@ -103,12 +103,12 @@ TextureImporter:
       name: spr_LeinaAttackTh_0_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 2
         y: 0
-        width: 26
+        width: 24
         height: 416
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8a4e84724b2fec845a073618155c2377
     internalID: 0
     vertices: []
     indices: 
