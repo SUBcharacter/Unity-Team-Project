@@ -14,8 +14,7 @@ public class MirrorTrigger : MonoBehaviour, IResetable
         // 이미 만들어진 미러 플레이어 제거
         if (mirrorInstance != null)
         {
-            Destroy(mirrorInstance);
-            mirrorInstance = null;
+            mirrorInstance.SetActive(false);
             Debug.Log("[MirrorTrigger] 미러 플레이어 제거됨!");
         }
 
