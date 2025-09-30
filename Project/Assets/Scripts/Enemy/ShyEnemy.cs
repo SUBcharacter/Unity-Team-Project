@@ -8,7 +8,7 @@ public class ShyEnemy : MonoBehaviour,IResetable
     SpriteRenderer sprite;
     Scanner scanner;
     Rigidbody2D rigid;
-    Vector3 initPos;
+    [SerializeField] Vector3 initPos;
     Vector2 direction;
 
     [SerializeField] private float moveSpeed = 3.0f;
@@ -22,7 +22,7 @@ public class ShyEnemy : MonoBehaviour,IResetable
         rigid = GetComponent<Rigidbody2D>();
 
         sprite.sprite = sprites[0];
-        initPos = transform.position;
+        // transform.position = initPos;
     }
 
     private void Update()
@@ -70,6 +70,11 @@ public class ShyEnemy : MonoBehaviour,IResetable
 
     public void Init()
     {
+        // 컴포넌트가 없으면 확보
+        if (sprite == null) sprite = GetComponent<SpriteRenderer>();
+        if (rigid == null) rigid = GetComponent<Rigidbody2D>();
+        if (scanner == null) scanner = GetComponent<Scanner>();
+
         sprite.sprite = sprites[0];
         transform.position = initPos;
     }

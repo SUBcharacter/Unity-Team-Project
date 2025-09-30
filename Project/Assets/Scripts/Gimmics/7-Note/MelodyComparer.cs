@@ -13,12 +13,13 @@ public class MelodyComparer : MonoBehaviour, IResetable
     [SerializeField] private AudioClip[] melodyClips; // 음표 소리
     [SerializeField] private MelodyPlatform[] platforms;
     [SerializeField] private Sprite[] melodySprites; // 스프라이트 배열 추가
+    [SerializeField] private MelodyDoor melodyDoor;
 
     [SerializeField] BooTrigger booTrigger;
     private MelodyUI melodyUI;
     private Animator animator;
 
-    ExitDoor exitDoor; 
+    ExitDoor exitDoor;
 
     public Vector3 initPos;
 
@@ -37,6 +38,7 @@ public class MelodyComparer : MonoBehaviour, IResetable
 
     public void Init()
     {
+        StopAllCoroutines();
         ResetMelody();
     }
 
@@ -100,6 +102,7 @@ public class MelodyComparer : MonoBehaviour, IResetable
             }
             //클리어 처리
             
+            melodyDoor.OpenDoor();
 
             if (exitDoor != null)
             {

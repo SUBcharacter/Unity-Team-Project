@@ -29,6 +29,7 @@ public class MelodyUI : MonoBehaviour, IResetable
     public void Init()
     {
         reset = true;
+        StopAllCoroutines();
         for (int x = 0; x < melodySymbols.Length; x++)
         {
             melodySymbols[x].gameObject.SetActive(false);

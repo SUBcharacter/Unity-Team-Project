@@ -62,7 +62,7 @@ public class MelodyPlatform : MonoBehaviour, IResetable
         if (!isInResetState && !isPressed && !isCleared)
         {
             isPressed = true;
-            spriteRenderer.color = Color.yellow;
+            spriteRenderer.color = Color.white;
 
             if (melodyData.noteAudio != null && audioSource != null)
             {
