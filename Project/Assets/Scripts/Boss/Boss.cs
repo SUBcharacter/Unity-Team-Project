@@ -1,22 +1,24 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Boss : MonoBehaviour
 {
     
     Rigidbody2D rigid;
-    Animator animatorParent;
+    Animator animator;
     SpriteRenderer sprite;
+    Bojo bojo;
     Vector3 originalScale;
     Vector3 farAwayScale;
 
     public int health;
-    public bool farAway = false;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        animatorParent = GetComponentInParent<Animator>();
+        animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        bojo = GetComponentInParent<Bojo>();
 
         health = 100;
         originalScale = transform.localScale;
@@ -27,34 +29,20 @@ public class Boss : MonoBehaviour
     {
         AnimationControl();
 
-        if (farAway)
-        {
-            transform.localScale =farAwayScale;
-        }
-        else
-            transform.localScale = originalScale;
-
-
         Debug.Log(transform.localScale);
     }
 
 
     public void AnimationControl()
     {
-        AnimatorStateInfo stateInfo = animatorParent.GetCurrentAnimatorStateInfo(0);
-
-        if(stateInfo.IsName("Wait"))
+        if(bojo.farAway)
         {
-            Debug.Log("축소");
-            farAway = true;
+            transform.localScale = farAwayScale;
         }
-        if(stateInfo.IsName("Wait 0"))
+        else
         {
-            Debug.Log("확대");
-            farAway = false;
+            transform.localScale = originalScale;
         }
-
-        Debug.Log(farAway); 
 
     }
 
@@ -62,7 +50,7 @@ public class Boss : MonoBehaviour
     {
         if (!collision.CompareTag("Bullet"))
             return;
-        animatorParent.SetTrigger("Hit");
+        animator.SetTrigger("Hit");
         collision.gameObject.SetActive(false);
         GameManager.instance.bulletManager.activeBullet--;
         health -= collision.GetComponent<Bullet>().damage;
