@@ -26,7 +26,7 @@ public class GhostPool : MonoBehaviour
         pools[index].transform.position = position;
         sr.sprite = sprite;
         pools[index].transform.localScale = scale;
-        pools[index].AddComponent<FadeOut>().StartFade(lifetime);
+        pools[index].GetComponent<FadeOut>().StartFade(lifetime);
         index = (index + 1) % size;
     }
 }
