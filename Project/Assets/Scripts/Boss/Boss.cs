@@ -6,7 +6,6 @@ using UnityEngine.Rendering;
 
 public class Boss : MonoBehaviour,IResetable
 {
-    
     Rigidbody2D rigid;
     Animator animator;
     SpriteRenderer sprite;
@@ -15,16 +14,17 @@ public class Boss : MonoBehaviour,IResetable
     List<System.Func<IEnumerator>> patterns = new List<System.Func<IEnumerator>>();
     public Lightning lightning;
     public TerrainExplosion explosion;
+    public DeathEffectPool deathEffect;
     public Widen[] points;
     Vector3 originalScale;
     Vector3 farAwayScale;
     Vector3 initPos;
     
-
-    float timer = 0;
     public int health;
     int index = 0;
+    
     public bool attacking = true;
+    public bool isDead = false;
 
     private void Awake()
     {
@@ -33,6 +33,8 @@ public class Boss : MonoBehaviour,IResetable
         sprite = GetComponent<SpriteRenderer>();
         bojo = GetComponentInParent<Bojo>();
         coll = GetComponent<Collider2D>();
+
+        
 
         health = 100;
         originalScale = transform.localScale;
@@ -51,7 +53,7 @@ public class Boss : MonoBehaviour,IResetable
     void Update()
     {
         AnimationControl();
-        if (!attacking)
+        if (!attacking && !isDead)
         {
             Debug.Log("패턴 시작");
             attacking = true;
@@ -59,7 +61,15 @@ public class Boss : MonoBehaviour,IResetable
             index = (index + 1) % patterns.Count;
         }
         
+        if(GameManager.instance.player.isDead)
+        {
+            StopAllCoroutines();
+            lightning.Stop();
+            explosion.Stop();
+            bojo.GetComponent<Animator>().SetBool("EndAttack", true);
+        }
 
+        
         
     }
 
@@ -69,6 +79,7 @@ public class Boss : MonoBehaviour,IResetable
         transform.position = initPos;
         transform.localScale = originalScale;
         index = 0;
+        health = 100;
         attacking = true;
     }
 
@@ -95,6 +106,17 @@ public class Boss : MonoBehaviour,IResetable
         collision.gameObject.SetActive(false);
         GameManager.instance.bulletManager.activeBullet--;
         health -= collision.GetComponent<Bullet>().damage;
+        if (health <= 0)
+        {
+            isDead = true;
+            rigid.simulated = false;
+            coll.enabled = false;
+            StopAllCoroutines();
+            lightning.Stop();
+            explosion.Stop();
+            bojo.GetComponent<Animator>().SetTrigger("Death");
+            StartCoroutine(deathEffect.Death());
+        }
 
     }
 
@@ -105,7 +127,6 @@ public class Boss : MonoBehaviour,IResetable
 
         while(count < 3)
         {
-            
             StartCoroutine(lightning.YellowLightningRoutine(GameManager.instance.player.transform.position));
             yield return new WaitForSeconds(0.5f);
             count++;
@@ -171,6 +192,8 @@ public class Boss : MonoBehaviour,IResetable
         bojo.GetComponent<Animator>().SetBool("EndAttack", true);
 
     }
+
+    
 }
 [System.Serializable]
 public class Widen

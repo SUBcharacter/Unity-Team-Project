@@ -24,6 +24,16 @@ public class TerrainExplosion : MonoBehaviour, IResetable
         }
     }
 
+    public void Stop()
+    {
+        StopAllCoroutines();
+        for (int i = 0; i < poolSize; i++)
+        {
+            lineWarning[i].SetActive(false);
+            lineExplode[i].SetActive(false);
+        }
+    }
+
     public void Init()
     {
         index = 0;

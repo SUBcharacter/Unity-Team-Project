@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
     void TerrainCollision()
     {
         LayerMask mask = LayerMask.GetMask("Terrain");
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider.bounds.center.x, collider.bounds.min.y), Vector2.down, distance,mask);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider.bounds.center.x, collider.bounds.min.y), Vector2.down * (rigid.gravityScale * (1 / rigid.gravityScale)), distance,mask);
 
         if(hit.collider != null)
         {
@@ -225,7 +225,7 @@ public class Player : MonoBehaviour
         if (!collision.CompareTag("Water"))
             return;
         state = PlayerState.Water;
-        rigid.gravityScale = 0.75f;
+        rigid.gravityScale = 0.75f * (rigid.gravityScale * (1 / rigid.gravityScale));
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -233,7 +233,7 @@ public class Player : MonoBehaviour
         if (!collision.CompareTag("Water"))
             return;
         state = PlayerState.Ground;
-        rigid.gravityScale = 2.5f;
+        rigid.gravityScale = 2.5f * (rigid.gravityScale * (1 / rigid.gravityScale));
     }
 
     #region UNITY_EVENTS

@@ -19,6 +19,7 @@ public class Bojo : MonoBehaviour, IResetable
     public void Init()
     {
         animator.Play("StandBy", 0,0f);
+        animator.SetBool("PlayerDead", false);
         farAway = false;
     }
 
@@ -31,6 +32,8 @@ public class Bojo : MonoBehaviour, IResetable
 
     private void Update()
     {
+        if (boss.isDead) return;
+
         stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         if(stateInfo.IsName("ScaleDown"))
@@ -41,5 +44,15 @@ public class Bojo : MonoBehaviour, IResetable
         {
             farAway = false;
         }
+
+        if(GameManager.instance.player.isDead)
+        {
+            animator.SetBool("PlayerDead", true);
+        }
+    }
+
+    public void OnDeath()
+    {
+        transform.position = new Vector3(0, 0, 0);
     }
 }

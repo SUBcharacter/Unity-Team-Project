@@ -37,6 +37,20 @@ public class Lightning : MonoBehaviour,IResetable
         }
     }
 
+    public void Stop()
+    {
+        StopAllCoroutines();
+        yellowIndex = 0;
+        blueIndex = 0;
+        for (int i = 0; i < poolSize; i++)
+        {
+            warningMark1[i].SetActive(false);
+            warningMark2[i].SetActive(false);
+            yellowLazer[i].SetActive(false);
+            blueLazer[i].SetActive(false);
+        }
+    }
+
     public void Init()
     {
         StopAllCoroutines();
