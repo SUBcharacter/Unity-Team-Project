@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (rigid.linearVelocityY < -0.1* (rigid.gravityScale * (1/rigid.gravityScale)))
+        if (rigid.linearVelocityY < -0.1* (rigid.gravityScale * (1/ Mathf.Abs(rigid.gravityScale))))
         {
             animator.SetBool("Falling", true);
         }
@@ -144,7 +144,8 @@ public class Player : MonoBehaviour
     void TerrainCollision()
     {
         LayerMask mask = LayerMask.GetMask("Terrain");
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider.bounds.center.x, collider.bounds.min.y), Vector2.down * (rigid.gravityScale * (1 / rigid.gravityScale)), distance,mask);
+
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider.bounds.center.x, collider.bounds.min.y), Vector2.down * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale))), distance,mask);
 
         if(hit.collider != null)
         {
@@ -189,7 +190,10 @@ public class Player : MonoBehaviour
     #region EventFunc
     private void OnCollisionEnter2D(Collision2D collision)
     {
-         if (collision.gameObject.CompareTag("Obstacle"))
+
+        Debug.Log("충돌감지");
+
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
             Death();
         }
@@ -225,7 +229,9 @@ public class Player : MonoBehaviour
         if (!collision.CompareTag("Water"))
             return;
         state = PlayerState.Water;
-        rigid.gravityScale = 0.75f * (rigid.gravityScale * (1 / rigid.gravityScale));
+
+        rigid.gravityScale = 0.75f * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale)));
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -233,7 +239,8 @@ public class Player : MonoBehaviour
         if (!collision.CompareTag("Water"))
             return;
         state = PlayerState.Ground;
-        rigid.gravityScale = 2.5f * (rigid.gravityScale * (1 / rigid.gravityScale));
+
+        rigid.gravityScale = 2.5f * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale)));
     }
 
     #region UNITY_EVENTS

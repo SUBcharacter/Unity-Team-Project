@@ -357,7 +357,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 629d4d61-111c-4ed6-84c7-1c5da41d0d1e
     m_ActionName: 'Player/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
