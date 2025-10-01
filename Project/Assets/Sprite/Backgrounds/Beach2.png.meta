@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2b15644e722cea14eb2c7571e0bd0d5c
+guid: a12aa4f762c5a454e9eede4ec4e5e994
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8759043680882098161
-    second: Retro-beach-in-pixel-design-_-Premium-Vector_0
+      213: -2324626364352901436
+    second: Beach2 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Retro-beach-in-pixel-design-_-Premium-Vector_0
+      name: Beach2 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 626
-        height: 469
+        width: 2504
+        height: 1876
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1ff7b1302df5e8970800000000000000
-      internalID: 8759043680882098161
+      spriteID: 4cecc3553a44dbfd0800000000000000
+      internalID: -2324626364352901436
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Retro-beach-in-pixel-design-_-Premium-Vector_0: 8759043680882098161
+      Beach2 1_0: -2324626364352901436
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
