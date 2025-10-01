@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6896395765790580141}
   - component: {fileID: 6375314219625291284}
   m_Layer: 0
-  m_Name: "\uC544\uB9C8\uB3C4 \uBD80\uB044\uBD80\uB044"
+  m_Name: Boo
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

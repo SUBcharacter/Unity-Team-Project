@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2390140596831538439}
   - component: {fileID: 7661858240853909583}
   m_Layer: 0
-  m_Name: "\uAD7C\uBC14\uC778\uAC83"
+  m_Name: Goomba
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,6 +179,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b177ab157d9cb6a4fbcdffc26b0dc98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goombaRb: {fileID: 2055657824493344242}
   moveSpeed: 2
-  moveDistance: 2
