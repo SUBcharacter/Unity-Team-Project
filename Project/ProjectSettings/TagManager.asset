@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Missile
   - MirrorPlayer
+  - Boss
   layers:
   - Default
   - TransparentFX
