@@ -268,7 +268,7 @@ Transform:
   m_GameObject: {fileID: 468576254}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -772,6 +772,8 @@ MonoBehaviour:
     sceneName: 
     playerPos: {x: 0, y: 0, z: 0}
     cameraPos: {x: 0, y: 0, z: 0}
+  initCameraPos: {x: 0, y: -0.11, z: -10}
+  initPlayerPos: {x: -3.7699971, y: -2.7884564, z: 0}
   path: 
 --- !u!4 &1824253068
 Transform:
@@ -820,8 +822,8 @@ MonoBehaviour:
   prefaps:
   - {fileID: 5581920378912116564, guid: 8b84dcbe6adf98849b97b47154e81705, type: 3}
   - {fileID: 8206518242179571927, guid: 8b8765cad77ed5046929efb1d21e9315, type: 3}
-  - {fileID: 7690695458238659748, guid: a7d213d207f4fd748a445d65aec92318, type: 3}
-  - {fileID: 2695578087189394528, guid: 9d7b03b8196c70c40b888c6a40504c80, type: 3}
+  - {fileID: 7690695458238659748, guid: 9d7b03b8196c70c40b888c6a40504c80, type: 3}
+  - {fileID: 2695578087189394528, guid: 0d890b65c536f704d9ada6c64abe330f, type: 3}
   - {fileID: 7062157910084255606, guid: 327a5030dae730f48b02230b7b5a6672, type: 3}
   - {fileID: 4187233361804214067, guid: 50c66096f271dd6498715e43f3dbf8a2, type: 3}
   - {fileID: 5647506412733724250, guid: 4f2128fe172b59e4491f37f10874e62e, type: 3}
@@ -829,6 +831,8 @@ MonoBehaviour:
   - {fileID: 7677484453452854177, guid: 1d3fafb83989dbb4bbff6b894f40413d, type: 3}
   - {fileID: 1152826973566347157, guid: 1957724917b7ea548ad8b24f028e0e3c, type: 3}
   - {fileID: 949493997707724189, guid: 6652142ffb4e02f41b984f39644f2311, type: 3}
+  - {fileID: 6782241916276437819, guid: 2c5c59f156f4d4c47b7ab8b50318bd78, type: 3}
+  - {fileID: 135475523543957094, guid: ce2539c728faa204686ef9d7a5d158f0, type: 3}
   maps: []
 --- !u!4 &1877381083
 Transform:

@@ -5,6 +5,7 @@ public class MirrorTrigger : MonoBehaviour, IResetable
     [Header("미러 플레이어 프리팹 및 기준선")]
     [SerializeField] private GameObject mirrorPrefab;
     [SerializeField] private float mirrorCenterX = 0f;
+    [SerializeField] MirrorExitDoor exitDoor;
 
     private GameObject mirrorInstance;
     private bool isTriggered = false;
@@ -25,7 +26,7 @@ public class MirrorTrigger : MonoBehaviour, IResetable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isTriggered && collision.CompareTag("Player"))
+        if (!isTriggered && !exitDoor.IsOpen && collision.CompareTag("Player"))
         {
             isTriggered = true;
 
