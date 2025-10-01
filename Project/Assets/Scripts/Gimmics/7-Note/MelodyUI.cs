@@ -10,7 +10,6 @@ public class MelodyUI : MonoBehaviour, IResetable
 {
     public Image[] melodySymbols;
     AudioSource audioSource; // 오디오 소스
-    bool reset = false;
 
     [SerializeField] private float ShowSymbolTime = 3f; // 화면에 보여주는 시간
 
@@ -28,7 +27,6 @@ public class MelodyUI : MonoBehaviour, IResetable
 
     public void Init()
     {
-        reset = true;
         StopAllCoroutines();
         for (int x = 0; x < melodySymbols.Length; x++)
         {

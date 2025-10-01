@@ -3027,6 +3027,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b177ab157d9cb6a4fbcdffc26b0dc98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hit: {fileID: 8300000, guid: 199a22e0f2154cb40abdd0694f068fc2, type: 3}
+  death: {fileID: 8300000, guid: 735aa560f3ea5cb40b8b2de83f504bef, type: 3}
   moveSpeed: 0.7
   health: 2
 --- !u!50 &2769391409703145486
@@ -3444,6 +3446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b177ab157d9cb6a4fbcdffc26b0dc98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hit: {fileID: 8300000, guid: 199a22e0f2154cb40abdd0694f068fc2, type: 3}
+  death: {fileID: 8300000, guid: 735aa560f3ea5cb40b8b2de83f504bef, type: 3}
   moveSpeed: 0.5
   health: 2
 --- !u!50 &3996896539064554475
@@ -3635,6 +3639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b177ab157d9cb6a4fbcdffc26b0dc98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hit: {fileID: 8300000, guid: 199a22e0f2154cb40abdd0694f068fc2, type: 3}
+  death: {fileID: 8300000, guid: 735aa560f3ea5cb40b8b2de83f504bef, type: 3}
   moveSpeed: 1.2
   health: 2
 --- !u!50 &5026092790412221668
@@ -9083,6 +9089,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b177ab157d9cb6a4fbcdffc26b0dc98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hit: {fileID: 8300000, guid: 199a22e0f2154cb40abdd0694f068fc2, type: 3}
+  death: {fileID: 8300000, guid: 735aa560f3ea5cb40b8b2de83f504bef, type: 3}
   moveSpeed: 1
   health: 2
 --- !u!50 &1636606018741949124

@@ -18,7 +18,7 @@ public class Save : MonoBehaviour
     {
         GameManager gm = GameManager.instance;
         Vector3 cameraPos = transform.parent.position;
-        gm.saveManager.currentData.sceneName = SceneManager.GetActiveScene().name;
+        gm.saveManager.currentData.lastScene = SceneManager.GetActiveScene().name;
         gm.saveManager.currentData.playerPos = gm.player.transform.position;
         gm.saveManager.currentData.cameraPos = new Vector3(cameraPos.x, cameraPos.y, -10);
 

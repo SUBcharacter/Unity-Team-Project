@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathEffectPool : MonoBehaviour
 {
+    public AudioClip death;
     public Bojo bojo;
     public GameObject deathEffect;
     List<GameObject> effectPool = new List<GameObject>();
 
     int poolSize = 20;
     int poolIndex = 0;
-    private void Awake()
+    private void Start()
     {
         for (int i = 0; i < poolSize; i++)
         {
@@ -35,6 +37,10 @@ public class DeathEffectPool : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        GameManager.instance.audioSource.PlayOneShot(death);
         bojo.gameObject.SetActive(false);
+
+        Debug.Log("¾À ÀüÈ¯ ÁØºñ");
+        yield return new WaitForSeconds(2f);
     }
 }

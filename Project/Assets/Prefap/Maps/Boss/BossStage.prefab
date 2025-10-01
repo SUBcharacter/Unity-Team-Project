@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2473735244641766461}
   - component: {fileID: 510844440276931747}
+  - component: {fileID: 2564918022481551991}
   m_Layer: 0
   m_Name: Border
   m_TagString: Border
@@ -78,6 +79,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.13414, y: 11.798214}
   m_EdgeRadius: 0
+--- !u!114 &2564918022481551991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764877280949802962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f241bef91a24b1643b85a93bcdb733dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 8697565841860722053}
 --- !u!1 &3635231153257348561
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1439191903962546973}
   - component: {fileID: 8278293047047304402}
+  - component: {fileID: 6400351771516267159}
   m_Layer: 0
   m_Name: Border (1)
   m_TagString: Border
@@ -156,6 +171,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.13414, y: 11.798214}
   m_EdgeRadius: 0
+--- !u!114 &6400351771516267159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635231153257348561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f241bef91a24b1643b85a93bcdb733dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 8697565841860722053}
 --- !u!1 &4795025596104309212
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793675cae2c884a4e9ec7f903b01ae57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserScan: {fileID: 8300000, guid: 465acae7bf1ba054db1ff72a55d11cc9, type: 3}
   lightning: {fileID: 7000793984246453028}
   explosion: {fileID: 7821924004007205237}
   deathEffect: {fileID: 3585528804864339420}
@@ -2354,6 +2383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bc42b01188a004791c8ddaf6bbb4bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  death: {fileID: 8300000, guid: d0d39d6ebe912c948867c9b0cac023e7, type: 3}
   bojo: {fileID: 622820654392846518}
   deathEffect: {fileID: 3809090969918563719, guid: 2914f6affb36fe143aad0405a55d5866, type: 3}
 --- !u!1 &6995803969089543692
@@ -2660,6 +2690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ed12a846f4d7242ad61308defcbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  engage: {fileID: 8300000, guid: dfb32f84970f30e4aa80b403a72c8bb9, type: 3}
   farAway: 0
 --- !u!1 &8760479150963149650
 GameObject:

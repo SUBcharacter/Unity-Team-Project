@@ -5,9 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject playerPrefap;
+    public AudioSource audioSource;
+    public AudioSource BGM;
+    public AudioSource gameoverBGM;
     public Player player;
     public BulletManager bulletManager;
-    public Camera camera;
+    public Camera cam;
     public static GameManager instance;
     public SaveManager saveManager;
     public MapManager mapManager;
@@ -15,11 +18,13 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
 
-        if (camera == null)
+        if (cam == null)
         {
-            camera = Camera.main;
+            cam = Camera.main;
         }
         instance = this;
+
+        audioSource = GetComponent<AudioSource>();
 
         Instantiate(playerPrefap, gameObject.transform,true);
         player = GetComponentInChildren<Player>();
@@ -27,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        camera.transform.position = saveManager.currentData.cameraPos;
+        cam.transform.position = saveManager.currentData.cameraPos;
     }
 
     private void Update()
@@ -39,8 +44,9 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            BGM.Play();
             player.Init(saveManager.currentData.playerPos);
-            camera.transform.position = saveManager.currentData.cameraPos;
+            cam.transform.position = saveManager.currentData.cameraPos;
             mapManager.Init();
         }
     }

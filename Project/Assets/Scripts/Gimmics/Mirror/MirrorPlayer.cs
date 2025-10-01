@@ -1,4 +1,4 @@
-using UnityEditor.Tilemaps;
+using UnityEngine.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -9,7 +9,7 @@ public class MirrorPlayer : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer sprite;
     Animator animator;
-    CapsuleCollider2D collider;
+    CapsuleCollider2D coll;
     Gun gun;
 
     Vector2 originalSize;
@@ -28,7 +28,7 @@ public class MirrorPlayer : MonoBehaviour
 
     [SerializeField] PlayerState state;
 
-    bool shotDir = true; // true : ¿À¸¥ÂÊ, false : ¿ÞÂÊ
+    
     [SerializeField] bool isGround = false;
     [SerializeField] bool canAirJump = false;
 
@@ -56,12 +56,12 @@ public class MirrorPlayer : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         gun = GetComponentInChildren<Gun>();
-        collider = GetComponent<CapsuleCollider2D>();
+        coll = GetComponent<CapsuleCollider2D>();
 
         jumpSpeeds = new float[] { 10.0f, 7.0f };
 
-        originalSize = collider.size;
-        originalOffset = collider.offset;
+        originalSize = coll.size;
+        originalOffset = coll.offset;
         crouchSize = new Vector2(originalSize.x, originalSize.y - 0.10f);
         crouchOffset = new Vector2(originalOffset.x, originalOffset.y - 0.10f);
     }
@@ -171,7 +171,7 @@ public class MirrorPlayer : MonoBehaviour
     void TerrainCollision()
     {
         LayerMask mask = LayerMask.GetMask("Terrain");
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider.bounds.center.x, collider.bounds.min.y), Vector2.down, distance, mask);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(coll.bounds.center.x, coll.bounds.min.y), Vector2.down, distance, mask);
 
         if (hit.collider != null)
         {
@@ -348,14 +348,14 @@ public class MirrorPlayer : MonoBehaviour
     {
         if (context.performed)
         {
-            collider.size = crouchSize;
-            collider.offset = crouchOffset;
+            coll.size = crouchSize;
+            coll.offset = crouchOffset;
             animator.SetBool("Crouching", true);
         }
         else if (context.canceled)
         {
-            collider.size = originalSize;
-            collider.offset = originalOffset;
+            coll.size = originalSize;
+            coll.offset = originalOffset;
             animator.SetBool("Crouching", false);
         }
     }

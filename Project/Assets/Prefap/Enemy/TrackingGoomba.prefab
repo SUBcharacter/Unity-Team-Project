@@ -189,6 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8af24c647f111e418abc434e5061836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hit: {fileID: 8300000, guid: 199a22e0f2154cb40abdd0694f068fc2, type: 3}
+  death: {fileID: 8300000, guid: 735aa560f3ea5cb40b8b2de83f504bef, type: 3}
   boostSpeed: 5
   health: 0
 --- !u!114 &8195360115646771893

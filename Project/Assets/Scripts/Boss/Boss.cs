@@ -6,6 +6,9 @@ using UnityEngine.Rendering;
 
 public class Boss : MonoBehaviour,IResetable
 {
+
+    public AudioClip laserScan;
+    
     Rigidbody2D rigid;
     Animator animator;
     SpriteRenderer sprite;
@@ -36,7 +39,7 @@ public class Boss : MonoBehaviour,IResetable
 
         
 
-        health = 100;
+        health = 600;
         originalScale = transform.localScale;
         farAwayScale = transform.localScale / 30f;
         initPos = transform.position;
@@ -75,11 +78,14 @@ public class Boss : MonoBehaviour,IResetable
 
     public void Init()
     {
+        GameManager.instance.audioSource.Stop();
+        GameManager.instance.BGM.loop = false;
+        GameManager.instance.BGM.Stop();
         StopAllCoroutines();
         transform.position = initPos;
         transform.localScale = originalScale;
         index = 0;
-        health = 100;
+        health = 600;
         attacking = true;
     }
 
@@ -108,12 +114,16 @@ public class Boss : MonoBehaviour,IResetable
         health -= collision.GetComponent<Bullet>().damage;
         if (health <= 0)
         {
+            GameManager.instance.BGM.loop = false;
+            GameManager.instance.BGM.Stop();
             isDead = true;
             rigid.simulated = false;
             coll.enabled = false;
             StopAllCoroutines();
             lightning.Stop();
             explosion.Stop();
+            bojo.GetComponent<Animator>().Play("Death");
+            bojo.OnDeath();
             bojo.GetComponent<Animator>().SetTrigger("Death");
             StartCoroutine(deathEffect.Death());
         }
@@ -183,6 +193,8 @@ public class Boss : MonoBehaviour,IResetable
         Debug.Log("¾È ¿Ã¶ó°¡°ï ¸ø¹è±æ²¬");
         attacking = true;
         int count = 0;
+        GameManager.instance.audioSource.PlayOneShot(laserScan);
+        yield return new WaitForSeconds(1f);
         while(count < points[1].point.Count)
         {
             StartCoroutine(explosion.LineExplosion(points[1].point[count]));

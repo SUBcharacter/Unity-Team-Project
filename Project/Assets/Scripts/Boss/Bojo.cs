@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Bojo : MonoBehaviour, IResetable
 {
+    public AudioClip engage;
     Animator animator;
     Boss boss;
     AnimatorStateInfo stateInfo;
@@ -28,6 +29,11 @@ public class Bojo : MonoBehaviour, IResetable
         Debug.Log("패턴 준비");
         boss.attacking = false;
         animator.SetBool("EndAttack", false);
+    }
+
+    public void Engage()
+    {
+        GameManager.instance.audioSource.PlayOneShot(engage);
     }
 
     private void Update()

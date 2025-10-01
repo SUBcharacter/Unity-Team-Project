@@ -12,9 +12,6 @@ public class ShyEnemy : MonoBehaviour,IResetable
     Vector2 direction;
 
     [SerializeField] private float moveSpeed = 3.0f;
-    [SerializeField] private float stopDistance = 0.1f;
-
-   private bool isActived = true;      // 플레이어가 가까이 왔는지 (적 활성화 여부 체크)
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();

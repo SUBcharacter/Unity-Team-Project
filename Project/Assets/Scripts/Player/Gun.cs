@@ -7,6 +7,8 @@ public enum GunDirection
 
 public class Gun : MonoBehaviour
 {
+    public AudioClip shot;
+
     public GunPosition gunPos;
     public GunDirection dir;
     public bool facingRight;
@@ -75,12 +77,10 @@ public class Gun : MonoBehaviour
                 }
                 break;
         }
-       
-        
+        GameManager.instance.audioSource.PlayOneShot(shot);
     }
-
-    
 }
+    
 
 
 

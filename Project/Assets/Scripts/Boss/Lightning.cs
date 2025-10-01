@@ -21,7 +21,7 @@ public class Lightning : MonoBehaviour,IResetable
     int blueIndex = 0;
 
 
-    private void Awake()
+    private void Start()
     {
         for(int i = 0; i< poolSize; i++)
         {

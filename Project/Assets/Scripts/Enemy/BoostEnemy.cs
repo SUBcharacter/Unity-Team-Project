@@ -1,15 +1,11 @@
 using NUnit.Framework.Constraints;
-using UnityEditor.Tilemaps;
+using UnityEngine.Tilemaps;
 using UnityEngine;
-
-/// <summary>
-/// 적도 동적으로 해야하나 
-/// </summary>
-
-
 
 public class BoostEnemy : MonoBehaviour,IResetable
 {
+    public AudioClip hit;
+    public AudioClip death;
     Rigidbody2D rigid;
     Scanner scanner;
     Vector2 direction;
@@ -31,6 +27,7 @@ public class BoostEnemy : MonoBehaviour,IResetable
     {
         if (health <= 0)
         {
+            GameManager.instance.audioSource.PlayOneShot(death);
             gameObject.SetActive(false);
         }
     }
@@ -71,7 +68,7 @@ public class BoostEnemy : MonoBehaviour,IResetable
     {
         if (!collision.CompareTag("Bullet"))
             return;
-
+        GameManager.instance.audioSource.PlayOneShot(hit);
         health -= collision.GetComponent<Bullet>().damage;
     }
 }

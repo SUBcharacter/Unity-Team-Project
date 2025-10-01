@@ -9,6 +9,6 @@ public class Door : MonoBehaviour
         if (!collision.CompareTag("Player"))
             return;
 
-        GameManager.instance.camera.transform.position = new Vector3(transform.parent.position.x, transform.parent.position.y,-10f);
+        GameManager.instance.cam.transform.position = new Vector3(transform.parent.position.x, transform.parent.position.y,-10f);
     }
 }

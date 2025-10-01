@@ -1,5 +1,5 @@
-using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
@@ -13,7 +13,10 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer sprite;
     Animator animator;
-    CapsuleCollider2D collider;
+    CapsuleCollider2D coll;
+    public AudioClip[] jump;
+    public AudioClip death;
+
     public Gun gun { get; private set; }
     
 
@@ -33,7 +36,6 @@ public class Player : MonoBehaviour
 
     [SerializeField]PlayerState state;
 
-    bool shotDir = true; // true : 오른쪽, false : 왼쪽
     [SerializeField] bool isGround = false;
     [SerializeField] bool canAirJump = false;
     public bool isDead = false;
@@ -46,12 +48,12 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         gun = GetComponentInChildren<Gun>();
-        collider = GetComponent<CapsuleCollider2D>();
+        coll = GetComponent<CapsuleCollider2D>();
 
         jumpSpeeds = new float[] { 10.0f, 7.0f };
 
-        originalSize = collider.size;
-        originalOffset = collider.offset;
+        originalSize = coll.size;
+        originalOffset = coll.offset;
         crouchSize = new Vector2(originalSize.x, originalSize.y - 0.10f);
         crouchOffset = new Vector2(originalOffset.x, originalOffset.y - 0.10f);
     }
@@ -84,11 +86,15 @@ public class Player : MonoBehaviour
     }
     public void Init(Vector3 initPos)
     {
+        GameManager.instance.gameoverBGM.Stop();
+        GameManager.instance.audioSource.volume = 1;
+        GameManager.instance.BGM.volume = 0.5f;
+        
         transform.position = initPos;
         rigid.linearVelocityY = 0f;
         isDead = false;
         rigid.simulated = true;
-        collider.enabled = true;
+        coll.enabled = true;
         animator.Play("Idle",0,0f);
         gameObject.SetActive(true);
        
@@ -145,7 +151,7 @@ public class Player : MonoBehaviour
     {
         LayerMask mask = LayerMask.GetMask("Terrain");
 
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider.bounds.center.x, collider.bounds.min.y), Vector2.down * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale))), distance,mask);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(coll.bounds.center.x, coll.bounds.min.y), Vector2.down * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale))), distance,mask);
 
         if(hit.collider != null)
         {
@@ -180,9 +186,13 @@ public class Player : MonoBehaviour
 
     public void Death()
     {
+        GameManager.instance.audioSource.PlayOneShot(death);
+        GameManager.instance.BGM.Stop();
+        GameManager.instance.BGM.loop = false;
+        GameManager.instance.gameoverBGM.Play();
         isDead = true;
         rigid.simulated = false;
-        collider.enabled = false;
+        coll.enabled = false;
         animator.SetTrigger("Death");
 
     }
@@ -274,6 +284,7 @@ public class Player : MonoBehaviour
                 Debug.Log("1단 점프");
                 isGround = false;
                 animator.SetTrigger("1stJump");
+                GameManager.instance.audioSource.PlayOneShot(jump[0]);
                 if(state != PlayerState.Water)
                 {
                     rigid.linearVelocityY = jumpSpeeds[0] * (rigid.gravityScale * (1/Mathf.Abs(rigid.gravityScale)));
@@ -287,6 +298,7 @@ public class Player : MonoBehaviour
             else if(canAirJump) 
             {
                 Debug.Log("2단 점프");
+                GameManager.instance.audioSource.PlayOneShot(jump[1]);
                 if (state != PlayerState.Water)
                 {
                     animator.SetTrigger("2ndJump");
@@ -330,14 +342,14 @@ public class Player : MonoBehaviour
     {
         if(context.performed)
         {
-            collider.size = crouchSize;
-            collider.offset = crouchOffset;
+            coll.size = crouchSize;
+            coll.offset = crouchOffset;
             animator.SetBool("Crouching", true);
         }
         else if(context.canceled)
         {
-            collider.size = originalSize;
-            collider.offset = originalOffset;
+            coll.size = originalSize;
+            coll.offset = originalOffset;
             animator.SetBool("Crouching", false);
         }
     }

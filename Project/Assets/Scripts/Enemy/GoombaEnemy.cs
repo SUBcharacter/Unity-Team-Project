@@ -1,10 +1,13 @@
 using NUnit.Framework.Constraints;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GoombaEnemy : MonoBehaviour, IResetable
 {
+    public AudioClip hit;
+    public AudioClip death;
     Rigidbody2D rigid;
-    SpriteRenderer renderer;
+    SpriteRenderer render;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] int health;
@@ -16,7 +19,7 @@ public class GoombaEnemy : MonoBehaviour, IResetable
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        render = GetComponent<SpriteRenderer>();
         startPos = transform.position;
         health = 2;
     }
@@ -26,6 +29,7 @@ public class GoombaEnemy : MonoBehaviour, IResetable
     {
         if(health <= 0)
         {
+            
             gameObject.SetActive(false);
         }
     }
@@ -41,7 +45,7 @@ public class GoombaEnemy : MonoBehaviour, IResetable
         {
             IsMoveRight = !IsMoveRight;
             startPos = transform.position;
-            renderer.flipX = !renderer.flipX;
+            render.flipX = !render.flipX;
         }
     }
 
@@ -57,8 +61,13 @@ public class GoombaEnemy : MonoBehaviour, IResetable
     {
         if (!collision.CompareTag("Bullet"))
             return;
-
+        GameManager.instance.audioSource.PlayOneShot(hit);
         health -= collision.GetComponent<Bullet>().damage;
+
+        if(health <=0)
+        {
+            GameManager.instance.audioSource.PlayOneShot(death);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

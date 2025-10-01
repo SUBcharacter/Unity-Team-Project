@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class SaveData
 {
-    public string sceneName;
+    public string lastScene;
     public Vector3 playerPos;
     public Vector3 cameraPos;
 }
@@ -38,7 +38,7 @@ public class SaveManager : MonoBehaviour
 
     public void UpdateData(Vector3 playerPos, Vector3 cameraPos)
     {
-        currentData.sceneName = SceneManager.GetActiveScene().name;
+        currentData.lastScene = SceneManager.GetActiveScene().name;
         currentData.playerPos = playerPos;
         currentData.cameraPos = cameraPos;
     }
@@ -47,8 +47,8 @@ public class SaveManager : MonoBehaviour
     {
         if(!File.Exists(path))
         {
-            // 플레이어 및 카메라 초기 위치
-            currentData.sceneName = SceneManager.GetActiveScene().name;
+            // 경로에 파일 없을 시 플레이어 및 카메라 초기 위치
+            currentData.lastScene = "Stage1";
             currentData.playerPos = initPlayerPos;
             currentData.cameraPos = initCameraPos;
             return;
@@ -59,17 +59,21 @@ public class SaveManager : MonoBehaviour
         if(saveFile == null || saveFile.slot == null)
         {
             // 세이브 파일 파싱 실패시 플레이어 및 카메라 초기 위치
-            currentData.sceneName = SceneManager.GetActiveScene().name;
+            currentData.lastScene = "Stage1";
             currentData.playerPos = initPlayerPos;
             currentData.cameraPos = initCameraPos;
             return;
         }
         currentData = saveFile.slot;
-        if(currentData.sceneName != SceneManager.GetActiveScene().name)
+
+        if(currentData.lastScene != SceneManager.GetActiveScene().name)
         {
-            SceneManager.LoadScene(currentData.sceneName);
+            if (SceneManager.GetActiveScene().name == "Title" || SceneManager.GetActiveScene().name == "Ending")
+                return;
+            currentData.lastScene = name;
+            currentData.playerPos = initPlayerPos;
+            currentData.cameraPos = initCameraPos;
         }
-        
     }
 
     public void SaveData()
