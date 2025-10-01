@@ -5,6 +5,7 @@ public class MelodyTrigger : MonoBehaviour, IResetable
 {
     [SerializeField] private MelodyComparer melodyComparer;
     [SerializeField] private MelodyUI melodyUI;
+    [SerializeField] private MelodyDoor melodyDoor;
 
     [SerializeField] BooTrigger booTrigger;
 
@@ -20,6 +21,8 @@ public class MelodyTrigger : MonoBehaviour, IResetable
         if (!isTriggered && other.CompareTag("Player"))
         {
             isTriggered = true;
+
+            melodyDoor.CloseDoor();
 
             booTrigger.ActivateShy();
 

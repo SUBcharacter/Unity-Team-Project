@@ -22,8 +22,9 @@ public class SaveManager : MonoBehaviour
 {
     public SaveData currentData;
 
-   public Vector3 initCameraPos;
-   public Vector3 initPlayerPos;
+    public Vector3 initCameraPos;
+    public Vector3 initPlayerPos;
+
     public string path;
 
     private void Awake()
