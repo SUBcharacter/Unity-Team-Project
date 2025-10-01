@@ -5,52 +5,45 @@ using UnityEngine;
 public class MissileLauncher : MonoBehaviour
 {
     [SerializeField] Scanner scanner;                    // 타겟 감지용 스캐너
-    [SerializeField] GameObject bulletPrefab;            // 프리팹으로 만든 미사일
+    [SerializeField] GameObject bulletPrefab;           // 프리팹으로 만든 미사일
+    [SerializeField] GameObject loadedMissile;
     [SerializeField] Transform firePoint;                // 발사 위치
-    [SerializeField] float fireDelay = 1.5f;             // 발사 주기
 
-    private Coroutine fireCoroutine;
+    [SerializeField] bool isFired = false;
 
-    bool Isfiring = false;
-
+    private void Awake()
+    {
+        scanner = GetComponent<Scanner>();
+        loadedMissile = Instantiate(bulletPrefab,transform.parent);
+        
+    }
 
     void Update()
     {
-        Transform target = scanner.nearestTarget;
-        if (target != null && !Isfiring)
+        if(scanner.nearestTarget)
         {
-            fireCoroutine = StartCoroutine(FireCouroutine());
-            Isfiring = true;
+            Vector3 targetPos = scanner.nearestTarget.position;
+            Vector3 direction = targetPos - transform.position;
+
+            transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+            Fire();
         }
     }
 
-    void Fire(Transform target)
+    private void LateUpdate()
     {
-        Debug.Log("현재 타겟 이름: " + target.name);
-        Debug.Log("타겟 위치: " + target.position);
-        Debug.Log("발사 위치: " + firePoint.position);
-
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        bullet.transform.position = firePoint.position;
-        BulletShooter shooter = bullet.GetComponent<BulletShooter>();
-        if (shooter != null)
+        if ((!loadedMissile.activeSelf && scanner.target))
         {
-            shooter.SetTarget(target);
+            isFired = false;
         }
     }
 
-    IEnumerator FireCouroutine()
+    void Fire()
     {
-        while (true)
-        {
-            Transform target = scanner.nearestTarget;
-            if (target != null)
-            {
-
-                Debug.Log(" 타겟 감지됨: " + target.name + " / 위치: " + target.position);
-                Fire(target);
-            }
-            yield return new WaitForSeconds(fireDelay);
-        }
+        if (isFired || GameManager.instance.player.isDead)
+            return;
+        isFired = true;
+        loadedMissile.GetComponent<BulletShooter>().Launch(firePoint.position);
+        
     }
 }

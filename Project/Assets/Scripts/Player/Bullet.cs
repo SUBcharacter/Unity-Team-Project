@@ -10,7 +10,6 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("ÃÑ¾Ë ½Ãµ¿");
 
         rigid = GetComponent<Rigidbody2D>();
     }
@@ -25,12 +24,13 @@ public class Bullet : MonoBehaviour
     {
         bool border = collision.gameObject.CompareTag("Border");
         bool terrain = collision.gameObject.CompareTag("Terrain");
+        bool enemy = collision.gameObject.CompareTag("Enemy");
+        bool boss = collision.gameObject.CompareTag("Boss");
 
-        if (!(border || terrain))
+        if (!(border || terrain || enemy || boss))
             return;
 
         gameObject.SetActive(false);
         GameManager.instance.bulletManager.activeBullet--;
     }
-        
 }

@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     SpriteRenderer sprite;
     Animator animator;
     CapsuleCollider2D collider;
-    Gun gun;
+    public Gun gun { get; private set; }
+    
 
     Vector2 originalSize;
     Vector2 originalOffset;
@@ -35,10 +36,10 @@ public class Player : MonoBehaviour
     bool shotDir = true; // true : 오른쪽, false : 왼쪽
     [SerializeField] bool isGround = false;
     [SerializeField] bool canAirJump = false;
+    public bool isDead = false;
 
     void Awake()
     {
-        Debug.Log("플레이어 시동");
 
         gameObject.SetActive(true);
         rigid = GetComponent<Rigidbody2D>();
@@ -85,11 +86,18 @@ public class Player : MonoBehaviour
     {
         transform.position = initPos;
         rigid.linearVelocityY = 0f;
+        isDead = false;
+        rigid.simulated = true;
+        collider.enabled = true;
+        animator.Play("Idle",0,0f);
         gameObject.SetActive(true);
+       
     }
 
     void AnimationControl()
     {
+        if (isDead) return;
+
         if(moveVec.x != 0)
         {
             animator.SetBool("Walk", true);
@@ -100,7 +108,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (rigid.linearVelocityY < -0.1* (rigid.gravityScale * (1/rigid.gravityScale)))
+        if (rigid.linearVelocityY < -0.1* (rigid.gravityScale * (1/ Mathf.Abs(rigid.gravityScale))))
         {
             animator.SetBool("Falling", true);
         }
@@ -110,7 +118,6 @@ public class Player : MonoBehaviour
             animator.SetBool("Jumping", true);
         }
             
-        
     }
 
     void Control()
@@ -120,14 +127,16 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        if (animator.GetBool("Crouching") && isGround)
+        if (isDead)
+            return;
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName("Crouch"))
         {
-            if(!animator.GetBool("LookUp"))
-            {
-                rigid.linearVelocityX = 0;
-                return;
-            }
+            rigid.linearVelocityX = 0;
+            return;
         }
+        
             
         rigid.linearVelocityX = moveVec.x * moveSpeed;
     }
@@ -135,7 +144,8 @@ public class Player : MonoBehaviour
     void TerrainCollision()
     {
         LayerMask mask = LayerMask.GetMask("Terrain");
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider.bounds.center.x, collider.bounds.min.y), Vector2.down, distance,mask);
+
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider.bounds.center.x, collider.bounds.min.y), Vector2.down * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale))), distance,mask);
 
         if(hit.collider != null)
         {
@@ -168,18 +178,24 @@ public class Player : MonoBehaviour
             gun.dir = GunDirection.STAND;
     }
 
+    public void Death()
+    {
+        isDead = true;
+        rigid.simulated = false;
+        collider.enabled = false;
+        animator.SetTrigger("Death");
+
+    }
+
     #region EventFunc
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         Debug.Log("충돌감지");
-        /*if (collision.gameObject.CompareTag("Terrain"))
+
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
-            isGround = true;
-            canAirJump = true;
-        }
-        else*/ if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            gameObject.SetActive(false);
+            Death();
         }
     }
 
@@ -196,7 +212,8 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Obstacle"))
         {
-            gameObject.SetActive(false);
+            Death();
+
         }
         else if (collision.CompareTag("Water"))
         {
@@ -212,7 +229,9 @@ public class Player : MonoBehaviour
         if (!collision.CompareTag("Water"))
             return;
         state = PlayerState.Water;
-        rigid.gravityScale = 0.75f;
+
+        rigid.gravityScale = 0.75f * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale)));
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -220,7 +239,8 @@ public class Player : MonoBehaviour
         if (!collision.CompareTag("Water"))
             return;
         state = PlayerState.Ground;
-        rigid.gravityScale = 2.5f;
+
+        rigid.gravityScale = 2.5f * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale)));
     }
 
     #region UNITY_EVENTS
@@ -243,7 +263,7 @@ public class Player : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!(isGround || canAirJump))
+        if (!(isGround || canAirJump || isDead))
             return;
 
         if(context.performed)

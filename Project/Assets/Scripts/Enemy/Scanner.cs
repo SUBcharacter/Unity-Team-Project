@@ -6,13 +6,17 @@ public class Scanner : MonoBehaviour
 {
     public float scanRange;
     public LayerMask targetLayer;
-    public RaycastHit2D[] targets;
+    public RaycastHit2D target;
     public Transform nearestTarget;
 
     void FixedUpdate()
     {
-        targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
-        nearestTarget = GetNearest();
+        target = Physics2D.CircleCast(transform.position, scanRange, Vector2.zero, 0, targetLayer);
+        if(target)
+        {
+            nearestTarget = GetNearest();
+        }
+        
     }
 
     Transform GetNearest()
@@ -20,21 +24,18 @@ public class Scanner : MonoBehaviour
         Transform result = null;
         float diff = 100;
 
-        foreach (RaycastHit2D target in targets)
+        
+        Vector3 myPos = transform.position;
+        Vector2 targetPos = target.transform.position;
+        float curDiff = Vector3.Distance(myPos, targetPos);
+
+        if (curDiff < diff)
         {
-            //if (!target.transform.CompareTag("Player")) continue;     // 플레이어로 타겟이 안되서 넣은 임시 코드
-
-            Vector3 myPos = transform.position;
-            Vector2 targetPos = target.transform.position;
-            float curDiff = Vector3.Distance(myPos, targetPos);
-
-            if (curDiff < diff)
-            {
-                diff = curDiff;
-                result = target.transform;
-            }
-
+            diff = curDiff;
+            result = target.transform;
         }
+
+ 
         return result;
     }
 }

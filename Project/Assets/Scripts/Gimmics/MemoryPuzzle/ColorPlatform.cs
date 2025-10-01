@@ -45,6 +45,8 @@ public class ColorPlatform : MonoBehaviour
             return;
         }
 
+        //if (isPressed || isInResetState) { return; } // 이미 밟혔거나 리셋 중이면 무시
+
         comparer.AddInput(symbolData);
 
         if(!isInResetState)

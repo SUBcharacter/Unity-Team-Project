@@ -15,7 +15,6 @@ public class BulletManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("불릿 매니저 시동");
 
         pools = new List<GameObject>();
         for(int i = 0; i< bulletCount; i++)

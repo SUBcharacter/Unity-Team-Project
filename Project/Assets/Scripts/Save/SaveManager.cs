@@ -22,13 +22,13 @@ public class SaveManager : MonoBehaviour
 {
     public SaveData currentData;
 
-    Vector3 initCameraPos = new Vector3(0, -0.109999999f, -10f);
-    Vector3 initPlayerPos = new Vector3(-1.19000006f, 0.0199999996f, 0);
+    public Vector3 initCameraPos;
+    public Vector3 initPlayerPos;
+
     public string path;
 
     private void Awake()
     {
-        Debug.Log("세이브 매니저 시동");
         path = Path.Combine(Application.persistentDataPath, "Save.json");
 
         if (currentData == null)
@@ -48,7 +48,7 @@ public class SaveManager : MonoBehaviour
         if(!File.Exists(path))
         {
             // 플레이어 및 카메라 초기 위치
-            currentData.sceneName = "Game";
+            currentData.sceneName = SceneManager.GetActiveScene().name;
             currentData.playerPos = initPlayerPos;
             currentData.cameraPos = initCameraPos;
             return;
@@ -59,7 +59,7 @@ public class SaveManager : MonoBehaviour
         if(saveFile == null || saveFile.slot == null)
         {
             // 세이브 파일 파싱 실패시 플레이어 및 카메라 초기 위치
-            currentData.sceneName = "Game";
+            currentData.sceneName = SceneManager.GetActiveScene().name;
             currentData.playerPos = initPlayerPos;
             currentData.cameraPos = initCameraPos;
             return;

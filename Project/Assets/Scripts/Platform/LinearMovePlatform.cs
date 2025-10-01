@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class LinearMovePlatform : MonoBehaviour
 {
-    // 선형 이동
+    // 선형 이동.
 
     [SerializeField] Vector3 station2;
     [SerializeField] float speed = 2f;
 
     private Vector3 station1;
-    private Vector2 direction;
+    private Vector3 direction;
     private bool toStation2;
 
     private void Start()
@@ -25,26 +25,20 @@ public class LinearMovePlatform : MonoBehaviour
         if (toStation2) { destination = station2; }
         else { destination = station1; }
 
-        direction = new Vector2(destination.x - transform.position.x, destination.y - transform.position.y).normalized;
+        direction = (destination - transform.position).normalized;
     }
 
     private void MovePlatform()
     {
-        transform.position += (Vector3)direction * speed * Time.deltaTime;
+        Vector3 destination = toStation2 ? station2 : station1;
 
-        float distance;
+        transform.position += direction * speed * Time.fixedDeltaTime;
 
-        if (toStation2)
-        {
-            distance = Vector3.Distance(transform.position, station2);
-        }
-        else
-        {
-            distance = Vector3.Distance(transform.position, station1);
-        }
+        Vector3 toDest = destination - transform.position; // 지나침 확인용
 
-        if (distance <= 0.05f) // 거의 도달했으면 방향 반전. 더 줄이면 인식 잘 안 됨.
+        if (Vector3.Dot(toDest, direction) <= 0f)
         {
+            transform.position = destination;
             toStation2 = !toStation2;
             Caldir();
         }

@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4924046860774709108}
   - component: {fileID: 8792655469287674003}
   - component: {fileID: 4181069193322813325}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -319727274, guid: d33c903c6a2f90f45949c66f61ce0ba0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -357,7 +357,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 629d4d61-111c-4ed6-84c7-1c5da41d0d1e
     m_ActionName: 'Player/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -402,3 +402,4 @@ MonoBehaviour:
   state: 0
   isGround: 0
   canAirJump: 0
+  isDead: 0
