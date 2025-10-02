@@ -43,7 +43,7 @@ public class BossSave : MonoBehaviour,IResetable
     private IEnumerator LightOn()
     {
         spriteRenderer.sprite = sprites[1];
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.01f);
         spriteRenderer.sprite = sprites[0];
         gameObject.SetActive(false);
 

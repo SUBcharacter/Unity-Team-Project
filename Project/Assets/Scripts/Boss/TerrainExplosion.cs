@@ -58,5 +58,9 @@ public class TerrainExplosion : MonoBehaviour, IResetable
         lineWarning[currentIndex].SetActive(false);
         lineExplode[currentIndex].SetActive(true);
 
+        yield return new WaitForSeconds(0.3f);
+
+        lineExplode[currentIndex].SetActive(false);
+
     }
 }

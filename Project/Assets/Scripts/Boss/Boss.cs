@@ -39,7 +39,7 @@ public class Boss : MonoBehaviour,IResetable
 
         
 
-        health = 600;
+        health = 300;
         originalScale = transform.localScale;
         farAwayScale = transform.localScale / 30f;
         initPos = transform.position;
@@ -85,7 +85,7 @@ public class Boss : MonoBehaviour,IResetable
         transform.position = initPos;
         transform.localScale = originalScale;
         index = 0;
-        health = 600;
+        health = 300;
         attacking = true;
     }
 
