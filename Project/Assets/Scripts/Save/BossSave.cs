@@ -35,6 +35,7 @@ public class BossSave : MonoBehaviour,IResetable
         if (!collision.CompareTag("Bullet"))
             return;
         Hit();
+        bojo.GetComponentInChildren<Boss>().engage = true;
         bojo.GetComponent<Animator>().SetTrigger("Engage");
         GameManager.instance.BGM.loop = true;
         GameManager.instance.BGM.Play();

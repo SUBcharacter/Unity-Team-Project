@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public AudioClip shot;
     Rigidbody2D rigid;
 
     public int damage;
@@ -16,6 +17,7 @@ public class Bullet : MonoBehaviour
 
     public void Init(Vector2 dir)
     {
+        GameManager.instance.audioSource.PlayOneShot(shot);
         dir = dir.normalized;
         rigid.linearVelocity = dir * speed;
     }
@@ -30,6 +32,7 @@ public class Bullet : MonoBehaviour
         if (!(border || terrain || enemy || boss))
             return;
 
+        GameManager.instance.bulletManager.Hit(transform.position);
         gameObject.SetActive(false);
         GameManager.instance.bulletManager.activeBullet--;
     }

@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
-    public GameObject prefap;
-    List<GameObject> pools;
+    public GameObject bulletPrefap;
+    public GameObject hitPrefap;
+    List<GameObject> bulletPool;
+    List<GameObject> hitPool;
 
     int bulletIndex = 0;
+    int hitIndex = 0;
     int bulletCount = 5;
     int maxActiveBullet = 5;
     public int activeBullet;
@@ -16,12 +19,16 @@ public class BulletManager : MonoBehaviour
     private void Awake()
     {
 
-        pools = new List<GameObject>();
+        bulletPool = new List<GameObject>();
+        hitPool = new List<GameObject>();
         for(int i = 0; i< bulletCount; i++)
         {
-            GameObject bullet = Instantiate(prefap,gameObject.transform);
+            GameObject bullet = Instantiate(bulletPrefap, transform);
+            GameObject hit = Instantiate(hitPrefap, transform);
             bullet.SetActive(false);
-            pools.Add(bullet);
+            hit.SetActive(false);
+            bulletPool.Add(bullet);
+            hitPool.Add(hit);
         }
     }
 
@@ -30,12 +37,20 @@ public class BulletManager : MonoBehaviour
         if (activeBullet >= maxActiveBullet)
             return;
 
-        GameObject bullet = pools[bulletIndex];
+        GameObject bullet = bulletPool[bulletIndex];
         bullet.SetActive(true);
         activeBullet++;
         bullet.transform.position = pos;
         bullet.GetComponent<Bullet>().Init(dir);
 
         bulletIndex = (bulletIndex + 1) % bulletCount;
+    }
+
+    public void Hit(Vector3 pos)
+    {
+        int index = hitIndex;
+        hitIndex = (hitIndex + 1) % bulletCount;
+        hitPool[index].transform.position = pos;
+        hitPool[index].SetActive(true);
     }
 }

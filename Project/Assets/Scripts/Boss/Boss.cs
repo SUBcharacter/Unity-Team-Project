@@ -6,16 +6,16 @@ using UnityEngine.Rendering;
 
 public class Boss : MonoBehaviour,IResetable
 {
-
-    public AudioClip laserScan;
-    
+    public GameObject laserScan;
     Rigidbody2D rigid;
     Animator animator;
     public Sprite[] sprites;
     SpriteRenderer sprite;
     Collider2D coll;
     Bojo bojo;
-    List<System.Func<IEnumerator>> patterns = new List<System.Func<IEnumerator>>();
+    List<System.Func<IEnumerator>> closePatterns = new List<System.Func<IEnumerator>>();
+    List<System.Func<IEnumerator>> farAwayPatterns = new List<System.Func<IEnumerator>>();
+    
     public Lightning lightning;
     public TerrainExplosion explosion;
     public DeathEffectPool deathEffect;
@@ -25,8 +25,9 @@ public class Boss : MonoBehaviour,IResetable
     Vector3 initPos;
     
     public int health;
-    int index = 0;
-    
+    public int maxHealth;
+
+    public bool engage = false;
     public bool attacking = true;
     public bool isDead = false;
 
@@ -40,7 +41,7 @@ public class Boss : MonoBehaviour,IResetable
 
         
 
-        health = 300;
+        health = maxHealth;
         originalScale = transform.localScale;
         farAwayScale = transform.localScale / 30f;
         initPos = transform.position;
@@ -48,10 +49,10 @@ public class Boss : MonoBehaviour,IResetable
 
     private void Start()
     {
-        patterns.Add(BasicPattern);
-        patterns.Add(BasicWidenPattern);
-        patterns.Add(FasterLaser);
-        patterns.Add(Impact);
+        closePatterns.Add(BasicPattern);
+        farAwayPatterns.Add(BasicWidenPattern);
+        closePatterns.Add(FasterLaser);
+        farAwayPatterns.Add(Impact);
     }
 
     void Update()
@@ -61,8 +62,17 @@ public class Boss : MonoBehaviour,IResetable
         {
             Debug.Log("패턴 시작");
             attacking = true;
-            StartCoroutine(patterns[index]());
-            index = (index + 1) % patterns.Count;
+
+            if (bojo.farAway)
+            {
+                int index = Random.Range(0, 2);
+                StartCoroutine(farAwayPatterns[index]());
+            }
+            else
+            {
+                int index = Random.Range(0, 2);
+                StartCoroutine(closePatterns[index]());
+            }
         }
         
         if(GameManager.instance.player.isDead)
@@ -84,10 +94,10 @@ public class Boss : MonoBehaviour,IResetable
         GameManager.instance.BGM.loop = false;
         GameManager.instance.BGM.Stop();
         StopAllCoroutines();
+        engage = false;
         transform.position = initPos;
         transform.localScale = originalScale;
-        index = 0;
-        health = 300;
+        health = maxHealth;
         attacking = true;
     }
 
@@ -161,6 +171,7 @@ public class Boss : MonoBehaviour,IResetable
     IEnumerator BasicWidenPattern()
     {
         Debug.Log("개간지 광역기");
+        GameManager.instance.audioSource.volume = 0.5f;
         attacking = true;
         int count = 0;
         while(count < points[0].point.Count)
@@ -170,8 +181,10 @@ public class Boss : MonoBehaviour,IResetable
             count++;
         }
 
+        yield return new WaitForSeconds(2.5f);
 
         bojo.GetComponent<Animator>().SetBool("EndAttack", true);
+        GameManager.instance.audioSource.volume = 1f;
     }
 
     IEnumerator FasterLaser()
@@ -194,18 +207,26 @@ public class Boss : MonoBehaviour,IResetable
     IEnumerator Impact()
     {
         Debug.Log("안 올라가곤 못배길껄");
+
+        
         attacking = true;
         int count = 0;
-        GameManager.instance.audioSource.PlayOneShot(laserScan);
-        yield return new WaitForSeconds(1f);
-        while(count < points[1].point.Count)
+
+        laserScan.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+        GameManager.instance.audioSource.volume = 0.1f;
+        while (count < points[1].point.Count)
         {
             StartCoroutine(explosion.LineExplosion(points[1].point[count]));
             yield return new WaitForSeconds(0.01f);
             count++;
         }
-        bojo.GetComponent<Animator>().SetBool("EndAttack", true);
 
+        yield return new WaitForSeconds(2.5f);
+
+        bojo.GetComponent<Animator>().SetBool("EndAttack", true);
+        GameManager.instance.audioSource.volume = 1f;
     }
 
     IEnumerator Hit()
