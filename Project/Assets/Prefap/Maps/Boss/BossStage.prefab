@@ -758,6 +758,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserScan: {fileID: 8300000, guid: 465acae7bf1ba054db1ff72a55d11cc9, type: 3}
+  sprites:
+  - {fileID: 2788638710326186936, guid: eb9875211c0ce15489c0c5feaffaa92d, type: 3}
+  - {fileID: 9087504208640616858, guid: 1c471b67c4ef62d45b5742257e750944, type: 3}
   lightning: {fileID: 7000793984246453028}
   explosion: {fileID: 7821924004007205237}
   deathEffect: {fileID: 3585528804864339420}

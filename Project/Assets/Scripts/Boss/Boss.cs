@@ -11,6 +11,7 @@ public class Boss : MonoBehaviour,IResetable
     
     Rigidbody2D rigid;
     Animator animator;
+    public Sprite[] sprites;
     SpriteRenderer sprite;
     Collider2D coll;
     Bojo bojo;
@@ -67,6 +68,7 @@ public class Boss : MonoBehaviour,IResetable
         if(GameManager.instance.player.isDead)
         {
             StopAllCoroutines();
+            sprite.sprite = sprites[0];
             lightning.Stop();
             explosion.Stop();
             bojo.GetComponent<Animator>().SetBool("EndAttack", true);
@@ -109,6 +111,7 @@ public class Boss : MonoBehaviour,IResetable
         if (!collision.CompareTag("Bullet"))
             return;
         animator.SetTrigger("Hit");
+        StartCoroutine(Hit());
         collision.gameObject.SetActive(false);
         GameManager.instance.bulletManager.activeBullet--;
         health -= collision.GetComponent<Bullet>().damage;
@@ -205,6 +208,12 @@ public class Boss : MonoBehaviour,IResetable
 
     }
 
+    IEnumerator Hit()
+    {
+        sprite.sprite = sprites[1];
+        yield return new WaitForSeconds(0.01f);
+        sprite.sprite = sprites[0];
+    }
     
 }
 [System.Serializable]
