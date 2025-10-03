@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class WeakPlatform : MonoBehaviour
+public class WeakPlatform : MonoBehaviour,IResetable
 {
     private bool isCracking = false;
     private Collider2D col;
@@ -20,6 +20,16 @@ public class WeakPlatform : MonoBehaviour
         }
 
         animator = GetComponent<Animator>();
+    }
+
+    public void Init()
+    {
+        StopAllCoroutines();
+        animator.SetBool("Shake", false);
+        animator.Play("Idle");
+        isCracking = false;
+        col.enabled = true;
+        tile.enabled = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -1025,6 +1025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closedSprite: {fileID: 1690954807, guid: 9d412bd1ad77e1f4eb3f6f2f545d9781, type: 3}
   openSprite: {fileID: -4258255429078663980, guid: 9d412bd1ad77e1f4eb3f6f2f545d9781, type: 3}
+  bossSceneName: Boss
   mirrorTrigger: {fileID: 0}
 --- !u!1 &2432390265037317405
 GameObject:
@@ -1129,6 +1130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closedSprite: {fileID: 1690954807, guid: 9d412bd1ad77e1f4eb3f6f2f545d9781, type: 3}
   openSprite: {fileID: -4258255429078663980, guid: 9d412bd1ad77e1f4eb3f6f2f545d9781, type: 3}
+  bossSceneName: Boss
   mirrorTrigger: {fileID: 4510157332960587037}
 --- !u!61 &5372574231257051328
 BoxCollider2D:
@@ -1337,7 +1339,6 @@ GameObject:
   - component: {fileID: 2326041539839676923}
   - component: {fileID: 5125738718528331825}
   - component: {fileID: 1662627660722807196}
-  - component: {fileID: 3614527069860634819}
   - component: {fileID: 718778617004301145}
   m_Layer: 0
   m_Name: Exit Trigger
@@ -1475,19 +1476,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3614527069860634819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2781578795771287655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc02d73d989016c4cb7afdcfe4188862, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextStage: Boss
 --- !u!61 &718778617004301145
 BoxCollider2D:
   m_ObjectHideFlags: 0

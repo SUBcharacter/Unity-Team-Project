@@ -29,7 +29,7 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
-        path = Path.Combine(Application.persistentDataPath, "Save.json");
+        path = Path.Combine(Application.dataPath, "Save.json");
 
         if (currentData == null)
             currentData = new SaveData();
@@ -45,26 +45,30 @@ public class SaveManager : MonoBehaviour
 
     public void LoadData()
     {
-        if(!File.Exists(path))
+        string json;
+        SaveFile saveFile;
+        if (!File.Exists(path))
         {
             // 경로에 파일 없을 시 플레이어 및 카메라 초기 위치
             currentData.lastScene = "Stage1";
             currentData.playerPos = initPlayerPos;
             currentData.cameraPos = initCameraPos;
-            return;
         }
-        string json = File.ReadAllText(path);
-        SaveFile saveFile = JsonUtility.FromJson<SaveFile>(json);
-
-        if(saveFile == null || saveFile.slot == null)
+        else
         {
-            // 세이브 파일 파싱 실패시 플레이어 및 카메라 초기 위치
-            currentData.lastScene = "Stage1";
-            currentData.playerPos = initPlayerPos;
-            currentData.cameraPos = initCameraPos;
-            return;
+            json = File.ReadAllText(path);
+            saveFile = JsonUtility.FromJson<SaveFile>(json);
+
+            if (saveFile == null || saveFile.slot == null)
+            {
+                // 세이브 파일 파싱 실패시 플레이어 및 카메라 초기 위치
+                currentData.lastScene = "Stage1";
+                currentData.playerPos = initPlayerPos;
+                currentData.cameraPos = initCameraPos;
+            }
+            else
+                currentData = saveFile.slot;
         }
-        currentData = saveFile.slot;
 
         if(currentData.lastScene != SceneManager.GetActiveScene().name)
         {

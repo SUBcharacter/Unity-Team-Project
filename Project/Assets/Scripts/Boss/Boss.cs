@@ -138,6 +138,8 @@ public class Boss : MonoBehaviour,IResetable
             bojo.GetComponent<Animator>().Play("Death");
             bojo.OnDeath();
             bojo.GetComponent<Animator>().SetTrigger("Death");
+            transform.position = new Vector3(0, 0, 0);
+            sprite.sprite = sprites[0];
             StartCoroutine(deathEffect.Death());
         }
 

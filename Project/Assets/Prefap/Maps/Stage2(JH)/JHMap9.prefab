@@ -830,7 +830,6 @@ MonoBehaviour:
   - {fileID: 3501667553488003550, guid: 23a703d4a9f903743be0b25ff45a4d6e, type: 3}
   initPos: {x: 132, y: -11.5, z: 0}
   moveSpeed: 1
-  stopDistance: 1
 --- !u!114 &201829603466464187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12812,7 +12811,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853471f1b57b4284db85ffe66521a01a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOpen: 1
   animator: {fileID: 0}
 --- !u!95 &6900717467407254598
 Animator:

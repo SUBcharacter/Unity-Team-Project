@@ -1279,7 +1279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8fb37bae62d9a4c9bd54161cf26046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefap: {fileID: 8720238682864893005, guid: a9e78284cfef25f43862a5d6cd1ca9be, type: 3}
+  bulletPrefap: {fileID: 8720238682864893005, guid: a9e78284cfef25f43862a5d6cd1ca9be, type: 3}
+  hitPrefap: {fileID: 6195821850227207568, guid: 4a43e609340a2994cb3677d8cf90bb85, type: 3}
   activeBullet: 0
 --- !u!4 &1577240386
 Transform:

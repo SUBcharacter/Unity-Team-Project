@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66cf8dcc2da3ac4e9a2601679425aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shot: {fileID: 8300000, guid: 013190b6d54c0dc4fb8c0b2b1205b554, type: 3}
   gunPos:
     idle_Right: {x: 0.451, y: 0.563, z: 0}
     idle_Left: {x: -0.451, y: 0.563, z: 0}
@@ -56,6 +55,37 @@ MonoBehaviour:
     lookUp_Left: {x: -0.387, y: 1.002, z: 0}
   dir: 0
   facingRight: 1
+--- !u!1 &5540805945120063830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8977159197691611451}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8977159197691611451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5540805945120063830}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.07200824, y: 0.49765134, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6882757485672613896}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8912101193124811975
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +122,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4505465631031590976}
+  - {fileID: 8977159197691611451}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &733942019269422542
@@ -210,8 +241,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0133655965, y: 0.48833722}
-  m_Size: {x: 0.53811336, y: 0.99530274}
+  m_Offset: {x: 0.072008245, y: 0.48833722}
+  m_Size: {x: 0.42082804, y: 0.99530274}
   m_Direction: 0
 --- !u!114 &4924046860774709108
 MonoBehaviour:
@@ -401,7 +432,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d803a457f16a8fe41a2482922bf9c939, type: 3}
   - {fileID: 8300000, guid: a36ef619d50057048bace1da8e7eb42a, type: 3}
   death: {fileID: 8300000, guid: f5733fc6734e9f749a7ac5e923e1d653, type: 3}
-  deathBGM: {fileID: 8300000, guid: fc60826317cf74e49955b3d4f6d6a9fa, type: 3}
   moveVec: {x: 0, y: 0}
   moveSpeed: 3
   jumpSpeeds: []

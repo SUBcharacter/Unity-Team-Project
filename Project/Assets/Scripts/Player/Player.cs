@@ -10,7 +10,7 @@ enum PlayerState
 
 public class Player : MonoBehaviour
 {
-    Rigidbody2D rigid;
+    public Rigidbody2D rigid;
     SpriteRenderer sprite;
     Animator animator;
     CapsuleCollider2D coll;
@@ -114,9 +114,19 @@ public class Player : MonoBehaviour
         }
 
 
-        if (rigid.linearVelocityY < -0.1* (rigid.gravityScale * (1/ Mathf.Abs(rigid.gravityScale))))
+        if ((rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale))) > 0)
         {
-            animator.SetBool("Falling", true);
+            if (rigid.linearVelocityY < -0.1)
+            {
+                animator.SetBool("Falling", true);
+            } 
+        }
+        else if((rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale))) < 0)
+        {
+            if (rigid.linearVelocityY > 0.1)
+            {
+                animator.SetBool("Falling", true);
+            }
         }
         
         if(!isGround)
@@ -151,7 +161,18 @@ public class Player : MonoBehaviour
     {
         LayerMask mask = LayerMask.GetMask("Terrain");
 
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(coll.bounds.center.x, coll.bounds.min.y), Vector2.down * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale))), distance,mask);
+        float originY = coll.bounds.center.y;
+
+        if((rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale)))>0)
+        {
+            originY -= 0.4976513f;
+        }
+        else if((rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale))) < 0)
+        {
+            originY += 0.4976513f;
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(coll.bounds.center.x, originY), Vector2.down * (rigid.gravityScale * (1 / Mathf.Abs(rigid.gravityScale))), distance,mask);
 
         if(hit.collider != null)
         {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ExitTrigger : MonoBehaviour
 {
@@ -20,8 +21,7 @@ public class ExitTrigger : MonoBehaviour
                     Debug.Log("[MirrorExitTrigger] 미러플레이어 제거 완료");
                 }
 
-                // 보스씬 이동은 여기에 넣어도 되고 exitDoor에서 해도 됨
-                // SceneManager.LoadScene("BossScene");
+                SceneManager.LoadScene(exitDoor.bossSceneName);
             }
             else
             {

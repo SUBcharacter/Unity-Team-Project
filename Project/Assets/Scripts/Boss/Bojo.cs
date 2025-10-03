@@ -55,6 +55,11 @@ public class Bojo : MonoBehaviour, IResetable
         {
             animator.SetBool("PlayerDead", true);
         }
+
+        if(boss.isDead)
+        {
+            OnDeath();
+        }
     }
 
     public void OnDeath()

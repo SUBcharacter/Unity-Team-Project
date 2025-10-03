@@ -45,8 +45,9 @@ public class ColorPlatform : MonoBehaviour
             return;
         }
 
-        //if (isPressed || isInResetState) { return; } // 이미 밟혔거나 리셋 중이면 무시
+        if (isPressed || isInResetState) { return; } // 이미 밟혔거나 리셋 중이면 무시
 
+        isPressed = true;
         comparer.AddInput(symbolData);
 
         if(!isInResetState)
@@ -88,6 +89,7 @@ public class ColorPlatform : MonoBehaviour
 
         ResetPlatform(); // 원래 색 복원
         isInResetState = false;
+        isPressed = false;
     }
 
 #endregion

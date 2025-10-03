@@ -18,7 +18,7 @@ public class BossHealth : MonoBehaviour
 
     public void LateUpdate()
     {
-        if(boss.engage)
+        if(boss.engage && !boss.isDead)
         {
             healthBar.gameObject.SetActive(true);
             healthBar.value = (float)boss.health / (float)boss.maxHealth;

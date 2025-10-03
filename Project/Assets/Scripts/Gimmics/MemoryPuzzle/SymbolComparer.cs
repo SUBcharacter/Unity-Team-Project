@@ -28,7 +28,7 @@ public class SymbolComparer : MonoBehaviour, IResetable
         ResetPuzzle();
     }
 
-    private void Awake()
+    private void Start()
     {
         animator = GetComponent<Animator>();
         patternUIManager = GetComponent<PatternUIManager>();

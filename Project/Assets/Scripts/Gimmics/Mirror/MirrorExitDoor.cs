@@ -11,8 +11,8 @@ public class MirrorExitDoor : MonoBehaviour, IResetable
     [SerializeField] private Sprite closedSprite;
     [SerializeField] private Sprite openSprite;
 
-    //[Header("보스방 씬 이름")]
-    //[SerializeField] private string bossSceneName = "BossRoomScene";
+    [Header("보스방 씬 이름")]
+    [SerializeField] public string bossSceneName = "Boss";
 
     [Header("거울방 관련 연결")]
     public MirrorTrigger mirrorTrigger;
