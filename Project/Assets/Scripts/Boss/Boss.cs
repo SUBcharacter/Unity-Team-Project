@@ -58,24 +58,26 @@ public class Boss : MonoBehaviour,IResetable
     void Update()
     {
         AnimationControl();
-        if (!attacking && !isDead)
+        if(!GameManager.instance.player.isDead)
         {
-            Debug.Log("패턴 시작");
-            attacking = true;
+            if (!attacking && !isDead)
+            {
+                Debug.Log("패턴 시작");
+                attacking = true;
 
-            if (bojo.farAway)
-            {
-                int index = Random.Range(0, 2);
-                StartCoroutine(farAwayPatterns[index]());
-            }
-            else
-            {
-                int index = Random.Range(0, 2);
-                StartCoroutine(closePatterns[index]());
+                if (bojo.farAway)
+                {
+                    int index = Random.Range(0, 2);
+                    StartCoroutine(farAwayPatterns[index]());
+                }
+                else
+                {
+                    int index = Random.Range(0, 2);
+                    StartCoroutine(closePatterns[index]());
+                }
             }
         }
-        
-        if(GameManager.instance.player.isDead)
+        else
         {
             StopAllCoroutines();
             sprite.sprite = sprites[0];
@@ -94,6 +96,7 @@ public class Boss : MonoBehaviour,IResetable
         GameManager.instance.BGM.loop = false;
         GameManager.instance.BGM.Stop();
         StopAllCoroutines();
+        bojo.GetComponent<Animator>().ResetTrigger("Engage");
         engage = false;
         transform.position = initPos;
         transform.localScale = originalScale;

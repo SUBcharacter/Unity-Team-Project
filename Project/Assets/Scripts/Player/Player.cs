@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     CapsuleCollider2D coll;
     public AudioClip[] jump;
     public AudioClip death;
+    Coroutine shot;
 
     public Gun gun { get; private set; }
     
@@ -377,13 +379,34 @@ public class Player : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (!context.performed)
-            return;
+        if (context.performed)
+        {
+            shot = StartCoroutine(Shooting());
+        }
+        else if(context.canceled)
+        {
+            StopCoroutine(shot);
+            shot = null;
+        }
 
-        gun.Fire();
+        
     }
     #endregion
     #endregion
+
+    IEnumerator Shooting()
+    {
+        while(true)
+        {
+            if(!isDead)
+            {
+                gun.Fire();
+            }
+
+            yield return new WaitForSeconds(0.1f);
+        }
+        
+    }
 }
 [System.Serializable]
 public struct GunPosition

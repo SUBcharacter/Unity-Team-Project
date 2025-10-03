@@ -12,8 +12,8 @@ public class BulletManager : MonoBehaviour
 
     int bulletIndex = 0;
     int hitIndex = 0;
-    int bulletCount = 5;
-    int maxActiveBullet = 5;
+    int bulletCount = 15;
+    int maxActiveBullet = 15;
     public int activeBullet;
 
     private void Awake()
